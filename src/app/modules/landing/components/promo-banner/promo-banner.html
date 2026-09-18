@@ -1,0 +1,14 @@
+<section class="promo-banner">
+  <div class="promo-banner__container">
+    <a class="promo-banner__link"
+       [routerLink]="coursesLink()"
+       data-aos="fade-in">
+      @for (slide of slides; track slide.image; let i = $index) {
+      <img class="promo-banner__image"
+           [class.promo-banner__image--active]="currentIndex() === i"
+           [src]="slide.image"
+           [alt]="slide.altKey | translate" />
+      }
+    </a>
+  </div>
+</section>

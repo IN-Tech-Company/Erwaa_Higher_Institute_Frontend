@@ -1,0 +1,19 @@
+ /**
+ * @file _typography.scss
+ * @description Utility classes for font weight, alignment, text truncation.
+ */
+
+
+ .text-bold {
+   font-weight: var(--font-weight-bold);
+ }
+
+ .text-center {
+   text-align: center;
+ }
+
+ .text-truncate {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+ }

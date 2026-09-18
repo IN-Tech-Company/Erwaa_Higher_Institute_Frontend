@@ -1,0 +1,28 @@
+<div class="pi">
+  <label class="pi__label">{{ effectiveLabel() }}</label>
+
+  <div class="pi__wrap"
+       [class.pi__wrap--error]="showError"
+       [class.pi__wrap--disabled]="disabled()">
+    <span class="pi__prefix">
+      <img src="/assets/images/lang/ar.svg"
+           alt="SA"
+           class="pi__flag" />
+      +966
+    </span>
+    <input class="pi__input"
+           type="tel"
+           inputmode="numeric"
+           [placeholder]="placeholder()"
+           [disabled]="disabled()"
+           [value]="displayValue()"
+           (input)="onInput($event)"
+           (blur)="onBlur()"
+           dir="ltr"
+           autocomplete="tel" />
+  </div>
+
+  @if (showError) {
+  <span class="pi__error">{{ errorText }}</span>
+  }
+</div>

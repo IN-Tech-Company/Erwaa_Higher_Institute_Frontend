@@ -1,0 +1,32 @@
+<section class="courses"
+         id="courses">
+  <div class="courses__container">
+
+    <div class="courses__intro"
+         data-aos="fade-up">
+      <div class="courses__intro-text">
+        <span class="courses__eyebrow">{{ 'LANDING.COURSES.EYEBROW' | translate }}</span>
+        <h2 class="courses__title">
+          <span>{{ 'LANDING.COURSES.TITLE_LINE_1' | translate }}</span>
+          <span class="courses__title-highlight">{{ 'LANDING.COURSES.TITLE_HIGHLIGHT' | translate }}</span>
+        </h2>
+        <p class="courses__desc">{{ 'LANDING.COURSES.DESC' | translate }}</p>
+      </div>
+
+      <a [routerLink]="ctaLink()"
+         class="courses__cta">
+        {{ 'LANDING.COURSES.CTA' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="courses__grid">
+      @for (course of courses; track course.key) {
+      <app-course-card [image]="course.image"
+                       [title]="('LANDING.COURSES.' + course.key + '_TITLE') | translate"
+                       imageRatio="4 / 3" />
+      }
+    </div>
+
+  </div>
+</section>

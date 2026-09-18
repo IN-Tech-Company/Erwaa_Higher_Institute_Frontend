@@ -1,0 +1,86 @@
+<div class="login">
+  <div class="login__intro">
+    <h1 class="login__title">{{ 'AUTH.LOGIN.TITLE' | translate }}</h1>
+    <p class="login__subtitle">{{ 'AUTH.LOGIN.SUBTITLE' | translate }}</p>
+  </div>
+
+  <form class="login__form"
+        (submit)="submit($event)">
+    <div class="login__field">
+      <label class="login__label"
+             for="email">
+        {{ 'AUTH.FIELDS.EMAIL' | translate }}
+        <span class="login__required">*</span>
+      </label>
+      <div class="login__email-row">
+        <span class="login__email-icon">
+          <span class="material-symbols-outlined">mail</span>
+        </span>
+        <input class="login__input login__input--icon"
+               id="email"
+               name="email"
+               type="email"
+               dir="ltr"
+               [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate"
+               autocomplete="email"
+               [value]="email()"
+               (input)="onEmailInput($event)" />
+      </div>
+      @if (submitted() && !email()) {
+      <span class="login__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="login__field">
+      <label class="login__label"
+             for="password">
+        {{ 'AUTH.FIELDS.PASSWORD' | translate }}
+        <span class="login__required">*</span>
+      </label>
+      <div class="login__password-row">
+        <span class="login__lock-icon">
+          <span class="material-symbols-outlined">lock</span>
+        </span>
+        <input class="login__input login__input--password"
+               id="password"
+               name="password"
+               [type]="showPassword() ? 'text' : 'password'"
+               [placeholder]="'AUTH.FIELDS.PASSWORD_PLACEHOLDER' | translate"
+               autocomplete="current-password"
+               [value]="password()"
+               (input)="onPasswordInput($event)" />
+        <button class="login__eye"
+                type="button"
+                (click)="togglePassword()"
+                [attr.aria-label]="showPassword() ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'">
+          <span class="material-symbols-outlined">{{ showPassword() ? 'visibility_off' : 'visibility' }}</span>
+        </button>
+      </div>
+      @if (submitted() && !password()) {
+      <span class="login__error">{{ 'AUTH.VALIDATION.PASSWORD_REQUIRED' | translate }}</span>
+      }
+      <a class="login__forgot"
+         [routerLink]="['/', lang(), 'auth', 'forgot-password']">{{ 'AUTH.LOGIN.FORGOT' | translate }}</a>
+    </div>
+
+    @if (apiError()) {
+    <p class="login__api-error">{{ apiError() }}</p>
+    }
+
+    <button class="login__submit"
+            type="submit"
+            [disabled]="loading()">{{ 'AUTH.LOGIN.SUBMIT' | translate }}</button>
+
+    <p class="login__switch">
+      {{ 'AUTH.LOGIN.NO_ACCOUNT' | translate }}
+      <a [routerLink]="['/', lang(), 'auth', 'register']">{{ 'AUTH.LOGIN.CREATE_ACCOUNT' | translate }}</a>
+    </p>
+  </form>
+
+  <p class="login__legal">
+    {{ 'AUTH.REGISTER.TERMS_AGREE' | translate }}
+    <a [routerLink]="['/', lang(), 'legal', 'privacy']">{{ 'AUTH.REGISTER.PRIVACY_LINK' | translate }}</a>
+    {{ 'AUTH.REGISTER.TERMS_AND' | translate }}
+    <a [routerLink]="['/', lang(), 'legal', 'terms']">{{ 'AUTH.REGISTER.TERMS_LINK' | translate }}</a>
+  </p>
+</div>

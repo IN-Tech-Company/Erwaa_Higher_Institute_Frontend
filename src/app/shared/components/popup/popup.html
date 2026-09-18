@@ -1,0 +1,21 @@
+<div class="overlay"
+     [class.active]="isOpen"
+     (click)="onOverlayClick($event)">
+  <div class="sheet"
+       [class.open]="isOpen"
+       role="dialog"
+       [attr.aria-label]="title">
+    <div class="sheet-header">
+      <h2 class="sheet-title">{{ title }}</h2>
+      <button class="close-btn"
+              (click)="close.emit()"
+              aria-label="Close">✕</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="sheet-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

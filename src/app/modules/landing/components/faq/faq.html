@@ -1,0 +1,70 @@
+<section class="faq"
+         id="faq">
+  <div class="faq__container">
+
+    <div class="faq__intro"
+         data-aos="fade-up">
+      <div class="faq__intro-text">
+        <span class="faq__eyebrow">{{ 'LANDING.FAQ.EYEBROW' | translate }}</span>
+        <h2 class="faq__title">
+          <span>{{ 'LANDING.FAQ.TITLE_LINE_1' | translate }}</span>
+          <span class="faq__title-highlight">{{ 'LANDING.FAQ.TITLE_HIGHLIGHT' | translate }}</span>
+        </h2>
+        <p class="faq__desc">{{ 'LANDING.FAQ.DESC' | translate }}</p>
+      </div>
+
+      <a href="#contact"
+         class="faq__cta">
+        {{ 'LANDING.FAQ.CTA' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="faq__body">
+      <div class="faq__media"
+           data-aos="fade-up">
+        <img src="/assets/images/hero/hero-reception.png"
+             [alt]="'LANDING.FAQ.IMAGE_ALT' | translate" />
+        <div class="faq__media-overlay">
+          <div class="faq__media-stats">
+            <div class="faq__media-stat">
+              <span class="material-symbols-outlined">support_agent</span>
+              <span class="faq__media-stat-text">
+                <strong>{{ 'LANDING.FAQ.STAT1_NUMBER' | translate }}</strong>
+                <span>{{ 'LANDING.FAQ.STAT1_LABEL' | translate }}</span>
+              </span>
+            </div>
+            <div class="faq__media-stat">
+              <span class="material-symbols-outlined">schedule</span>
+              <span class="faq__media-stat-text">
+                <strong>{{ 'LANDING.FAQ.STAT2_NUMBER' | translate }}</strong>
+                <span>{{ 'LANDING.FAQ.STAT2_LABEL' | translate }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__list"
+           data-aos="fade-up"
+           data-aos-delay="100">
+        @for (item of items; track item.key) {
+        <div class="faq__item"
+             [class.faq__item--open]="isOpen(item.key)">
+          <button type="button"
+                  class="faq__question"
+                  (click)="toggle(item.key)"
+                  [attr.aria-expanded]="isOpen(item.key)">
+            {{ ('LANDING.FAQ.' + item.key + '_Q') | translate }}
+            <span class="material-symbols-outlined faq__chevron">expand_more</span>
+          </button>
+          <div class="faq__answer-wrap">
+            <p class="faq__answer">{{ ('LANDING.FAQ.' + item.key + '_A') | translate }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+  </div>
+</section>

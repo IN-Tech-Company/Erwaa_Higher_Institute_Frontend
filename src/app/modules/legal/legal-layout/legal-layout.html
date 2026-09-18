@@ -1,0 +1,38 @@
+<div class="legal-layout">
+  <header class="legal-topbar">
+    <a class="legal-topbar__brand"
+       [routerLink]="homeLink()">
+      <img class="legal-topbar__logo"
+           [src]="logoSrc()"
+           alt="معهد إرواء العالي للتدريب" />
+    </a>
+
+    <a class="legal-topbar__back"
+       [routerLink]="homeLink()">
+      <span class="material-symbols-outlined">{{ backIcon() }}</span>
+      <span>{{ 'LEGAL.BACK_HOME' | translate }}</span>
+    </a>
+
+    <button class="legal-topbar__lang"
+            type="button"
+            (click)="switchLanguage()">
+      <span class="material-symbols-outlined">language</span>
+      <span>{{ langToggleKey() | translate }}</span>
+    </button>
+  </header>
+
+  <nav class="legal-tabs">
+    @for (tab of tabs; track tab.path) {
+    <a class="legal-tabs__link"
+       [routerLink]="['/', langStore.currentLanguage(), 'legal', tab.path]"
+       routerLinkActive="legal-tabs__link--active">
+      <span class="material-symbols-outlined">{{ tab.icon }}</span>
+      <span>{{ tab.labelKey | translate }}</span>
+    </a>
+    }
+  </nav>
+
+  <main class="legal-main">
+    <router-outlet />
+  </main>
+</div>

@@ -1,0 +1,59 @@
+<section class="testimonials"
+         id="testimonials">
+  <div class="testimonials__container">
+
+    <div class="testimonials__intro"
+         data-aos="fade-up">
+      <span class="testimonials__eyebrow">{{ 'LANDING.TESTIMONIALS.EYEBROW' | translate }}</span>
+      <h2 class="testimonials__title">
+        <span>{{ 'LANDING.TESTIMONIALS.TITLE_LINE_1' | translate }}</span>
+        <span class="testimonials__title-highlight">{{ 'LANDING.TESTIMONIALS.TITLE_HIGHLIGHT' | translate }}</span>
+      </h2>
+    </div>
+
+    <div class="testimonials__carousel"
+         data-aos="fade-up"
+         data-aos-delay="100">
+      <button type="button"
+              class="testimonials__arrow"
+              (click)="prev()"
+              [attr.aria-label]="'LANDING.TESTIMONIALS.PREV' | translate">
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_back</span>
+      </button>
+
+      <div class="testimonials__stack">
+        <span class="testimonials__layer testimonials__layer--2"
+              aria-hidden="true"></span>
+        <span class="testimonials__layer testimonials__layer--1"
+              aria-hidden="true"></span>
+
+        @for (item of [current()]; track item.nameKey) {
+        <article class="testimonials__card">
+          <span class="material-symbols-outlined testimonials__quote-mark"
+                aria-hidden="true">format_quote</span>
+          <p class="testimonials__quote">{{ displayQuote() }}</p>
+          @if (isLong()) {
+          <button type="button"
+                  class="testimonials__toggle"
+                  (click)="toggleExpanded()">
+            {{ (expanded() ? 'LANDING.TESTIMONIALS.SHOW_LESS' : 'LANDING.TESTIMONIALS.READ_MORE') | translate }}
+          </button>
+          }
+          <div class="testimonials__author">
+            <span class="testimonials__author-name">{{ ('LANDING.TESTIMONIALS.' + item.nameKey) | translate }}</span>
+            <span class="testimonials__author-role">{{ ('LANDING.TESTIMONIALS.' + item.roleKey) | translate }}</span>
+          </div>
+        </article>
+        }
+      </div>
+
+      <button type="button"
+              class="testimonials__arrow"
+              (click)="next()"
+              [attr.aria-label]="'LANDING.TESTIMONIALS.NEXT' | translate">
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </button>
+    </div>
+
+  </div>
+</section>

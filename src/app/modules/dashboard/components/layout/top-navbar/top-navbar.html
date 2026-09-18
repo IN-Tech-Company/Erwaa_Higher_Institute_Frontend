@@ -1,0 +1,67 @@
+<header class="top-navbar">
+
+  <!-- Mobile: Brand bar -->
+  <div class="navbar-row-brand mobile-only">
+    <div class="brand-left">
+      <button class="hamburger-btn"
+              (click)="onMenuToggle()"
+              aria-label="Toggle menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <img src="assets/images/logo/logo.png"
+           [alt]="lang === 'ar' ? 'معهد إرواء العالي للتدريب' : 'Erwaa Higher Institute for Training'"
+           class="brand-logo" />
+
+    </div>
+  </div>
+
+  <!-- Desktop: Main bar -->
+  <div class="navbar-row-main">
+    <!-- Left: Page title (desktop only) -->
+    <div class="navbar-left desktop-only">
+      <div class="page-title-block">
+        <h1 class="page-title">{{ pageTitle() }}</h1>
+        <span class="page-subtitle">{{ pageSubtitle() }}</span>
+      </div>
+    </div>
+
+    <!-- Center: Nav icons -->
+    <nav class="navbar-center">
+      <ul class="nav-items">
+        @for(item of navItems(); track item.key) {
+        <li class="nav-item"
+            [class.active]="activeKey() === item.key"
+            (click)="onNavClick(item, $event)">
+          <a class="nav-link">
+            <span class="nav-icon-wrap">
+              <span class="material-symbols-outlined">{{ item.icon }}</span>
+              @if(item.key === 'notifications' && hasBadge()) {
+              <span class="notif-badge">{{ badgeLabel() }}</span>
+              } @else if(item.badge) {
+              <span class="notif-badge">{{ item.badge > 99 ? '99+' : item.badge }}</span>
+              }
+            </span>
+          </a>
+          <span class="nav-tooltip">{{ getLabel(item) }}</span>
+          @if(activeKey() === item.key) {
+          <div class="nav-indicator"></div>
+          }
+        </li>
+        }
+      </ul>
+    </nav>
+
+    <p-popover #notifPopover
+               appendTo="body"
+               (onShow)="onNotifPopoverShow()">
+      <app-notifications-dropdown></app-notifications-dropdown>
+    </p-popover>
+
+    <!-- Right: User dropdown -->
+    <div class="navbar-right">
+      <app-user-dropdown></app-user-dropdown>
+    </div>
+
+  </div>
+
+</header>

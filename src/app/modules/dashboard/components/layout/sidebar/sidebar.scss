@@ -1,0 +1,401 @@
+@use 'tokens/colors' as *;
+@use 'tokens/vars' as *;
+
+$sidebar-bg: $primary;
+$sidebar-accent: $secondary;
+$sidebar-text: rgba($white, 0.65);
+$sidebar-text-active: $white;
+$sidebar-hover-bg: rgba($white, 0.07);
+$sidebar-border: rgba($white, 0.09);
+
+// ─── Base ────────────────────────────────────────────────────────────────────
+.sidebar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  width: $sidebar-width;
+  background: $sidebar-bg;
+  border-inline-end: 1px solid $sidebar-border;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width $transition, transform $transition, box-shadow $transition;
+
+  &:not(.open):not(.collapsed) {
+    transform: translateX(calc(-100% + 6px));
+
+    &:hover {
+      transform: translateX(0);
+      box-shadow: 4px 0 28px rgba($black, 0.3);
+      z-index: 200;
+    }
+  }
+
+  &.rtl:not(.open):not(.collapsed) {
+    transform: translateX(calc(100% - 6px));
+
+    &:hover {
+      transform: translateX(0);
+      box-shadow: -4px 0 28px rgba($black, 0.3);
+    }
+  }
+
+  &.collapsed {
+    width: $sidebar-collapsed-width;
+    transform: translateX(0) !important;
+  }
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.sidebar-header {
+  height: $dashboard-header-height;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 10px;
+  border-bottom: 1px solid $sidebar-border;
+
+  .logo {
+    flex: 1;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity $transition, flex $transition;
+
+    img {
+      width: 120px;
+      height: 75px;
+      display: block;
+      object-fit: contain;
+    }
+  }
+
+  .menu-toggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: $sidebar-text-active;
+    transition: background $transition;
+
+    .material-symbols-outlined {
+      font-size: 26px;
+    }
+
+    &:hover {
+      background: $sidebar-hover-bg;
+    }
+  }
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+
+  .logo {
+    opacity: 0;
+    flex: 0;
+    width: 0;
+    pointer-events: none;
+  }
+}
+
+// ─── Nav ─────────────────────────────────────────────────────────────────────
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba($white, 0.15) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($white, 0.18);
+    border-radius: 4px;
+  }
+}
+
+.menu-section-label {
+  margin: 4px 16px 8px;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba($white, 0.38);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity $transition;
+
+  .sidebar.collapsed & {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+// Breathing room between one section's items and the next section's label.
+.menu-list+.menu-section-label {
+  margin-top: 22px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  margin-bottom: 2px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: $sidebar-text;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: $sidebar-text;
+    transition: color 0.22s;
+
+    &--danger {
+      color: $error-400;
+    }
+
+    &--warning {
+      color: $warning;
+    }
+
+    &--success {
+      color: $success;
+    }
+
+    &--secondary {
+      color: $secondary;
+    }
+  }
+
+  .label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    background: $sidebar-accent;
+    color: $white;
+    border-radius: 20px;
+    padding: 2px 7px;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  &:hover {
+    background: $sidebar-hover-bg;
+    color: $sidebar-text-active;
+
+    .icon {
+      color: $sidebar-text-active;
+    }
+  }
+}
+
+.menu-link.active {
+  background: rgba($white, 0.13);
+  color: $sidebar-text-active;
+
+  .icon {
+    color: $sidebar-text-active;
+  }
+
+  .label {
+    font-weight: 600;
+  }
+
+  .badge {
+    background: rgba($white, 0.25);
+  }
+}
+
+// ─── Collapsed ───────────────────────────────────────────────────────────────
+.sidebar.collapsed .menu-link {
+  justify-content: center;
+  padding: 12px;
+  gap: 0;
+
+  .label,
+  .badge {
+    display: none;
+  }
+
+  &::after {
+    content: attr(data-label);
+    position: absolute;
+    inset-inline-start: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: $primary-800;
+    color: $white;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba($black, 0.25);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────────────
+.sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid $sidebar-border;
+  flex-shrink: 0;
+}
+
+.collapse-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: $sidebar-text;
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.22s;
+
+  .material-symbols-outlined {
+    flex-shrink: 0;
+    font-size: 20px;
+    transition: transform $transition;
+  }
+
+  .label {
+    transition: opacity $transition;
+  }
+
+  &:hover {
+    background: $sidebar-hover-bg;
+    color: $sidebar-text-active;
+  }
+}
+
+.sidebar.collapsed .collapse-btn {
+  justify-content: center;
+  padding: 12px;
+  gap: 0;
+
+  .material-symbols-outlined {
+    transform: rotate(180deg);
+  }
+
+  .label {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+  }
+}
+
+[dir='rtl'] .collapse-btn .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+[dir='rtl'] .sidebar.collapsed .collapse-btn .material-symbols-outlined {
+  transform: rotate(0deg);
+}
+
+// ─── Overlay ─────────────────────────────────────────────────────────────────
+.sidebar-overlay {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba($black, 0.5);
+    z-index: 98;
+    animation: fadeIn 0.25s ease;
+    backdrop-filter: blur(2px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+// ─── Mobile ──────────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .sidebar {
+    width: $sidebar-width !important;
+
+    &:not(.open):not(.collapsed),
+    &.rtl:not(.open):not(.collapsed) {
+      transform: translateX(-100%);
+
+      &:hover {
+        transform: translateX(-100%);
+        box-shadow: none;
+      }
+    }
+
+    &.rtl:not(.open):not(.collapsed) {
+      transform: translateX(100%);
+
+      &:hover {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  .collapse-btn {
+    display: none;
+  }
+}

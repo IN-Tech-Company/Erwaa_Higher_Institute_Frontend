@@ -1,0 +1,25 @@
+<div class="sp__backdrop"
+     [class.sp__backdrop--visible]="svc.isOpen()"
+     [class.sp__backdrop--locked]="svc.isLocked()"
+     (click)="svc.close()">
+</div>
+<aside class="sp__panel"
+       [class.sp__panel--open]="svc.isOpen()">
+  @if (svc.hasConfig()) {
+  @if (svc.config(); as cfg) {
+  <div class="sp__header">
+    <h2 class="sp__title">{{ lang() === 'ar' ? cfg.titleAr : cfg.titleEn }}</h2>
+    <button class="sp__close"
+            type="button"
+            [disabled]="svc.isLocked()"
+            (click)="svc.close()">
+      <i class="bx bx-x"></i>
+    </button>
+  </div>
+  <div class="sp__body">
+    <ng-container [ngComponentOutlet]="cfg.component"
+                  [ngComponentOutletInputs]="cfg.inputs ?? {}" />
+  </div>
+  }
+  }
+</aside>

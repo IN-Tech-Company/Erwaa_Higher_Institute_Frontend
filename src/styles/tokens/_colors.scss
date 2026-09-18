@@ -1,0 +1,193 @@
+/**
+ * @file _colors.scss
+ * @description Design tokens for colors.
+ * Primary (navy) and secondary (gold) scales are derived from the official
+ * Erwaa Institute logo (src/assets/images/logo/logo.png):
+ *   - Navy #111426 → primary
+ *   - Gold #fab629 → secondary
+ * Both scales are pinned to the exact sampled hex at the 500 stop; every
+ * other stop is a generated tint/shade of it. Neutral reuses the same hue
+ * as primary at low saturation, so grays read as "cool navy" rather than
+ * plain gray.
+ * These variables should be used throughout the project instead of hard-coded colors.
+ * Both SCSS variables and CSS variables are defined for theme support.
+ */
+
+// Primary Palette — Navy #111426 (Erwaa logo)
+$primary-50: #f6f6f9;
+$primary-100: #e9eaf1;
+$primary-200: #cccfe0;
+$primary-300: #9fa4c6;
+$primary-400: #56609f;
+$primary-500: #111426;
+$primary-600: #0e1020;
+$primary-700: #0a0d19;
+$primary-800: #070912;
+$primary-900: #05060d;
+$primary-950: #030308;
+$primary: $primary-500;
+
+// Secondary Palette — Gold #fab629 (Erwaa logo)
+$secondary-50: #fefaf0;
+$secondary-100: #fdf3dd;
+$secondary-200: #fce7ba;
+$secondary-300: #fbd689;
+$secondary-400: #fac557;
+$secondary-500: #fab629;
+$secondary-600: #e9a10c;
+$secondary-700: #b58012;
+$secondary-800: #856014;
+$secondary-900: #5d4513;
+$secondary-950: #382b0f;
+$secondary: $secondary-500;
+
+// Neutral / Gray Palette — same hue as primary (navy), low saturation
+$neutral-50: #efeff1;
+$neutral-100: #d7d7dd;
+$neutral-200: #adafba;
+$neutral-300: #848797;
+$neutral-400: #5f6270;
+$neutral-500: #3d3e47;
+$neutral-600: #35373f;
+$neutral-700: #2c2d33;
+$neutral-800: #222227;
+$neutral-900: #18191d;
+$neutral-950: #0f1012;
+$neutral: $neutral-500;
+
+$white: #fff;
+$black: #000;
+$gray-bg: #fafafb;
+$gradient-primary: linear-gradient(223.1deg, $primary-400 -59.08%, $primary-900 114.36%);
+
+// -----------------------------
+// Status colors
+// -----------------------------
+$warning: #f59e0b;
+$success: #10b981;
+
+$error-50: #fff5f5;
+$error-100: #ffe5e3;
+$error-200: #ffb8b3;
+$error-300: #ff8a82;
+$error-400: #ff5c52;
+$error-500: #ff3b30;
+$error-600: #e6352b;
+$error-700: #cc2f26;
+$error-800: #b32921;
+$error-900: #99231c;
+$error: $error-500;
+
+:root {
+
+  --p-primary-color: #{$primary};
+  --p-primary-contrast-color: #ffffff;
+
+  --p-surface-0: #ffffff;
+  --p-surface-100: #{$neutral-50};
+  --p-surface-200: #{$neutral-100};
+  --p-surface-300: #{$neutral-200};
+
+  --p-content-background: #ffffff;
+  --p-content-border-color: #{$neutral-200};
+  --p-content-color: #{$neutral-900};
+
+  --p-content-hover-background: #{$primary-50};
+  --p-content-hover-color: #{$primary};
+
+  --p-form-field-border-color: #{$neutral-200};
+  --p-form-field-icon-color: #{$neutral-400};
+  --p-form-field-border-radius: 12px;
+
+  --p-focus-ring-color: #{rgba($primary, 0.2)};
+  --p-focus-ring-shadow: 0 0 0 3px #{rgba($primary, 0.12)};
+
+  --p-overlay-popover-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  --p-overlay-popover-padding: 12px;
+
+  --p-highlight-background: #{$primary-100};
+  --p-highlight-color: #{$primary};
+
+  --p-transition-duration: 0.2s;
+
+
+  /* ===== DATEPICKER ===== */
+
+  --p-datepicker-panel-background: var(--p-content-background);
+  --p-datepicker-panel-border-color: var(--p-content-border-color);
+  --p-datepicker-panel-color: var(--p-content-color);
+  --p-datepicker-panel-border-radius: 16px;
+  --p-datepicker-panel-shadow: var(--p-overlay-popover-shadow);
+  --p-datepicker-panel-padding: var(--p-overlay-popover-padding);
+
+  --p-datepicker-header-background: transparent;
+  --p-datepicker-header-border-color: transparent;
+  --p-datepicker-header-color: var(--p-content-color);
+  --p-datepicker-header-padding: 0 0 0.5rem 0;
+
+  --p-datepicker-title-gap: 0.5rem;
+  --p-datepicker-title-font-weight: 600;
+
+  /* ===== DAYS ===== */
+  --p-datepicker-date-width: 36px;
+  --p-datepicker-date-height: 36px;
+  --p-datepicker-date-border-radius: 10px;
+  --p-datepicker-date-padding: 0.25rem;
+
+  --p-datepicker-date-color: var(--p-content-color);
+  --p-datepicker-date-hover-background: #{$primary-50};
+  --p-datepicker-date-hover-color: var(--p-primary-color);
+
+  --p-datepicker-date-selected-background: var(--p-primary-color);
+  --p-datepicker-date-selected-color: #ffffff;
+
+  --p-datepicker-date-range-selected-background: #{$primary-100};
+  --p-datepicker-date-range-selected-color: var(--p-primary-color);
+
+  /* ===== TODAY ===== */
+  --p-datepicker-today-background: transparent;
+  --p-datepicker-today-color: var(--p-primary-color);
+
+  /* ===== WEEK ===== */
+  --p-datepicker-week-day-color: #{$neutral-500};
+  --p-datepicker-week-day-font-weight: 500;
+
+  /* ===== DROPDOWN ===== */
+  --p-datepicker-dropdown-background: #{$neutral-50};
+  --p-datepicker-dropdown-hover-background: #{$neutral-100};
+  --p-datepicker-dropdown-active-background: #{$neutral-200};
+
+  --p-datepicker-dropdown-color: #{$neutral-500};
+  --p-datepicker-dropdown-hover-color: #{$primary};
+  --p-datepicker-dropdown-active-color: #{$primary-800};
+
+  --p-datepicker-dropdown-border-radius: 10px;
+
+  /* ===== ICON ===== */
+  --p-datepicker-input-icon-color: #{$neutral-400};
+
+  /* ===== TIME PICKER ===== */
+  --p-datepicker-time-picker-padding: 0.5rem 0 0 0;
+  --p-datepicker-time-picker-border-color: var(--p-content-border-color);
+  --p-datepicker-time-picker-gap: 0.5rem;
+  --p-datepicker-time-picker-button-gap: 0.25rem;
+
+  /* ===== BUTTON BAR ===== */
+  --p-datepicker-buttonbar-padding: 0.5rem 0 0 0;
+  --p-datepicker-buttonbar-border-color: var(--p-content-border-color);
+
+  /* ===== MONTH / YEAR ===== */
+  --p-datepicker-month-padding: 0.375rem;
+  --p-datepicker-month-border-radius: 10px;
+
+  --p-datepicker-year-padding: 0.375rem;
+  --p-datepicker-year-border-radius: 10px;
+
+  /* ===== HOVER STATES ===== */
+  --p-datepicker-select-month-hover-background: #{$primary-50};
+  --p-datepicker-select-month-hover-color: var(--p-primary-color);
+
+  --p-datepicker-select-year-hover-background: #{$primary-50};
+  --p-datepicker-select-year-hover-color: var(--p-primary-color);
+
+}

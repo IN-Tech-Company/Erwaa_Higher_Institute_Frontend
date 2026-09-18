@@ -1,0 +1,558 @@
+@use 'tokens/colors' as c;
+@use 'tokens/typography' as t;
+@use 'tokens/radius' as r;
+@use 'tokens/breakpoints' as bp;
+
+.course-checkout {
+  background: c.$white;
+  padding-block: 2.5rem 4rem;
+
+  @include bp.min(md) {
+    padding-block: 3.5rem 6rem;
+  }
+}
+
+.course-checkout__container {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.course-checkout__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: c.$neutral-500;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+
+  .material-symbols-outlined {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    color: c.$primary-950;
+  }
+}
+
+// ── Page intro (full width, above the steps/form — feedback 2026-09-17:
+// having the title live only inside the form column made the page read as
+// unbalanced next to the summary card) ───────────────────────────────────
+.course-checkout__intro {
+  max-width: 640px;
+  margin-bottom: 1.75rem;
+}
+
+// ── Step indicator ────────────────────────────────────────────────────────
+.course-checkout__steps {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.course-checkout__step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: c.$neutral-400;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.course-checkout__step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: r.$radius-full;
+  background: c.$gray-bg;
+  color: c.$neutral-400;
+  font-size: 0.8rem;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+  }
+}
+
+.course-checkout__step--active {
+  color: c.$primary-950;
+
+  .course-checkout__step-index {
+    background: c.$secondary;
+    color: c.$primary-950;
+  }
+}
+
+.course-checkout__step--done {
+  color: c.$neutral-500;
+
+  .course-checkout__step-index {
+    background: rgba(c.$success, 0.15);
+    color: c.$success;
+  }
+}
+
+.course-checkout__step-divider {
+  width: 2.5rem;
+  height: 1.5px;
+  background: rgba(c.$primary-500, 0.14);
+}
+
+// ── Layout: form + order-summary side card ──────────────────────────────
+.course-checkout__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+
+  @include bp.min(md) {
+    grid-template-columns: 7fr 5fr;
+    gap: 2.5rem;
+  }
+}
+
+.course-checkout__eyebrow {
+  display: inline-block;
+  color: c.$secondary-700;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.course-checkout__title {
+  font-family: var(--font-body), sans-serif;
+  font-weight: t.$font-weight-semibold;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  color: c.$primary-900;
+  margin: 0 0 0.5rem;
+}
+
+.course-checkout__desc {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-500;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+// ── Form (same field recipe as `RegisterComponent`, kept local since this
+// page lives in a different module) ─────────────────────────────────────
+.course-checkout__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  background: c.$white;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+
+  @include bp.min(md) {
+    padding: 2.75rem;
+  }
+}
+
+.course-checkout__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.course-checkout__label {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  color: c.$neutral-700;
+}
+
+.course-checkout__required {
+  color: c.$error;
+}
+
+.course-checkout__input {
+  width: 100%;
+  border: 1.5px solid rgba(c.$primary-500, 0.14);
+  border-radius: r.$radius-md;
+  padding: 1.05rem 1rem;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  color: c.$neutral-900;
+  background: c.$white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &::placeholder {
+    color: c.$neutral-400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: c.$secondary-600;
+    box-shadow: 0 0 0 3px rgba(c.$secondary-500, 0.15);
+  }
+}
+
+.course-checkout__error {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-xs;
+  color: c.$error;
+}
+
+.course-checkout__icon-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:focus-within .course-checkout__icon {
+    color: c.$secondary-600;
+  }
+}
+
+.course-checkout__icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 1rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: c.$neutral-300;
+  font-size: 1.15rem;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.course-checkout__input--icon {
+  padding-inline-start: 2.75rem;
+}
+
+.course-checkout__phone-row {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid rgba(c.$primary-500, 0.14);
+  border-radius: r.$radius-md;
+  background: c.$white;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus-within {
+    border-color: c.$secondary-600;
+    box-shadow: 0 0 0 3px rgba(c.$secondary-500, 0.15);
+  }
+
+  .course-checkout__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    border-radius: 0;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.course-checkout__phone-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding-inline: 1rem;
+  background: c.$gray-bg;
+  color: c.$neutral-500;
+  font-family: var(--font-body), sans-serif;
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-sm;
+  border-inline-end: 1.5px solid rgba(c.$primary-500, 0.14);
+}
+
+.course-checkout__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: none;
+  border-radius: r.$radius-full;
+  padding: 1rem;
+  background: c.$secondary;
+  color: c.$primary-950;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-semibold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 1.15rem;
+  }
+
+  &:hover {
+    background: c.$secondary-600;
+    transform: translateY(-2px);
+  }
+}
+
+.course-checkout__note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: -0.5rem 0 0;
+  color: c.$neutral-400;
+  font-size: 0.78rem;
+  text-align: center;
+
+  .material-symbols-outlined {
+    font-size: 0.95rem;
+  }
+}
+
+// ── Order-summary side card ──────────────────────────────────────────────
+// Redesigned 2026-09-17 (feedback: a small square thumbnail next to the
+// title read like a login-form user row, not a checkout order summary) —
+// now a real cover photo on top, like a small product card, with the
+// details stacked underneath.
+.course-checkout__summary {
+  background: c.$gray-bg;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+
+  @include bp.min(md) {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+// `object-fit: contain` (not `cover`) so the whole poster always shows,
+// nothing cropped — but kept inside a capped-height box with light padding
+// (not full-bleed/natural size) since some poster designs have a dark
+// background of their own; letting one fill the card edge-to-edge made the
+// whole card read as too dark. The light padding keeps that contained no
+// matter how dark or how tall/portrait a given poster is.
+.course-checkout__summary-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 380px;
+  padding: 1rem;
+  background: c.$white;
+  border-bottom: 1px solid rgba(c.$primary-500, 0.08);
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.course-checkout__summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.course-checkout__summary-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: c.$primary-950;
+
+  .material-symbols-outlined {
+    font-size: 1.15rem;
+    color: c.$secondary-700;
+  }
+}
+
+.course-checkout__summary-course {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(c.$primary-500, 0.08);
+}
+
+.course-checkout__summary-category {
+  color: c.$secondary-700;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.course-checkout__summary-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: c.$primary-950;
+  line-height: 1.5;
+}
+
+.course-checkout__summary-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  margin: 0;
+  padding: 0 0 1rem;
+  list-style: none;
+  border-bottom: 1px solid rgba(c.$primary-500, 0.08);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: c.$neutral-500;
+    font-size: 0.8rem;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.05rem;
+    color: c.$secondary-700;
+  }
+}
+
+.course-checkout__summary-price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.course-checkout__summary-price-amount {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: c.$secondary-700;
+
+  .icon-saudi_riyal {
+    font-size: 0.85em;
+  }
+}
+
+.course-checkout__summary-price-original {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: c.$neutral-300;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: line-through;
+
+  .icon-saudi_riyal {
+    font-size: 0.85em;
+  }
+}
+
+.course-checkout__summary-price-free {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: c.$success;
+}
+
+.course-checkout__summary-price-tbd {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: c.$neutral-400;
+}
+
+.course-checkout__summary-payment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(c.$primary-500, 0.08);
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: c.$neutral-400;
+  }
+
+  img {
+    height: 32px;
+    width: auto;
+    opacity: 0.85;
+  }
+}
+
+// ── Confirmation screen ───────────────────────────────────────────────────
+.course-checkout__confirm {
+  text-align: center;
+  max-width: 480px;
+  margin-inline: auto;
+  padding-block: 3rem;
+
+  h1 {
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    font-weight: 800;
+    color: c.$primary-950;
+    margin: 1.25rem 0 0.6rem;
+  }
+
+  p {
+    color: c.$neutral-500;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin: 0 0 1.75rem;
+  }
+}
+
+.course-checkout__confirm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: r.$radius-full;
+  background: rgba(c.$success, 0.1);
+
+  .material-symbols-outlined {
+    font-size: 2.25rem;
+    color: c.$success;
+    font-variation-settings: 'FILL' 1;
+  }
+}
+
+.course-checkout__confirm-cta {
+  display: inline-flex;
+  border-radius: r.$radius-full;
+  padding: 0.85rem 1.75rem;
+  background: c.$secondary;
+  color: c.$primary-950;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: c.$secondary-600;
+    transform: translateY(-2px);
+  }
+}
+
+.course-checkout__not-found {
+  text-align: center;
+  padding-block: 6rem 8rem;
+  color: c.$neutral-500;
+
+  a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: c.$secondary-700;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

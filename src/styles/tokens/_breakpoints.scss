@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+$bp-phone: 0; // phones
+$bp-tablet: 36rem; // 576px
+$bp-md: 48rem; // 768px
+$bp-lg: 62rem; // 992px
+$bp-xl: 75rem; // 1200px
+
+$breakpoints: (
+  phone: $bp-phone,
+  tablet: $bp-tablet,
+  md: $bp-md,
+  lg: $bp-lg,
+  xl: $bp-xl,
+);
+
+@mixin max($breakpoint) {
+  @media (max-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin min($breakpoint) {
+  @media (min-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}

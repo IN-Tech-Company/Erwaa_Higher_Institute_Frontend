@@ -1,0 +1,77 @@
+/**
+ * @file _typography.scss
+ * @description Typography tokens and font definitions.
+ * Includes:
+ *  - Font families for Arabic and English
+ *  - Font sizes and line heights
+ *  - Font weights
+ *  - @font-face declarations for custom fonts  
+ */
+// -----------------------------
+// Font Sizes
+// -----------------------------
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-md: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 2rem; // 32px
+$font-size-3xl: 3rem; // 48px
+$font-size-4xl: 4rem; // 64px
+$font-size-5xl: 6rem; // 96px
+$font-size-6xl: 8rem; // 128px
+$font-size-7xl: 12rem; // 192px
+
+// -----------------------------
+// Font Weights
+// -----------------------------
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+
+// -----------------------------
+// Chillax — English (Fontshare CDN)
+// -----------------------------
+@import url('https://api.fontshare.com/v2/css?f[]=chillax@300,400,500,600,700&display=swap');
+
+// -----------------------------
+// Almarai — Arabic (self-hosted .ttf)
+// -----------------------------
+@font-face {
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/Font/Almarai-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/Font/Almarai-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/Font/Almarai-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/assets/Font/Almarai-ExtraBold.ttf') format('truetype');
+}

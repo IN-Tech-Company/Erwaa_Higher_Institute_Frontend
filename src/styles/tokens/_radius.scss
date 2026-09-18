@@ -1,0 +1,11 @@
+/**
+ * @file _radius.scss
+ * @description Border-radius tokens.
+ * Only the steps actually used across the app are kept here.
+ */
+$radius-md: 0.625rem; // 10px
+$radius-lg: 1rem; // 16px
+$radius-xl: 2rem; // 32px
+$radius-full: 9999px; // fully rounded
+
+$radius: $radius-md; // Default radius for components

@@ -1,0 +1,229 @@
+<div class="register-teacher">
+  <div class="register-teacher__intro">
+    <h1 class="register-teacher__title">{{ 'AUTH.REGISTER.TEACHER_TITLE' | translate }}</h1>
+    <p class="register-teacher__switch">
+      {{ 'AUTH.REGISTER.HAVE_ACCOUNT' | translate }}
+      <a [routerLink]="['/', lang(), 'auth', 'login']">{{ 'AUTH.REGISTER.LOGIN' | translate }}</a>
+    </p>
+  </div>
+
+  <p class="register-teacher__desc">{{ 'AUTH.REGISTER.TEACHER_DESC' | translate }}</p>
+
+  <form class="register-teacher__form"
+        (submit)="submit($event)">
+
+    <div class="register-teacher__row">
+      <div class="register-teacher__field">
+        <label class="register-teacher__label"
+               for="firstName">
+          {{ 'AUTH.FIELDS.FIRST_NAME' | translate }}
+          <span class="register-teacher__required">*</span>
+        </label>
+        <input class="register-teacher__input"
+               id="firstName"
+               name="firstName"
+               type="text"
+               [placeholder]="'AUTH.FIELDS.FIRST_NAME_PLACEHOLDER' | translate"
+               autocomplete="given-name"
+               [value]="firstName()"
+               (input)="onFirstNameInput($event)" />
+        @if (submitted() && !firstName()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.FIRST_NAME' | translate }}</span>
+        }
+      </div>
+      <div class="register-teacher__field">
+        <label class="register-teacher__label"
+               for="lastName">
+          {{ 'AUTH.FIELDS.LAST_NAME' | translate }}
+          <span class="register-teacher__required">*</span>
+        </label>
+        <input class="register-teacher__input"
+               id="lastName"
+               name="lastName"
+               type="text"
+               [placeholder]="'AUTH.FIELDS.LAST_NAME_PLACEHOLDER' | translate"
+               autocomplete="family-name"
+               [value]="lastName()"
+               (input)="onLastNameInput($event)" />
+        @if (submitted() && !lastName()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.LAST_NAME' | translate }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="register-teacher__field">
+      <label class="register-teacher__label"
+             for="email">
+        {{ 'AUTH.FIELDS.EMAIL' | translate }}
+        <span class="register-teacher__required">*</span>
+      </label>
+      <div class="register-teacher__icon-row">
+        <span class="register-teacher__icon">
+          <span class="material-symbols-outlined">mail</span>
+        </span>
+        <input class="register-teacher__input register-teacher__input--icon"
+               id="email"
+               name="email"
+               type="email"
+               dir="ltr"
+               [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate"
+               autocomplete="email"
+               [value]="email()"
+               (input)="onEmailInput($event)" />
+      </div>
+      @if (submitted() && !email()) {
+      <span class="register-teacher__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="register-teacher__field">
+      <label class="register-teacher__label"
+             for="phone">
+        {{ 'AUTH.FIELDS.PHONE' | translate }}
+        <span class="register-teacher__required">*</span>
+      </label>
+      <div class="register-teacher__phone-row">
+        <span class="register-teacher__phone-code"
+              dir="ltr">+966</span>
+        <input class="register-teacher__input"
+               id="phone"
+               name="phone"
+               type="tel"
+               dir="ltr"
+               placeholder="5xxxxxxxx"
+               autocomplete="tel"
+               [value]="phone()"
+               (input)="onPhoneInput($event)" />
+      </div>
+      @if (submitted() && !phone()) {
+      <span class="register-teacher__error">{{ 'AUTH.VALIDATION.PHONE_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="register-teacher__row">
+      <div class="register-teacher__field">
+        <label class="register-teacher__label"
+               for="specialization">
+          {{ 'AUTH.FIELDS.SPECIALIZATION' | translate }}
+          <span class="register-teacher__required">*</span>
+        </label>
+        <input class="register-teacher__input"
+               id="specialization"
+               name="specialization"
+               type="text"
+               [placeholder]="'AUTH.FIELDS.SPECIALIZATION_PLACEHOLDER' | translate"
+               [value]="specialization()"
+               (input)="onSpecializationInput($event)" />
+        @if (submitted() && !specialization()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.SPECIALIZATION_REQUIRED' | translate }}</span>
+        }
+      </div>
+      <div class="register-teacher__field">
+        <label class="register-teacher__label"
+               for="experience">
+          {{ 'AUTH.FIELDS.YEARS_OF_EXPERIENCE' | translate }}
+          <span class="register-teacher__required">*</span>
+        </label>
+        <input class="register-teacher__input"
+               id="experience"
+               name="experience"
+               type="number"
+               min="0"
+               dir="ltr"
+               [placeholder]="'AUTH.FIELDS.YEARS_OF_EXPERIENCE_PLACEHOLDER' | translate"
+               [value]="yearsOfExperience()"
+               (input)="onYearsOfExperienceInput($event)" />
+        @if (submitted() && !yearsOfExperience()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.YEARS_OF_EXPERIENCE_REQUIRED' | translate }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="register-teacher__row">
+      <div class="register-teacher__field">
+        <label class="register-teacher__label"
+               for="password">
+          {{ 'AUTH.FIELDS.PASSWORD' | translate }}
+          <span class="register-teacher__required">*</span>
+        </label>
+        <div class="register-teacher__password-row">
+          <span class="register-teacher__icon register-teacher__icon--inset">
+            <span class="material-symbols-outlined">lock</span>
+          </span>
+          <input class="register-teacher__input register-teacher__input--password"
+                 id="password"
+                 name="password"
+                 [type]="showPassword() ? 'text' : 'password'"
+                 [placeholder]="'AUTH.FIELDS.PASSWORD_PLACEHOLDER' | translate"
+                 autocomplete="new-password"
+                 [value]="password()"
+                 (input)="onPasswordInput($event)" />
+          <button class="register-teacher__eye"
+                  type="button"
+                  (click)="togglePassword()"
+                  [attr.aria-label]="showPassword() ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'">
+            <span class="material-symbols-outlined">{{ showPassword() ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+        @if (submitted() && !password()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.PASSWORD_REQUIRED' | translate }}</span>
+        }
+      </div>
+
+      <div class="register-teacher__field">
+        <label class="register-teacher__label"
+               for="confirmPassword">
+          {{ 'AUTH.FIELDS.CONFIRM_PASSWORD' | translate }}
+          <span class="register-teacher__required">*</span>
+        </label>
+        <div class="register-teacher__password-row">
+          <span class="register-teacher__icon register-teacher__icon--inset">
+            <span class="material-symbols-outlined">lock</span>
+          </span>
+          <input class="register-teacher__input register-teacher__input--password"
+                 id="confirmPassword"
+                 name="confirmPassword"
+                 [type]="showConfirmPassword() ? 'text' : 'password'"
+                 [placeholder]="'AUTH.FIELDS.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
+                 autocomplete="new-password"
+                 [value]="confirmPassword()"
+                 (input)="onConfirmPasswordInput($event)" />
+          <button class="register-teacher__eye"
+                  type="button"
+                  (click)="toggleConfirmPassword()"
+                  [attr.aria-label]="showConfirmPassword() ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'">
+            <span class="material-symbols-outlined">{{ showConfirmPassword() ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+        @if (submitted() && confirmPassword() && passwordMismatch()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.PASSWORD_MISMATCH' | translate }}</span>
+        } @else if (submitted() && !confirmPassword()) {
+        <span class="register-teacher__error">{{ 'AUTH.VALIDATION.CONFIRM_PASSWORD_REQUIRED' | translate }}</span>
+        }
+      </div>
+    </div>
+
+    <label class="register-teacher__terms">
+      <input type="checkbox"
+             [checked]="agreeTerms()"
+             (change)="toggleTerms()" />
+      <span>
+        {{ 'AUTH.REGISTER.TERMS_AGREE' | translate }}
+        <a [routerLink]="['/', lang(), 'legal', 'terms']">{{ 'AUTH.REGISTER.TERMS_LINK' | translate }}</a>
+        {{ 'AUTH.REGISTER.TERMS_AND' | translate }}
+        <a [routerLink]="['/', lang(), 'legal', 'privacy']">{{ 'AUTH.REGISTER.PRIVACY_LINK' | translate }}</a>
+      </span>
+    </label>
+    @if (submitted() && !agreeTerms()) {
+    <span class="register-teacher__error">{{ 'AUTH.VALIDATION.TERMS_REQUIRED' | translate }}</span>
+    }
+
+    <button type="submit"
+            class="register-teacher__submit">{{ 'AUTH.REGISTER.SUBMIT' | translate }}</button>
+  </form>
+
+  <p class="register-teacher__trainee-link">
+    {{ 'AUTH.REGISTER.TRAINEE_PROMPT' | translate }}
+    <a [routerLink]="['/', lang(), 'auth', 'register']">{{ 'AUTH.REGISTER.TRAINEE_CTA' | translate }}</a>
+  </p>
+</div>

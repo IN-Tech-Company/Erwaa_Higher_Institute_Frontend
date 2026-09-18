@@ -1,0 +1,189 @@
+<div class="register">
+  <div class="register__intro">
+    <h1 class="register__title">{{ 'AUTH.REGISTER.TRAINEE_TITLE' | translate }}</h1>
+    <p class="register__switch">
+      {{ 'AUTH.REGISTER.HAVE_ACCOUNT' | translate }}
+      <a [routerLink]="['/', lang(), 'auth', 'login']">{{ 'AUTH.REGISTER.LOGIN' | translate }}</a>
+    </p>
+  </div>
+
+  <p class="register__desc">{{ 'AUTH.REGISTER.TRAINEE_DESC' | translate }}</p>
+
+  <form class="register__form"
+        (submit)="submit($event)">
+
+    <div class="register__field">
+      <label class="register__label"
+             for="fullName">
+        {{ 'AUTH.FIELDS.FULL_NAME' | translate }}
+        <span class="register__required">*</span>
+      </label>
+      <input class="register__input"
+             id="fullName"
+             name="fullName"
+             type="text"
+             [placeholder]="'AUTH.FIELDS.FULL_NAME_PLACEHOLDER' | translate"
+             autocomplete="name"
+             [value]="fullName()"
+             (input)="onFullNameInput($event)" />
+      @if (submitted() && !fullName()) {
+      <span class="register__error">{{ 'AUTH.VALIDATION.FULL_NAME_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="register__field">
+      <label class="register__label"
+             for="email">
+        {{ 'AUTH.FIELDS.EMAIL' | translate }}
+        <span class="register__required">*</span>
+      </label>
+      <div class="register__icon-row">
+        <span class="register__icon">
+          <span class="material-symbols-outlined">mail</span>
+        </span>
+        <input class="register__input register__input--icon"
+               id="email"
+               name="email"
+               type="email"
+               dir="ltr"
+               [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate"
+               autocomplete="email"
+               [value]="email()"
+               (input)="onEmailInput($event)" />
+      </div>
+      @if (submitted() && !email()) {
+      <span class="register__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="register__field">
+      <label class="register__label"
+             for="phone">
+        {{ 'AUTH.FIELDS.PHONE' | translate }}
+        <span class="register__required">*</span>
+      </label>
+      <div class="register__phone-row">
+        <span class="register__phone-code"
+              dir="ltr">+966</span>
+        <input class="register__input"
+               id="phone"
+               name="phone"
+               type="tel"
+               dir="ltr"
+               placeholder="5xxxxxxxx"
+               autocomplete="tel"
+               [value]="phone()"
+               (input)="onPhoneInput($event)" />
+      </div>
+      @if (submitted() && !phone()) {
+      <span class="register__error">{{ 'AUTH.VALIDATION.PHONE_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="register__field">
+      <label class="register__label"
+             for="nationalId">
+        {{ 'AUTH.FIELDS.NATIONAL_ID' | translate }}
+        <span class="register__required">*</span>
+      </label>
+      <input class="register__input"
+             id="nationalId"
+             name="nationalId"
+             type="text"
+             dir="ltr"
+             [placeholder]="'AUTH.FIELDS.NATIONAL_ID_PLACEHOLDER' | translate"
+             [value]="nationalId()"
+             (input)="onNationalIdInput($event)" />
+      @if (submitted() && !nationalId()) {
+      <span class="register__error">{{ 'AUTH.VALIDATION.NATIONAL_ID_REQUIRED' | translate }}</span>
+      }
+    </div>
+
+    <div class="register__row">
+      <div class="register__field">
+        <label class="register__label"
+               for="password">
+          {{ 'AUTH.FIELDS.PASSWORD' | translate }}
+          <span class="register__required">*</span>
+        </label>
+        <div class="register__password-row">
+          <span class="register__icon register__icon--inset">
+            <span class="material-symbols-outlined">lock</span>
+          </span>
+          <input class="register__input register__input--password"
+                 id="password"
+                 name="password"
+                 [type]="showPassword() ? 'text' : 'password'"
+                 [placeholder]="'AUTH.FIELDS.PASSWORD_PLACEHOLDER' | translate"
+                 autocomplete="new-password"
+                 [value]="password()"
+                 (input)="onPasswordInput($event)" />
+          <button class="register__eye"
+                  type="button"
+                  (click)="togglePassword()"
+                  [attr.aria-label]="showPassword() ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'">
+            <span class="material-symbols-outlined">{{ showPassword() ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+        @if (submitted() && !password()) {
+        <span class="register__error">{{ 'AUTH.VALIDATION.PASSWORD_REQUIRED' | translate }}</span>
+        }
+      </div>
+
+      <div class="register__field">
+        <label class="register__label"
+               for="confirmPassword">
+          {{ 'AUTH.FIELDS.CONFIRM_PASSWORD' | translate }}
+          <span class="register__required">*</span>
+        </label>
+        <div class="register__password-row">
+          <span class="register__icon register__icon--inset">
+            <span class="material-symbols-outlined">lock</span>
+          </span>
+          <input class="register__input register__input--password"
+                 id="confirmPassword"
+                 name="confirmPassword"
+                 [type]="showConfirmPassword() ? 'text' : 'password'"
+                 [placeholder]="'AUTH.FIELDS.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
+                 autocomplete="new-password"
+                 [value]="confirmPassword()"
+                 (input)="onConfirmPasswordInput($event)" />
+          <button class="register__eye"
+                  type="button"
+                  (click)="toggleConfirmPassword()"
+                  [attr.aria-label]="showConfirmPassword() ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'">
+            <span class="material-symbols-outlined">{{ showConfirmPassword() ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+        @if (submitted() && confirmPassword() && passwordMismatch()) {
+        <span class="register__error">{{ 'AUTH.VALIDATION.PASSWORD_MISMATCH' | translate }}</span>
+        } @else if (submitted() && !confirmPassword()) {
+        <span class="register__error">{{ 'AUTH.VALIDATION.CONFIRM_PASSWORD_REQUIRED' | translate }}</span>
+        }
+      </div>
+    </div>
+
+    <label class="register__terms">
+      <input type="checkbox"
+             [checked]="agreeTerms()"
+             (change)="toggleTerms()" />
+      <span>
+        {{ 'AUTH.REGISTER.TERMS_AGREE' | translate }}
+        <a [routerLink]="['/', lang(), 'legal', 'terms']">{{ 'AUTH.REGISTER.TERMS_LINK' | translate }}</a>
+        {{ 'AUTH.REGISTER.TERMS_AND' | translate }}
+        <a [routerLink]="['/', lang(), 'legal', 'privacy']">{{ 'AUTH.REGISTER.PRIVACY_LINK' | translate }}</a>
+      </span>
+    </label>
+    @if (submitted() && !agreeTerms()) {
+    <span class="register__error">{{ 'AUTH.VALIDATION.TERMS_REQUIRED' | translate }}</span>
+    }
+
+    <button type="submit"
+            class="register__submit">{{ 'AUTH.REGISTER.SUBMIT' | translate }}</button>
+  </form>
+
+  <p class="register__teacher-link">
+    {{ 'AUTH.REGISTER.TEACHER_PROMPT' | translate }}
+    <a [routerLink]="['/', lang(), 'auth', 'register-teacher']">{{ 'AUTH.REGISTER.TEACHER_CTA' | translate }}</a>
+  </p>
+</div>

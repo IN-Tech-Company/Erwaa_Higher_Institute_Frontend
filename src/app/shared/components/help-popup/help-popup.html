@@ -1,0 +1,13 @@
+<app-popup title="Help"
+           [isOpen]="isOpen"
+           (close)="onClose()">
+
+        <textarea class="textarea"
+                  [(ngModel)]="message"
+                  placeholder="How can we help you..."
+                  rows="7"></textarea>
+
+        <button class="send-btn"
+                (click)="onSend()">Send</button>
+
+</app-popup>

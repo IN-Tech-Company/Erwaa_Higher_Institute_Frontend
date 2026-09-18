@@ -1,0 +1,45 @@
+<app-sidebar [show]="show()"
+             [title]="title()"
+             (close)="onCancel()">
+
+  <div class="cm-body">
+
+    <div class="cm-icon-ring"
+         [class.cm-icon-ring--success]="type() === 'success'"
+         [class.cm-icon-ring--danger]="type() === 'danger'">
+      <div class="cm-icon"
+           [class.cm-icon--success]="type() === 'success'"
+           [class.cm-icon--danger]="type() === 'danger'">
+        <i [class]="icon()"></i>
+      </div>
+    </div>
+
+    <p class="cm-message">{{ message() }}</p>
+
+    @if (withInput()) {
+    <textarea class="cm-textarea"
+              rows="4"
+              [placeholder]="inputPlaceholder()"
+              [value]="inputValue()"
+              (input)="inputValue.set($any($event.target).value)"></textarea>
+    }
+
+    <div class="cm-actions">
+      <button class="cm-btn"
+              type="button"
+              [class.cm-btn--success]="type() === 'success'"
+              [class.cm-btn--danger]="type() === 'danger'"
+              [disabled]="confirmDisabled"
+              (click)="onConfirm()">
+        {{ confirmLabel() }}
+      </button>
+      <button class="cm-btn cm-btn--cancel"
+              type="button"
+              (click)="onCancel()">
+        {{ cancelLabel() }}
+      </button>
+    </div>
+
+  </div>
+
+</app-sidebar>

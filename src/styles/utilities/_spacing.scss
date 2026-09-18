@@ -1,0 +1,12 @@
+/**
+ * @file _spacing.scss
+ * @description Utility classes for margin/padding overrides.
+ */
+
+.m-1 {
+  margin: var(--space-1);
+}
+
+.p-1 {
+  padding: var(--space-1);
+}

@@ -1,0 +1,34 @@
+@if (url()) {
+<div class="dv-overlay" (click)="close()">
+  <div class="dv-viewer" (click)="$event.stopPropagation()">
+
+    <div class="dv-head">
+      <span class="material-symbols-outlined dv-file-icon">
+        {{ isImage() ? 'image' : 'picture_as_pdf' }}
+      </span>
+      <span class="dv-name">{{ name() }}</span>
+      <button class="dv-close" type="button" (click)="close()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="dv-body">
+      @if (isImage()) {
+      <img [src]="url()!" [alt]="name()" class="dv-img" />
+      } @else {
+      <object [data]="safeUrl()" type="application/pdf" class="dv-embed">
+        <div class="dv-fallback">
+          <span class="material-symbols-outlined">picture_as_pdf</span>
+          <p>لا يمكن عرض الملف مباشرة</p>
+          <a [href]="url()!" target="_blank" rel="noopener" class="dv-dl-btn">
+            <span class="material-symbols-outlined">download</span>
+            تحميل الملف
+          </a>
+        </div>
+      </object>
+      }
+    </div>
+
+  </div>
+</div>
+}

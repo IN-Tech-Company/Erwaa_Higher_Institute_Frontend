@@ -1,0 +1,93 @@
+<div class="np">
+
+  <header class="np__head">
+    <div class="np__head-info">
+      <div class="np__head-icon">
+        <i class="bx bx-bell"></i>
+      </div>
+      <div class="np__head-text">
+        <h3 class="np__title">{{ 'NOTIFICATIONS.TITLE' | translate }}</h3>
+        @if (store.hasUnread()) {
+        <span class="np__sub">
+          {{ store.unreadCount() }} {{ 'NOTIFICATIONS.NEW' | translate }}
+        </span>
+        } @else {
+        <span class="np__sub np__sub--muted">
+          {{ 'NOTIFICATIONS.ALL_READ' | translate }}
+        </span>
+        }
+      </div>
+    </div>
+
+    @if (store.hasUnread()) {
+    <button type="button"
+            class="np__mark-btn"
+            (click)="onMarkAllRead()">
+      <i class="bx bx-check-double"></i>
+      <span>{{ 'NOTIFICATIONS.MARK_ALL_READ' | translate }}</span>
+    </button>
+    }
+  </header>
+
+  <div class="np__body">
+    @if (store.loading() && store.items().length === 0) {
+
+    <div class="np__state">
+      <i class="bx bx-loader-alt bx-spin"></i>
+      <p>{{ 'NOTIFICATIONS.LOADING' | translate }}</p>
+    </div>
+
+    } @else if (store.items().length === 0) {
+
+    <div class="np__state">
+      <span class="np__state-icon">
+        <i class="bx bx-bell-off"></i>
+      </span>
+      <p class="np__state-title">{{ 'NOTIFICATIONS.EMPTY_TITLE' | translate }}</p>
+      <p class="np__state-hint">{{ 'NOTIFICATIONS.EMPTY' | translate }}</p>
+    </div>
+
+    } @else {
+
+    <ul class="np__list">
+      @for (n of store.items(); track n.id) {
+      <li class="np__item"
+          [class.np__item--unread]="!n.read"
+          (click)="onItemClick(n)">
+
+        <span class="np__item-icon">
+          <i [class]="iconFor(n)"></i>
+        </span>
+
+        <div class="np__item-body">
+          <div class="np__item-row">
+            <p class="np__item-title">{{ n.title }}</p>
+            <span class="np__item-time">{{ timeFor(n) }}</span>
+          </div>
+          <p class="np__item-text">{{ n.body }}</p>
+        </div>
+
+        @if (!n.read) {
+        <span class="np__item-dot"
+              aria-hidden="true"></span>
+        }
+
+      </li>
+      }
+    </ul>
+
+    @if (store.hasMore()) {
+    <div #sentinel
+         class="np__sentinel">
+      @if (store.loadingMore()) {
+      <i class="bx bx-loader-alt bx-spin"></i>
+      }
+    </div>
+    } @else if (store.items().length >= 5) {
+    <p class="np__end">{{ 'NOTIFICATIONS.END_OF_LIST' | translate }}</p>
+    }
+
+    }
+  </div>
+
+</div>

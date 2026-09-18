@@ -1,0 +1,136 @@
+<app-top-bar />
+<app-site-header />
+
+<main class="course-detail">
+  @if (course(); as c) {
+  <div class="course-detail__hero">
+    <div class="course-detail__container course-detail__hero-inner">
+      <div class="course-detail__media"
+           data-aos="fade-up">
+        <a [routerLink]="['/', lang(), 'courses']"
+           class="course-detail__back">
+          <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+          {{ 'LANDING.COURSE_DETAIL.BACK' | translate }}
+        </a>
+        <img [src]="c.image"
+             [alt]="titleKey() | translate" />
+      </div>
+
+      <div class="course-detail__intro"
+           data-aos="fade-up"
+           data-aos-delay="100">
+        <span class="course-detail__category">{{ categoryTitleKey() | translate }}</span>
+
+        <h1 class="course-detail__title">{{ titleKey() | translate }}</h1>
+
+        @if (c.rating) {
+        <div class="course-detail__rating">
+          <span class="course-detail__stars">
+            @for (star of stars(); track $index) {
+            <span class="material-symbols-outlined"
+                  [class.course-detail__star--full]="star !== 'star_border'">{{ star }}</span>
+            }
+          </span>
+          <span class="course-detail__rating-value">({{ c.rating }})</span>
+        </div>
+        }
+
+        <div class="course-detail__price">
+          @if (c.price === 'free') {
+          <span class="course-detail__price-free">{{ 'COMMON.FREE' | translate }}</span>
+          } @else if (c.price === null) {
+          <span class="course-detail__price-tbd">{{ 'LANDING.COURSE_CARD.PRICE_TBD' | translate }}</span>
+          } @else {
+          @if (formattedOriginalPrice()) {
+          <span class="course-detail__price-original">
+            {{ formattedOriginalPrice() }}
+            <span class="icon-saudi_riyal">&#xea;</span>
+          </span>
+          }
+          <span class="course-detail__price-amount">
+            {{ formattedPrice() }}
+            <span class="icon-saudi_riyal">&#xea;</span>
+          </span>
+          @if (savingsPercent()) {
+          <span class="course-detail__price-savings">{{ 'LANDING.COURSE_CARD.SAVE' | translate: { percent: savingsPercent() } }}</span>
+          }
+          }
+          @if (c.priceNote) {
+          <span class="course-detail__price-note">{{ c.priceNote }}</span>
+          }
+        </div>
+
+        <a [routerLink]="['/', lang(), 'courses', c.key, 'checkout']"
+           class="course-detail__cta">
+          {{ 'LANDING.COURSE_DETAIL.REGISTER_CTA' | translate }}
+          <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+        </a>
+
+        <div class="course-detail__payment">
+          <span class="course-detail__payment-label">{{ 'LANDING.COURSE_DETAIL.PAYMENT_METHODS' | translate }}</span>
+          <img src="/assets/images/courses/payment-methods.png"
+               [alt]="'LANDING.COURSE_DETAIL.PAYMENT_METHODS' | translate" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-detail__container course-detail__body">
+
+    <div class="course-detail__facts"
+         data-aos="fade-up">
+      @for (fact of facts(); track fact.labelKey) {
+      <div class="course-detail__fact">
+        <span class="course-detail__fact-icon">
+          <span class="material-symbols-outlined">{{ fact.icon }}</span>
+        </span>
+        <div class="course-detail__fact-text">
+          <span class="course-detail__fact-label">{{ fact.labelKey | translate }}</span>
+          <span class="course-detail__fact-value">
+            @if (fact.value) {
+            {{ fact.value }}
+            } @else if (fact.valueKey) {
+            {{ fact.valueKey | translate }}
+            } @else {
+            {{ 'LANDING.COURSE_DETAIL.TBD' | translate }}
+            }
+          </span>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="course-detail__sections"
+         data-aos="fade-up"
+         data-aos-delay="100">
+      <section class="course-detail__section">
+        <h2>{{ 'LANDING.COURSE_DETAIL.TARGET_AUDIENCE' | translate }}</h2>
+        <p>{{ c.targetAudience || ('LANDING.COURSE_DETAIL.TBD' | translate) }}</p>
+      </section>
+
+      <section class="course-detail__section">
+        <h2>{{ 'LANDING.COURSE_DETAIL.REQUIREMENTS' | translate }}</h2>
+        <p>{{ c.requirements || ('LANDING.COURSE_DETAIL.TBD' | translate) }}</p>
+      </section>
+
+      <section class="course-detail__section">
+        <h2>{{ 'LANDING.COURSE_DETAIL.OBJECTIVES' | translate }}</h2>
+        <p>{{ c.objectives || ('LANDING.COURSE_DETAIL.TBD' | translate) }}</p>
+      </section>
+
+      <section class="course-detail__section">
+        <h2>{{ 'LANDING.COURSE_DETAIL.DELIVERY_METHOD' | translate }}</h2>
+        <p>{{ c.deliveryLocation || ('LANDING.COURSE_DETAIL.TBD' | translate) }}</p>
+      </section>
+    </div>
+  </div>
+
+  } @else {
+  <div class="course-detail__not-found">
+    <p>{{ 'LANDING.COURSE_DETAIL.NOT_FOUND' | translate }}</p>
+    <a [routerLink]="['/', lang(), 'courses']">{{ 'LANDING.COURSE_DETAIL.BACK' | translate }}</a>
+  </div>
+  }
+</main>
+
+<app-footer />

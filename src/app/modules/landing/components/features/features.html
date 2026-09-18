@@ -1,0 +1,41 @@
+<section class="features"
+         id="features">
+  <div class="features__container">
+
+    <div class="features__intro"
+         data-aos="fade-up">
+      <span class="features__eyebrow">{{ 'LANDING.FEATURES.EYEBROW' | translate }}</span>
+      <h2 class="features__title">
+        <span>{{ 'LANDING.FEATURES.TITLE_LINE_1' | translate }}</span>
+        <span class="features__title-highlight">{{ 'LANDING.FEATURES.TITLE_HIGHLIGHT' | translate }}</span>
+      </h2>
+    </div>
+
+    <div class="features__grid">
+      @for (item of items; track item.key) {
+      <article class="feature-card"
+               data-aos="fade-up">
+        <span class="feature-card__badge">
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
+        </span>
+        <h3 class="feature-card__title">{{ ('LANDING.FEATURES.' + item.key + '_TITLE') | translate }}</h3>
+        <p class="feature-card__desc">{{ ('LANDING.FEATURES.' + item.key + '_DESC') | translate }}</p>
+      </article>
+      }
+    </div>
+
+    <div class="features__accreditations"
+         data-aos="fade-up">
+      <span class="features__accreditations-label">{{ 'LANDING.FEATURES.ACCREDITED_LABEL' | translate }}</span>
+      <ul class="features__accreditations-list">
+        @for (logo of accreditations; track logo.src) {
+        <li>
+          <img [src]="logo.src"
+               [alt]="logo.altKey | translate" />
+        </li>
+        }
+      </ul>
+    </div>
+
+  </div>
+</section>

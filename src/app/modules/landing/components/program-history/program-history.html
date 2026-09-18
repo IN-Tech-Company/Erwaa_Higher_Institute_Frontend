@@ -1,0 +1,43 @@
+<section class="program-history" id="program-history">
+  <div class="program-history__container">
+
+    <div class="program-history__intro" data-aos="fade-up">
+      <span class="program-history__eyebrow">{{ 'LANDING.PROGRAM_HISTORY.EYEBROW' | translate }}</span>
+      <h2 class="program-history__title">
+        <span>{{ 'LANDING.PROGRAM_HISTORY.TITLE_LINE_1' | translate }}</span>
+        <span class="program-history__title-highlight">{{ 'LANDING.PROGRAM_HISTORY.TITLE_HIGHLIGHT' | translate }}</span>
+      </h2>
+      <p class="program-history__desc">{{ 'LANDING.PROGRAM_HISTORY.DESC' | translate }}</p>
+
+      <div class="program-history__totals">
+        <div class="program-history__total">
+          <strong>+{{ totalRuns() }}</strong>
+          <span>{{ 'LANDING.PROGRAM_HISTORY.TOTAL_RUNS_LABEL' | translate }}</span>
+        </div>
+        <div class="program-history__total">
+          <strong>+{{ totalTrainees() }}</strong>
+          <span>{{ 'LANDING.PROGRAM_HISTORY.TOTAL_TRAINEES_LABEL' | translate }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-history__grid">
+      @for (category of categories; track category.labelKey) {
+      <article class="program-history__card" data-aos="fade-up">
+        <h3 class="program-history__card-title">{{ ('LANDING.PROGRAM_HISTORY.' + category.labelKey) | translate }}</h3>
+        <div class="program-history__card-metrics">
+          <div class="program-history__metric">
+            <strong>{{ category.runs }}</strong>
+            <span>{{ 'LANDING.PROGRAM_HISTORY.COL_RUNS' | translate }}</span>
+          </div>
+          <div class="program-history__metric">
+            <strong>{{ category.trainees }}</strong>
+            <span>{{ 'LANDING.PROGRAM_HISTORY.COL_TRAINEES' | translate }}</span>
+          </div>
+        </div>
+      </article>
+      }
+    </div>
+
+  </div>
+</section>

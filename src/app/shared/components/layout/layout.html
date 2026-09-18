@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="personals-container">
+        <div class="personals-header">
+            <p class="label">{{ personalsLabel() | translate }}</p>
+            <ng-content select="[layout-action]"></ng-content>
+        </div>
+        <div class="personals">
+            @for (item of personals(); track item.id) {
+            <div class="personal-card"
+                 [class.active]="item.sellected"
+                 (click)="personalCardClicked($index)">
+                <div class="personal-avatar">
+                    <img [src]="item.storeImageUrl || '/assets/images/logo/icon.png'"
+                         alt="avatar">
+                </div>
+                <div class="personal-info">
+                    <p class="name">{{`${item.firstName}&nbsp;&nbsp;${item.lastName}` }}</p>
+                    <p class="description">{{ item.storeName }}</p>
+                </div>
+            </div>
+            } @empty {
+            @if (loadingPersonals()) {
+            @for (i of [1,2,3,4]; track i) {
+            <div class="personal-card-skeleton">
+                <div class="personal-card-skeleton__avatar"></div>
+                <div class="personal-card-skeleton__lines">
+                    <div class="personal-card-skeleton__line personal-card-skeleton__line--long"></div>
+                    <div class="personal-card-skeleton__line personal-card-skeleton__line--short"></div>
+                </div>
+            </div>
+            }
+            } @else {
+            <div class="empty-state">
+                <span class="material-symbols-outlined">group_off</span>
+                <p>{{ emptyPersonalsLabel() | translate }}</p>
+                <ng-content select="[personals-empty-action]"></ng-content>
+            </div>
+            }
+            }
+            <div #scrollTarget
+                 class="scroll-anchor"></div>
+        </div>
+    </div>
+    @if(displayDetails() && personals().length > 0){
+    <div #detailsContainer
+         class="items-and-details-container"
+         [class.columns-merged]="mergeColumns()">
+        <div class="back-arrow">
+            <span class="material-symbols-outlined"
+                  (click)="backArrowClicked()">
+                arrow_right_alt
+            </span>
+        </div>
+        <div class="items-container">
+            <p class="label">{{ itemsLabel() | translate }}</p>
+            <div class="items">
+                @for (item of items(); track item.id) {
+                <div class="item-card"
+                     [class.active]="item.sellected"
+                     (click)="itemCardClicked(item.id)">
+                    <div class="item-info">
+                        <span class="material-symbols-outlined item-icon">
+                            {{ item.icon }}
+                        </span>
+                        <p class="item-name">{{ item.name | translate }}</p>
+                    </div>
+                    <div class="icon"
+                         [class.active]="item.sellected"
+                         [class.ltr]="language.direction() === 'ltr'">
+                        <i class="bx bx-chevron-left"
+                           [class.bx-chevron-right]="language.direction() === 'ltr'"></i>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="details-container">
+            <ng-content></ng-content>
+        </div>
+    </div>
+    }@else if(!loadingPersonals() && personals().length === 0){
+    <div class="details-empty-state">
+        <ng-content select="[details-empty-state]"></ng-content>
+    </div>
+    }
+</div>

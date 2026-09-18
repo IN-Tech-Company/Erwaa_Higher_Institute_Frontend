@@ -1,0 +1,134 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.program-history {
+  background: c.$white;
+  padding-block: 3rem;
+
+  @include bp.min(md) {
+    padding-block: 6rem;
+  }
+}
+
+.program-history__container {
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.program-history__intro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+.program-history__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: r.$radius-full;
+  background: c.$secondary-50;
+  color: c.$secondary-700;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.program-history__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.3;
+  color: c.$primary-950;
+  margin: 0 0 0.75rem;
+}
+
+.program-history__title-highlight {
+  color: c.$secondary;
+}
+
+.program-history__desc {
+  color: c.$neutral-500;
+  font-size: 0.95rem;
+  margin: 0 0 2rem;
+}
+
+// ── Cumulative totals ──────────────────────────────────────────────────────
+.program-history__totals {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.program-history__total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+
+  strong {
+    color: c.$primary-950;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+  }
+
+  span {
+    color: c.$neutral-500;
+    font-size: 0.85rem;
+  }
+}
+
+// ── Category cards — totals only, no year breakdown (client requirement) ──
+.program-history__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+
+  @include bp.min(tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.program-history__card {
+  background: c.$gray-bg;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+  box-shadow: var(--shadow-sm);
+  padding: 1.75rem;
+  text-align: center;
+}
+
+.program-history__card-title {
+  color: c.$primary-950;
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 1.25rem;
+}
+
+.program-history__card-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.program-history__metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+
+  strong {
+    color: c.$secondary-700;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  span {
+    color: c.$neutral-500;
+    font-size: 0.75rem;
+  }
+}

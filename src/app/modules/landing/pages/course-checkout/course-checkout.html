@@ -1,0 +1,258 @@
+<app-top-bar />
+<app-site-header />
+
+<main class="course-checkout">
+  @if (course(); as c) {
+  <div class="course-checkout__container">
+
+    <a [routerLink]="['/', lang(), 'courses', c.key]"
+       class="course-checkout__back">
+      <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      {{ 'LANDING.COURSE_CHECKOUT.BACK_TO_COURSE' | translate }}
+    </a>
+
+    <div class="course-checkout__intro">
+      <span class="course-checkout__eyebrow">{{ 'LANDING.COURSE_CHECKOUT.EYEBROW' | translate }}</span>
+      <h1 class="course-checkout__title">{{ 'LANDING.COURSE_CHECKOUT.TITLE' | translate }}</h1>
+      <p class="course-checkout__desc">{{ 'LANDING.COURSE_CHECKOUT.DESC' | translate }}</p>
+    </div>
+
+    <!-- Step indicator — a plain 2-step flow (details → confirmation), no
+         real payment step yet since there's no gateway wired (see the
+         component doc comment). -->
+    <ol class="course-checkout__steps">
+      <li class="course-checkout__step"
+          [class.course-checkout__step--active]="step() === 1"
+          [class.course-checkout__step--done]="step() > 1">
+        <span class="course-checkout__step-index">
+          @if (step() > 1) {
+          <span class="material-symbols-outlined">check</span>
+          } @else { 1 }
+        </span>
+        {{ 'LANDING.COURSE_CHECKOUT.STEP1_LABEL' | translate }}
+      </li>
+      <li class="course-checkout__step-divider"></li>
+      <li class="course-checkout__step"
+          [class.course-checkout__step--active]="step() === 2">
+        <span class="course-checkout__step-index">2</span>
+        {{ 'LANDING.COURSE_CHECKOUT.STEP2_LABEL' | translate }}
+      </li>
+    </ol>
+
+    @if (step() === 1) {
+    <div class="course-checkout__grid"
+         data-aos="fade-up">
+
+      <form class="course-checkout__form"
+            (submit)="submit($event)">
+        <div class="course-checkout__field">
+          <label class="course-checkout__label"
+                 for="fullName">
+            {{ 'AUTH.FIELDS.FULL_NAME' | translate }}
+            <span class="course-checkout__required">*</span>
+          </label>
+          <div class="course-checkout__icon-row">
+            <span class="course-checkout__icon">
+              <span class="material-symbols-outlined">person</span>
+            </span>
+            <input class="course-checkout__input course-checkout__input--icon"
+                   id="fullName"
+                   name="fullName"
+                   type="text"
+                   [placeholder]="'AUTH.FIELDS.FULL_NAME_PLACEHOLDER' | translate"
+                   autocomplete="name"
+                   [value]="fullName()"
+                   (input)="onFullNameInput($event)" />
+          </div>
+          @if (submitted() && !fullName()) {
+          <span class="course-checkout__error">{{ 'AUTH.VALIDATION.FULL_NAME_REQUIRED' | translate }}</span>
+          }
+        </div>
+
+        <div class="course-checkout__field">
+          <label class="course-checkout__label"
+                 for="email">
+            {{ 'AUTH.FIELDS.EMAIL' | translate }}
+            <span class="course-checkout__required">*</span>
+          </label>
+          <div class="course-checkout__icon-row">
+            <span class="course-checkout__icon">
+              <span class="material-symbols-outlined">mail</span>
+            </span>
+            <input class="course-checkout__input course-checkout__input--icon"
+                   id="email"
+                   name="email"
+                   type="email"
+                   dir="ltr"
+                   [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate"
+                   autocomplete="email"
+                   [value]="email()"
+                   (input)="onEmailInput($event)" />
+          </div>
+          @if (submitted() && !email()) {
+          <span class="course-checkout__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+          }
+        </div>
+
+        <div class="course-checkout__field">
+          <label class="course-checkout__label"
+                 for="phone">
+            {{ 'AUTH.FIELDS.PHONE' | translate }}
+            <span class="course-checkout__required">*</span>
+          </label>
+          <div class="course-checkout__phone-row">
+            <span class="course-checkout__phone-code"
+                  dir="ltr">+966</span>
+            <input class="course-checkout__input"
+                   id="phone"
+                   name="phone"
+                   type="tel"
+                   dir="ltr"
+                   placeholder="5xxxxxxxx"
+                   autocomplete="tel"
+                   [value]="phone()"
+                   (input)="onPhoneInput($event)" />
+          </div>
+          @if (submitted() && !phone()) {
+          <span class="course-checkout__error">{{ 'AUTH.VALIDATION.PHONE_REQUIRED' | translate }}</span>
+          }
+        </div>
+
+        <div class="course-checkout__field">
+          <label class="course-checkout__label"
+                 for="nationalId">
+            {{ 'AUTH.FIELDS.NATIONAL_ID' | translate }}
+            <span class="course-checkout__required">*</span>
+          </label>
+          <div class="course-checkout__icon-row">
+            <span class="course-checkout__icon">
+              <span class="material-symbols-outlined">badge</span>
+            </span>
+            <input class="course-checkout__input course-checkout__input--icon"
+                   id="nationalId"
+                   name="nationalId"
+                   type="text"
+                   dir="ltr"
+                   [placeholder]="'AUTH.FIELDS.NATIONAL_ID_PLACEHOLDER' | translate"
+                   [value]="nationalId()"
+                   (input)="onNationalIdInput($event)" />
+          </div>
+          @if (submitted() && !nationalId()) {
+          <span class="course-checkout__error">{{ 'AUTH.VALIDATION.NATIONAL_ID_REQUIRED' | translate }}</span>
+          }
+        </div>
+
+        <div class="course-checkout__field">
+          <label class="course-checkout__label"
+                 for="dateOfBirth">
+            {{ 'AUTH.FIELDS.DATE_OF_BIRTH' | translate }}
+            <span class="course-checkout__required">*</span>
+          </label>
+          <div class="course-checkout__icon-row">
+            <span class="course-checkout__icon">
+              <span class="material-symbols-outlined">calendar_month</span>
+            </span>
+            <input class="course-checkout__input course-checkout__input--icon"
+                   id="dateOfBirth"
+                   name="dateOfBirth"
+                   type="date"
+                   dir="ltr"
+                   [value]="dateOfBirth()"
+                   (input)="onDateOfBirthInput($event)" />
+          </div>
+          @if (submitted() && !dateOfBirth()) {
+          <span class="course-checkout__error">{{ 'AUTH.VALIDATION.DATE_OF_BIRTH_REQUIRED' | translate }}</span>
+          }
+        </div>
+
+        <button type="submit"
+                class="course-checkout__submit">
+          {{ 'LANDING.COURSE_CHECKOUT.SUBMIT' | translate }}
+          <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+        </button>
+
+        <p class="course-checkout__note">
+          <span class="material-symbols-outlined">lock</span>
+          {{ 'LANDING.COURSE_CHECKOUT.NO_CHARGE_NOTE' | translate }}
+        </p>
+      </form>
+
+      <aside class="course-checkout__summary">
+        <div class="course-checkout__summary-media">
+          <img [src]="c.image"
+               [alt]="titleKey() | translate" />
+        </div>
+
+        <div class="course-checkout__summary-body">
+          <span class="course-checkout__summary-title">
+            <span class="material-symbols-outlined">receipt_long</span>
+            {{ 'LANDING.COURSE_CHECKOUT.SUMMARY_TITLE' | translate }}
+          </span>
+
+          <div class="course-checkout__summary-course">
+            <span class="course-checkout__summary-category">{{ categoryTitleKey() | translate }}</span>
+            <span class="course-checkout__summary-name">{{ titleKey() | translate }}</span>
+          </div>
+
+          @if (summaryFacts().length) {
+          <ul class="course-checkout__summary-facts">
+            @for (fact of summaryFacts(); track fact.icon) {
+            <li>
+              <span class="material-symbols-outlined">{{ fact.icon }}</span>
+              {{ fact.value ?? (fact.valueKey! | translate) }}
+            </li>
+            }
+          </ul>
+          }
+
+          <div class="course-checkout__summary-price">
+            @if (c.price === 'free') {
+            <span class="course-checkout__summary-price-free">{{ 'COMMON.FREE' | translate }}</span>
+            } @else if (c.price === null) {
+            <span class="course-checkout__summary-price-tbd">{{ 'LANDING.COURSE_CARD.PRICE_TBD' | translate }}</span>
+            } @else {
+            @if (formattedOriginalPrice()) {
+            <span class="course-checkout__summary-price-original">
+              {{ formattedOriginalPrice() }}
+              <span class="icon-saudi_riyal">&#xea;</span>
+            </span>
+            }
+            <span class="course-checkout__summary-price-amount">
+              {{ formattedPrice() }}
+              <span class="icon-saudi_riyal">&#xea;</span>
+            </span>
+            }
+          </div>
+
+          <div class="course-checkout__summary-payment">
+            <span>{{ 'LANDING.COURSE_DETAIL.PAYMENT_METHODS' | translate }}</span>
+            <img src="/assets/images/courses/payment-methods.png"
+                 [alt]="'LANDING.COURSE_DETAIL.PAYMENT_METHODS' | translate" />
+          </div>
+        </div>
+      </aside>
+    </div>
+    } @else {
+    <div class="course-checkout__confirm"
+         data-aos="fade-up">
+      <span class="course-checkout__confirm-icon">
+        <span class="material-symbols-outlined">check_circle</span>
+      </span>
+      <h1>{{ 'LANDING.COURSE_CHECKOUT.CONFIRM_TITLE' | translate }}</h1>
+      <p>{{ 'LANDING.COURSE_CHECKOUT.CONFIRM_DESC' | translate }}</p>
+      <a [routerLink]="['/', lang(), 'courses']"
+         class="course-checkout__confirm-cta">
+        {{ 'LANDING.COURSE_CHECKOUT.BACK_TO_COURSES' | translate }}
+      </a>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="course-checkout__not-found">
+    <p>{{ 'LANDING.COURSE_DETAIL.NOT_FOUND' | translate }}</p>
+    <a [routerLink]="['/', lang(), 'courses']">{{ 'LANDING.COURSE_DETAIL.BACK' | translate }}</a>
+  </div>
+  }
+</main>
+
+<app-footer />

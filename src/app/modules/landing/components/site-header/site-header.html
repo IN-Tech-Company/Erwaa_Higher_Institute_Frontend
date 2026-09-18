@@ -1,0 +1,61 @@
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <a [routerLink]="homeLink()" class="site-header__logo">
+      <img src="/assets/images/logo/logo.png" [alt]="'LANDING.HEADER.LOGO_ALT' | translate" />
+    </a>
+
+    <div class="site-header__middle">
+      <div class="site-header__categories">
+        <button type="button" class="site-header__categories-btn" (click)="toggleCategories()"
+                [attr.aria-expanded]="categoriesOpen()">
+          <span class="material-symbols-outlined">grid_view</span>
+          <span>{{ 'LANDING.HEADER.CATEGORIES' | translate }}</span>
+          <span class="material-symbols-outlined site-header__chevron">expand_more</span>
+        </button>
+
+        @if (categoriesOpen()) {
+        <ul class="site-header__categories-panel">
+          @for (cat of categories; track cat) {
+          <li><a href="#courses" (click)="closeCategories()">{{ cat | translate }}</a></li>
+          }
+        </ul>
+        }
+      </div>
+
+      <div class="site-header__search">
+        <span class="material-symbols-outlined">search</span>
+        <input type="search" [placeholder]="'LANDING.HEADER.SEARCH_PLACEHOLDER' | translate" />
+      </div>
+    </div>
+
+    <div class="site-header__actions">
+      <a [routerLink]="ctaLink()" class="site-header__cta">
+        {{ 'LANDING.HEADER.CTA' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </a>
+
+      <button type="button" class="site-header__menu-btn" (click)="toggleMenu()"
+              [attr.aria-label]="'LANDING.HEADER.MENU_TOGGLE' | translate"
+              [attr.aria-expanded]="menuOpen()">
+        <span class="material-symbols-outlined">{{ menuOpen() ? 'close' : 'menu' }}</span>
+      </button>
+    </div>
+
+  </div>
+
+  @if (categoriesOpen() || menuOpen()) {
+  <button type="button" class="site-header__backdrop" (click)="closeCategories(); closeMenu()"
+          aria-hidden="true" tabindex="-1"></button>
+  }
+
+  @if (menuOpen()) {
+  <nav class="site-header__nav-panel" data-aos="fade-down" data-aos-duration="250">
+    <ul>
+      @for (item of navItems; track item.fragment) {
+      <li><a [href]="'#' + item.fragment" (click)="closeMenu()">{{ item.labelKey | translate }}</a></li>
+      }
+    </ul>
+  </nav>
+  }
+</header>

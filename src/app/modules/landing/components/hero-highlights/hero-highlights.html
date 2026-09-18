@@ -1,0 +1,22 @@
+<div class="highlights">
+  <div class="highlights__card">
+    @for (item of cards; track item.titleKey; let i = $index) {
+    <article class="highlights__item"
+             data-aos="fade-up"
+             [attr.data-aos-delay]="i * 100">
+      <span class="highlights__icon">
+        <span class="material-symbols-outlined">{{ item.icon }}</span>
+      </span>
+      <div class="highlights__body">
+        <h3 class="highlights__title">{{ item.titleKey | translate }}</h3>
+        <p class="highlights__desc">{{ item.descKey | translate }}</p>
+        <a href="#about"
+           class="highlights__link">
+          {{ 'LANDING.HIGHLIGHTS.READ_MORE' | translate }}
+          <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+        </a>
+      </div>
+    </article>
+    }
+  </div>
+</div>

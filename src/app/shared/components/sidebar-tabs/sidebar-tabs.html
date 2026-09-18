@@ -1,0 +1,21 @@
+@if (title()) {
+<div class="stabs-title">{{ title() }}</div>
+}
+<nav class="stabs-nav">
+  @for (tab of tabs(); track tab.id) {
+  <button class="stabs-tab"
+          type="button"
+          [class.active]="activeTabId() === tab.id"
+          [class.disabled]="tab.disabled"
+          [disabled]="tab.disabled ?? false"
+          (click)="tabChange.emit(tab.id)">
+    <div class="stabs-icon-wrap"><i [class]="tab.icon"></i></div>
+    <span class="stabs-label">{{ getLabel(tab) }}</span>
+    @if (tab.disabled) {
+    <span class="stabs-soon">Soon</span>
+    } @else {
+    <i class="stabs-chevron bx bx-chevron-left"></i>
+    }
+  </button>
+  }
+</nav>

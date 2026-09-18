@@ -1,0 +1,39 @@
+<div class="top-bar">
+  <div class="top-bar__inner">
+
+    <ul class="top-bar__contact">
+      <li>
+        <span class="material-symbols-outlined">call</span>
+        <a href="tel:+966551980550">{{ 'LANDING.TOPBAR.PHONE' | translate }}</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">mail</span>
+        <a href="mailto:Erwaa.institute@gmail.com">{{ 'LANDING.TOPBAR.EMAIL' | translate }}</a>
+      </li>
+    </ul>
+
+    <div class="top-bar__actions">
+      <a [routerLink]="loginLink()"
+         class="top-bar__link">{{ 'LANDING.TOPBAR.LOGIN' | translate }}</a>
+      <span class="top-bar__divider"
+            aria-hidden="true"></span>
+      <a [routerLink]="loginLink()"
+         class="top-bar__link">{{ 'LANDING.TOPBAR.REGISTER' | translate }}</a>
+    </div>
+
+    <div class="top-bar__end">
+      <button type="button"
+              class="top-bar__lang"
+              (click)="switchLanguage()">
+        <span class="material-symbols-outlined">language</span>
+        <span>{{ langToggleKey() | translate }}</span>
+      </button>
+
+      <div class="top-bar__follow">
+        <span class="top-bar__follow-label">{{ 'LANDING.TOPBAR.FOLLOW_US' | translate }}</span>
+        <app-social-links tone="light" />
+      </div>
+    </div>
+
+  </div>
+</div>

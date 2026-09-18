@@ -1,0 +1,23 @@
+/**
+ * @file _display.scss
+ * @description Utility classes for display types.
+ */
+
+
+.d-flex {
+  display: flex;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+// Directional icons (arrows, chevrons) drawn LTR-only — flip them in RTL.
+// Usage: <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+html[dir='rtl'] .icon-flip-rtl {
+  transform: scaleX(-1);
+}

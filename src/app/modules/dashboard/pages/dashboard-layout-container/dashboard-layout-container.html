@@ -1,0 +1,12 @@
+<app-side-panel></app-side-panel>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="main-content"
+       [class.has-sidebar]="store.isOpen() && !sidebarEffectivelyCollapsed()"
+       [class.has-sidebar-collapsed]="sidebarEffectivelyCollapsed()">
+    <app-top-navbar></app-top-navbar>
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

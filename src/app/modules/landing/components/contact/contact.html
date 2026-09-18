@@ -1,0 +1,113 @@
+<section class="contact"
+         id="contact">
+  <div class="contact__container">
+
+    <div class="contact__intro"
+         data-aos="fade-up">
+      <span class="contact__eyebrow">{{ 'LANDING.CONTACT.EYEBROW' | translate }}</span>
+      <h2 class="contact__title">
+        <span>{{ 'LANDING.CONTACT.TITLE_LINE_1' | translate }}</span>
+        <span class="contact__title-highlight">{{ 'LANDING.CONTACT.TITLE_HIGHLIGHT' | translate }}</span>
+      </h2>
+      <p class="contact__desc">{{ 'LANDING.CONTACT.DESC' | translate }}</p>
+
+      <ul class="contact__info">
+        @for (item of infoItems; track item.labelKey) {
+        <li>
+          <a [href]="item.href"
+             class="contact__info-link"
+             target="_blank"
+             rel="noopener">
+            <span class="contact__info-icon">
+              @if (item.icon === 'whatsapp') {
+              <svg viewBox="0 0 24 24"
+                   aria-hidden="true">
+                <path d="M12 2a10 10 0 0 0-8.65 15.02L2 22l5.12-1.34A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 0 1 8.2 8.2c0 4.53-3.67 8.2-8.2 8.2a8.16 8.16 0 0 1-4.16-1.14l-.3-.17-3.06.8.82-2.98-.2-.31A8.2 8.2 0 1 1 12 3.8Z" />
+                <path
+                      d="M9.1 7.3c-.2-.45-.42-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.28s.98 2.65 1.12 2.83c.14.18 1.9 2.9 4.63 3.96 2.28.9 2.75.72 3.24.67.5-.04 1.6-.66 1.83-1.29.22-.63.22-1.16.16-1.28-.07-.12-.25-.18-.53-.32-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.06-.16.18-.31.2-.59.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.31.4-.47.13-.15.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.6-1.5-.86-2.05Z" />
+              </svg>
+              } @else {
+              <span class="material-symbols-outlined">{{ item.icon }}</span>
+              }
+            </span>
+            <span class="contact__info-text">
+              <span class="contact__info-label">{{ item.labelKey | translate }}</span>
+              <span class="contact__info-value"
+                    dir="ltr">{{ item.value }}</span>
+            </span>
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+
+    <form class="contact__form"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          (submit)="onSubmit($event)">
+      <h3 class="contact__form-title">{{ 'LANDING.CONTACT.FORM_TITLE' | translate }}</h3>
+
+      <div class="contact__row">
+        <div class="contact__field">
+          <label for="contact-name">{{ 'LANDING.CONTACT.FORM_NAME' | translate }}</label>
+          <div class="contact__input-icon-row">
+            <span class="material-symbols-outlined">person</span>
+            <input id="contact-name"
+                   type="text"
+                   [placeholder]="'LANDING.CONTACT.FORM_NAME_PLACEHOLDER' | translate"
+                   required />
+          </div>
+        </div>
+
+        <div class="contact__field">
+          <label for="contact-phone">{{ 'LANDING.CONTACT.FORM_PHONE' | translate }}</label>
+          <div class="contact__phone-row">
+            <span class="contact__phone-code"
+                  dir="ltr">+966</span>
+            <input id="contact-phone"
+                   type="tel"
+                   dir="ltr"
+                   [placeholder]="'LANDING.CONTACT.FORM_PHONE_PLACEHOLDER' | translate"
+                   required />
+          </div>
+        </div>
+      </div>
+
+      <div class="contact__field">
+        <label for="contact-email">{{ 'LANDING.CONTACT.FORM_EMAIL' | translate }}</label>
+        <div class="contact__input-icon-row">
+          <span class="material-symbols-outlined">mail</span>
+          <input id="contact-email"
+                 type="email"
+                 [placeholder]="'LANDING.CONTACT.FORM_EMAIL_PLACEHOLDER' | translate"
+                 required />
+        </div>
+      </div>
+
+      <div class="contact__field">
+        <label for="contact-message">{{ 'LANDING.CONTACT.FORM_MESSAGE' | translate }}</label>
+        <div class="contact__input-icon-row contact__input-icon-row--textarea">
+          <span class="material-symbols-outlined">edit_note</span>
+          <textarea id="contact-message"
+                    rows="4"
+                    [placeholder]="'LANDING.CONTACT.FORM_MESSAGE_PLACEHOLDER' | translate"
+                    required></textarea>
+        </div>
+      </div>
+
+      <button type="submit"
+              class="contact__submit">
+        {{ 'LANDING.CONTACT.FORM_SUBMIT' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">send</span>
+      </button>
+
+      @if (submitted()) {
+      <p class="contact__success">
+        <span class="material-symbols-outlined">check_circle</span>
+        {{ 'LANDING.CONTACT.FORM_SUCCESS' | translate }}
+      </p>
+      }
+    </form>
+
+  </div>
+</section>

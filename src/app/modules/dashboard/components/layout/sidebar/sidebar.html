@@ -1,0 +1,69 @@
+<aside class="sidebar"
+       [class.open]="store.isOpen()"
+       [class.collapsed]="isCollapsed()"
+       [class.rtl]="store.isRtl()">
+
+  <div class="sidebar-header">
+    <button class="menu-toggle"
+            (click)="store.toggleSidebar()"
+            [attr.aria-label]="'Toggle Menu'">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <a class="logo"
+       [routerLink]="['/', lang()]">
+      <img src="/assets/images/logo/white-yellow-logo.png"
+           alt="معهد إرواء العالي للتدريب" />
+    </a>
+  </div>
+
+  <nav class="sidebar-nav">
+    @for(group of menuGroups(); track $index) {
+
+    @if(getGroupLabel(group)) {
+    <p class="menu-section-label">{{ getGroupLabel(group) }}</p>
+    }
+
+    <ul class="menu-list">
+      @for(item of group.items; track item.route) {
+      <li class="menu-item">
+
+        <a class="menu-link"
+           routerLinkActive="active"
+           [routerLink]="buildLink(item)"
+           [attr.data-label]="getLabel(item)">
+
+          <span class="icon"
+                [class]="item.accent ? 'icon icon--' + item.accent : 'icon'">
+            <span class="material-symbols-outlined">{{ item.icon }}</span>
+          </span>
+
+          <span class="label">{{ getLabel(item) }}</span>
+
+          @if(item.badge) {
+          <span class="badge">{{ item.badge }}</span>
+          }
+
+        </a>
+      </li>
+
+      }
+    </ul>
+
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="collapse-btn"
+            (click)="store.toggleCollapse()"
+            [attr.aria-label]="lang() === 'ar' ? 'طي القائمة' : 'Collapse Sidebar'">
+      <span class="material-symbols-outlined">chevron_left</span>
+      <span class="label">{{ lang() === 'ar' ? 'طي القائمة' : 'Collapse' }}</span>
+    </button>
+  </div>
+
+</aside>
+
+@if(store.isOpen() && !isCollapsed()) {
+<div class="sidebar-overlay"
+     (click)="store.closeNavbar()"></div>
+}

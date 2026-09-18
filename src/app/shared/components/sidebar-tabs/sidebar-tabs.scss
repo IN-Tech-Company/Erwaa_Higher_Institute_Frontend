@@ -1,0 +1,91 @@
+@use 'tokens/colors' as c;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.stabs-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: c.$neutral-400;
+  padding: 0 4px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stabs-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stabs-tab {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  background: c.$neutral-100;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  color: c.$neutral-900;
+  transition: background 0.2s ease;
+  width: 100%;
+  text-align: start;
+
+  &:hover:not(.active):not(.disabled) {
+    background: c.$neutral-300;
+  }
+
+  &.active {
+    background: c.$primary;
+    color: c.$white;
+
+    .stabs-icon-wrap i { color: c.$white; }
+    .stabs-chevron { color: c.$white; }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.stabs-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+  color: c.$neutral-800;
+}
+
+.stabs-label {
+  font-size: 20px;
+  font-weight: 500;
+  flex: 1;
+  text-align: start;
+}
+
+.stabs-chevron {
+  font-size: 18px;
+  color: c.$neutral-500;
+  flex-shrink: 0;
+}
+
+.stabs-soon {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  background: c.$secondary;
+  color: c.$white;
+  border-radius: 5px;
+  flex-shrink: 0;
+}

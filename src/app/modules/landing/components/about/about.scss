@@ -1,0 +1,237 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.about {
+  background: c.$white;
+  padding-block: 3rem;
+
+  @include bp.min(md) {
+    padding-block: 6rem;
+  }
+}
+
+.about__container {
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+
+  @include bp.min(md) {
+    grid-template-columns: 5fr 6fr;
+    gap: 4rem;
+  }
+}
+
+// ── Media column ────────────────────────────────────────────────────────
+.about__media {
+  position: relative;
+  max-width: 420px;
+  margin-inline: auto;
+
+  @include bp.min(md) {
+    margin-inline: 0;
+  }
+}
+
+.about__dots {
+  position: absolute;
+  z-index: 0;
+  width: 130px;
+  height: 130px;
+  background-image: radial-gradient(circle, rgba(c.$primary-500, 0.7) 2.5px, transparent 2.6px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  display: none;
+
+  @include bp.min(md) {
+    display: block;
+  }
+
+  &--top {
+    inset-inline-end: -1.75rem;
+    top: -2rem;
+  }
+
+  &--bottom {
+    inset-inline-start: -1.75rem;
+    bottom: -2rem;
+    background-image: radial-gradient(circle, rgba(c.$secondary-600, 0.8) 2.5px, transparent 2.6px);
+  }
+}
+
+.about__photo-frame {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1 / 1.05;
+  border-radius: r.$radius-xl;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.about__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.about__stat {
+  position: absolute;
+  z-index: 2;
+  top: 1.5rem;
+  inset-inline-start: -1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: c.$primary-950;
+  color: c.$white;
+  padding: 0.75rem 1.25rem;
+  border-radius: r.$radius-full;
+  box-shadow: var(--shadow-md);
+  padding-inline-start: 40px;
+
+  @include bp.max(tablet) {
+    inset-inline-start: 0.75rem;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.5rem;
+    color: c.$secondary;
+  }
+}
+
+.about__stat-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  font-size: 0.75rem;
+  color: rgba(c.$white, 0.8);
+
+  strong {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: c.$white;
+  }
+}
+
+.about__inset {
+  position: absolute;
+  z-index: 2;
+  bottom: -1.25rem;
+  inset-inline-end: -1.25rem;
+  width: 46%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: r.$radius-lg;
+  border: 4px solid c.$white;
+  box-shadow: var(--shadow-lg);
+
+  @include bp.max(tablet) {
+    display: none;
+  }
+}
+
+// ── Content column ──────────────────────────────────────────────────────
+.about__content {
+  text-align: start;
+}
+
+.about__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: r.$radius-full;
+  background: c.$primary-50;
+  color: c.$primary-700;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+
+  .material-symbols-outlined {
+    font-size: 1.05rem;
+  }
+}
+
+.about__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.3;
+  color: c.$primary-950;
+  margin: 0 0 1.25rem;
+}
+
+.about__title-highlight {
+  color: c.$secondary-500;
+}
+
+.about__desc {
+  color: c.$neutral-500;
+  font-size: 1rem;
+  line-height: 1.9;
+  max-width: 560px;
+  margin: 0 0 2rem;
+}
+
+.about__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.about__feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: c.$primary-900;
+  font-size: 0.9rem;
+  max-width: 180px;
+}
+
+.about__feature-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: c.$primary-50;
+  color: c.$primary-600;
+
+  .material-symbols-outlined {
+    font-size: 1.35rem;
+  }
+}
+
+.about__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: r.$radius-full;
+  background: c.$secondary;
+  color: c.$primary-950;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.15rem;
+  }
+
+  &:hover {
+    background: c.$secondary-600;
+    transform: translateY(-2px);
+  }
+}

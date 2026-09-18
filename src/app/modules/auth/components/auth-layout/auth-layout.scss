@@ -1,0 +1,293 @@
+@use 'tokens/colors' as c;
+@use 'tokens/spacing' as s;
+@use 'tokens/typography' as t;
+
+.auth {
+  display: grid;
+  // Equal split — was 2fr/3fr (form squeezed to 40%, image panel taking 60%),
+  // which crowded the form fields next to an oversized picture.
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+
+  &__form-panel {
+    background: c.$white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 4rem;
+  }
+
+  &__form-inner {
+    width: 100%;
+  }
+
+  &__form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  &__logo-link {
+    display: block;
+    line-height: 0;
+  }
+
+  &__logo {
+    display: block;
+    height: 92px;
+  }
+
+  &__lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1.5px solid c.$neutral-200;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: c.$neutral-700;
+    transition: border-color 0.2s, color 0.2s;
+
+    &:hover {
+      border-color: c.$primary;
+      color: c.$primary;
+    }
+
+    .material-symbols-outlined {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__brand-panel {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__brand-badge {
+    position: relative;
+    z-index: 2;
+    align-self: flex-start;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 140px;
+    height: 145px;
+    margin: 0 2.5rem 0;
+  }
+
+  &__brand-badge-shape {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: c.$white;
+    filter: drop-shadow(0 8px 16px rgba(c.$primary-950, 0.4));
+  }
+
+  &__brand-badge-logo {
+    position: relative;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 1.25rem;
+    border-radius: 8px;
+  }
+
+  &__carousel {
+    position: relative;
+    flex: 1;
+    z-index: 2;
+  }
+
+  &__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    pointer-events: none;
+
+    &--active {
+      pointer-events: auto;
+    }
+  }
+
+  &__slide-body {
+    width: 100%;
+    max-width: 580px;
+    text-align: center;
+  }
+
+  &__slide-title {
+    font-size: 3.6rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: c.$white;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+
+    .auth__slide--active & {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.65s ease 0.12s, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+    }
+  }
+
+  &__slide-desc {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.82);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+
+    .auth__slide--active & {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.65s ease 0.28s, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.28s;
+    }
+  }
+
+  &__dots {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding: 0 2.5rem 2.25rem;
+  }
+
+  &__dot {
+    position: relative;
+    height: 4px;
+    width: 28px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.22);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      width: 0;
+      border-radius: inherit;
+      background: c.$secondary;
+    }
+
+    &--active {
+      width: 52px;
+
+      &::before {
+        animation: dotFill 4s linear forwards;
+      }
+    }
+  }
+}
+
+.auth__backgrounds {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.auth__bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform, opacity;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+
+  &--active {
+    opacity: 1;
+    animation: kenBurns 5s ease-out forwards;
+  }
+}
+
+.auth__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(c.$primary-900, 0.62);
+  pointer-events: none;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes dotFill {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .auth {
+    &__form-panel {
+      padding: 3rem 2rem;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .auth {
+    grid-template-columns: 1fr;
+
+    &__brand-panel {
+      display: none;
+    }
+
+    &__form-panel {
+      padding: 2.5rem 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .auth {
+    &__form-panel {
+      padding: 1.75rem 1.125rem;
+    }
+
+    &__logo {
+      height: 56px;
+      margin-bottom: 2rem;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.stats {
+  background: c.$white;
+  padding-block: 0 3rem;
+
+  @include bp.min(md) {
+    padding-block: 0 5rem;
+  }
+}
+
+.stats__container {
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.stats__bar {
+  position: relative;
+  background: c.$primary-950;
+  border-radius: r.$radius-xl;
+  box-shadow: var(--shadow-lg);
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  overflow: hidden;
+
+  @include bp.min(tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding-inline: 3rem;
+  }
+
+  // Subtle decorative texture — behind the content, never competing with it.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/stats__bar.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+}
+
+.stats__item {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-block: 0.5rem;
+
+  @include bp.min(tablet) {
+    border-inline-start: 1px solid rgba(c.$white, 0.15);
+
+    &:first-child {
+      border-inline-start: none;
+    }
+  }
+
+  &--divider {
+    border-block-start: 1px solid rgba(c.$white, 0.15);
+    padding-block-start: 1.5rem;
+
+    @include bp.min(tablet) {
+      border-block-start: none;
+      padding-block-start: 0.5rem;
+    }
+  }
+}
+
+.stats__number {
+  display: block;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: c.$white;
+  line-height: 1.15;
+  margin-bottom: 0.35rem;
+}
+
+.stats__label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(c.$white, 0.65);
+}

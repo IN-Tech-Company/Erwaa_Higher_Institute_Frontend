@@ -1,0 +1,36 @@
+/**
+ * @file _container.scss
+ * @description Max-width content container.
+ * Background spans full-width; only the content is constrained.
+ *
+ * Usage:
+ *   .my-section { background: ...; }
+ *   .my-section__inner { @extend %container; }
+ *
+ * Or directly in markup:
+ *   <div class="container"> ... </div>
+ */
+
+$container-max: 1440px;
+$container-padding-desktop: 80px;
+$container-padding-tablet: 40px;
+$container-padding-mobile: 20px;
+
+%container {
+    width: 100%;
+    max-width: $container-max;
+    margin-inline: auto;
+    padding-inline: $container-padding-desktop;
+
+    @media (max-width: 1024px) {
+        padding-inline: $container-padding-tablet;
+    }
+
+    @media (max-width: 600px) {
+        padding-inline: $container-padding-mobile;
+    }
+}
+
+.container {
+    @extend %container;
+}

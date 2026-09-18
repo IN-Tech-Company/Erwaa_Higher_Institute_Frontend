@@ -1,0 +1,267 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: c.$white;
+  border-bottom: 1px solid rgba(c.$neutral-300, 0.35);
+
+  &__inner {
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    @include bp.min(md) {
+      height: 108px;
+      gap: 1.5rem;
+    }
+  }
+
+  &__logo {
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+
+    img {
+      // logo.png is now trimmed to its content bounding box (see
+      // logo-original.png for the untrimmed source), so this height maps
+      // directly to how big the mark actually looks — no hidden padding.
+      height: 56px;
+      width: auto;
+
+      @include bp.min(md) {
+        height: 78px;
+      }
+    }
+  }
+
+  &__middle {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    max-width: 620px;
+    height: 48px;
+    border: 1px solid rgba(c.$neutral-300, 0.5);
+    border-radius: r.$radius-md;
+    background: c.$white;
+    transition: border-color 0.2s ease;
+
+    &:focus-within {
+      border-color: rgba(c.$primary-400, 0.6);
+    }
+
+    @include bp.max(md) {
+      display: none;
+    }
+  }
+
+  &__categories {
+    position: relative;
+    flex-shrink: 0;
+    // the divider between the two segments of the one combined control
+    border-inline-end: 1px solid rgba(c.$neutral-300, 0.5);
+  }
+
+  &__categories-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 100%;
+    padding-inline: 1rem;
+    border: none;
+    // matches the parent's rounding on this corner only, so the hover fill
+    // below doesn't need `overflow: hidden` on the parent (which would
+    // also clip the dropdown panel that pops out below it)
+    border-start-start-radius: r.$radius-md;
+    border-end-start-radius: r.$radius-md;
+    background: transparent;
+    color: c.$primary-800;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    .material-symbols-outlined {
+      font-size: 1.15rem;
+      color: c.$primary-500;
+    }
+
+    &:hover {
+      background: c.$primary-50;
+    }
+  }
+
+  &__chevron {
+    font-size: 1.1rem !important;
+    color: c.$neutral-400 !important;
+  }
+
+  &__categories-panel {
+    position: absolute;
+    inset-inline-start: 0;
+    top: calc(100% + 0.5rem);
+    z-index: 45;
+    width: max-content;
+    min-width: 260px;
+    max-height: 340px;
+    overflow-y: auto;
+    background: c.$white;
+    border: 1px solid rgba(c.$neutral-300, 0.35);
+    border-radius: r.$radius-md;
+    box-shadow: var(--shadow-md);
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+
+    a {
+      display: block;
+      padding: 0.55rem 0.75rem;
+      border-radius: r.$radius-md;
+      color: c.$neutral-700;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: background 0.15s ease, color 0.15s ease;
+
+      &:hover {
+        background: c.$primary-50;
+        color: c.$primary-700;
+      }
+    }
+  }
+
+  &__search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+    padding-inline: 1rem;
+    min-width: 0;
+
+    .material-symbols-outlined {
+      font-size: 1.15rem;
+      color: c.$neutral-400;
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 0.9rem;
+      color: c.$primary-900;
+      min-width: 0;
+
+      &::placeholder {
+        color: c.$neutral-400;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 48px;
+    padding-inline: 1.25rem;
+    border-radius: r.$radius-full;
+    background: c.$secondary;
+    color: c.$primary-950;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.2s ease;
+
+    .material-symbols-outlined {
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      background: c.$secondary-600;
+      transform: translateY(-1px);
+    }
+
+    @include bp.max(tablet) {
+      span:last-child {
+        display: none;
+      }
+
+      padding-inline: 0.9rem;
+    }
+  }
+
+  &__menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: r.$radius-md;
+    background: c.$primary-900;
+    color: c.$white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: c.$primary-800;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: default;
+  }
+
+  &__nav-panel {
+    position: relative;
+    z-index: 45;
+    background: c.$white;
+    border-top: 1px solid rgba(c.$neutral-300, 0.35);
+    box-shadow: var(--shadow-md);
+
+    ul {
+      max-width: 1320px;
+      margin-inline: auto;
+      padding: 0.75rem 1.5rem;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1.5rem;
+    }
+
+    a {
+      display: block;
+      padding: 0.6rem 0;
+      color: c.$primary-800;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+
+      &:hover {
+        color: c.$secondary-700;
+      }
+    }
+  }
+}

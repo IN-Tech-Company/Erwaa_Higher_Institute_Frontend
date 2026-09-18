@@ -1,0 +1,299 @@
+@use 'tokens/colors' as c;
+@use 'tokens/typography' as t;
+@use 'tokens/radius' as r;
+@use 'tokens/breakpoints' as bp;
+
+.register {
+  width: 100%;
+}
+
+.register__intro {
+  margin-bottom: 1.5rem;
+}
+
+.register__title {
+  font-family: var(--font-body), sans-serif;
+  font-weight: t.$font-weight-semibold;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: c.$primary-900;
+  margin: 0 0 0.5rem;
+}
+
+.register__switch {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-500;
+  margin: 0;
+
+  a {
+    color: c.$primary;
+    font-weight: t.$font-weight-semibold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.register__desc {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-500;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+// ── Form ──────────────────────────────────────────────────────────────
+.register__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.register__row {
+  display: grid;
+  gap: 1.25rem;
+
+  @include bp.min(tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.register__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.register__label {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  color: c.$neutral-700;
+}
+
+.register__required {
+  color: c.$error;
+}
+
+.register__input {
+  width: 100%;
+  border: 1.5px solid rgba(c.$primary-500, 0.14);
+  border-radius: r.$radius-md;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  color: c.$neutral-900;
+  background: c.$white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &::placeholder {
+    color: c.$neutral-400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: c.$secondary-600;
+    box-shadow: 0 0 0 3px rgba(c.$secondary-500, 0.15);
+  }
+}
+
+.register__error {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-xs;
+  color: c.$error;
+}
+
+// Row with a leading icon (email) — icon sits absolute over the input,
+// same idea as the password lock icon below.
+.register__icon-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:focus-within .register__icon {
+    color: c.$secondary-600;
+  }
+}
+
+.register__icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 1rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: c.$neutral-300;
+  font-size: 1.15rem;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.register__input--icon {
+  padding-inline-start: 2.75rem;
+}
+
+// Fixed +966 prefix, same merged-row pattern used on the contact form.
+.register__phone-row {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid rgba(c.$primary-500, 0.14);
+  border-radius: r.$radius-md;
+  background: c.$white;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus-within {
+    border-color: c.$secondary-600;
+    box-shadow: 0 0 0 3px rgba(c.$secondary-500, 0.15);
+  }
+
+  .register__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    border-radius: 0;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.register__phone-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding-inline: 1rem;
+  background: c.$gray-bg;
+  color: c.$neutral-500;
+  font-family: var(--font-body), sans-serif;
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-sm;
+  border-inline-end: 1.5px solid rgba(c.$primary-500, 0.14);
+}
+
+.register__password-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:focus-within .register__icon--inset {
+    color: c.$secondary-600;
+  }
+}
+
+.register__icon--inset {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 1rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: c.$neutral-300;
+  font-size: 1.15rem;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.register__input--password {
+  padding-inline-start: 2.75rem;
+  padding-inline-end: 2.75rem;
+}
+
+.register__eye {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0.75rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: c.$neutral-400;
+  padding: 0.25rem;
+
+  &:hover {
+    color: c.$secondary-600;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+}
+
+// ── Terms checkbox ────────────────────────────────────────────────────
+.register__terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-block-start: 0.15rem;
+    accent-color: c.$secondary;
+    cursor: pointer;
+  }
+
+  span {
+    font-family: var(--font-body), sans-serif;
+    font-size: t.$font-size-sm;
+    color: c.$neutral-600;
+    line-height: 1.6;
+  }
+
+  a {
+    color: c.$primary;
+    font-weight: t.$font-weight-semibold;
+    text-decoration: underline;
+
+    &:hover {
+      color: c.$secondary-700;
+    }
+  }
+}
+
+.register__submit {
+  width: 100%;
+  border: none;
+  border-radius: r.$radius-full;
+  padding: 1rem;
+  background: c.$secondary;
+  color: c.$primary-950;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-semibold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background: c.$secondary-600;
+    transform: translateY(-2px);
+  }
+}
+
+// Plain, low-emphasis link to the fully separate teacher application page —
+// intentionally not a tab/toggle on this form (trainee and teacher
+// registration are unrelated flows).
+.register__teacher-link {
+  text-align: center;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-500;
+  margin: 1.75rem 0 0;
+
+  a {
+    color: c.$primary;
+    font-weight: t.$font-weight-semibold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "name": "alathar-alkhaled-frontend",
+  "version": "1.0.0",
+  "description": "Al-Athar Al-Khaled - Quran Memorization Center Platform",
+  "author": "IN-Tech Company <intech.company24@gmail.com>",
+  "homepage": "https://alathar.intech-solutions.cloud",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "dev": "ng serve --open",
+    "dev:services": "ng serve --open --open-page=/ar/services",
+    "build": "ng build",
+    "build:prod": "ng build --configuration production",
+    "build:ar": "ng build --configuration production --localize --locale=ar",
+    "build:en": "ng build --configuration production --localize --locale=en",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:watch": "ng test --watch",
+    "test:coverage": "ng test --code-coverage",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "format": "prettier --write \"src/**/*.{ts,html,scss,json}\"",
+    "type-check": "tsc --noEmit",
+    "e2e": "ng e2e",
+    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/stats.json",
+    "clean": "rm -rf dist node_modules/.cache"
+  },
+  "license": "UNLICENSED",
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "keywords": [
+    "al-athar-al-khaled",
+    "quran-memorization",
+    "tahfeez",
+    "hifz",
+    "islamic-education",
+    "quran-teaching",
+    "live-classes",
+    "student-management",
+    "scheduling",
+    "multilingual",
+    "i18n",
+    "rtl-support",
+    "angular"
+  ],
+  "packageManager": "npm@11.9.0",
+  "dependencies": {
+    "@abdulrysr/saudi-riyal-new-symbol-font": "^1.0.8",
+    "@angular/animations": "^21.2.0",
+    "@angular/cdk": "^21.2.0",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/google-maps": "^21.2.14",
+    "@angular/material": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "@boxicons/core": "^1.0.5",
+    "@googlemaps/js-api-loader": "^2.1.1",
+    "@ngx-translate/core": "^17.0.0",
+    "@ngx-translate/http-loader": "^16.0.1",
+    "@primeuix/styled": "^0.7.4",
+    "@primeuix/themes": "^2.0.3",
+    "@stomp/stompjs": "^7.3.0",
+    "@types/leaflet": "^1.9.21",
+    "aos": "^2.3.4",
+    "bootstrap": "^5.3.8",
+    "boxicons": "^2.1.4",
+    "chart.js": "^4.5.1",
+    "firebase": "^12.13.0",
+    "jwt-decode": "^4.0.0",
+    "leaflet": "^1.9.4",
+    "openai": "^6.45.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^21.1.5",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^21.2.2",
+    "@angular/build": "^21.2.2",
+    "@angular/cli": "^21.2.2",
+    "@angular/compiler-cli": "^21.2.0",
+    "@types/aos": "^3.0.8",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  },
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=9.8.0"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions",
+    "iOS >= 15",
+    "Android >= 9"
+  ]
+}

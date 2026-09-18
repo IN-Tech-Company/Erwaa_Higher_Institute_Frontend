@@ -1,0 +1,61 @@
+@use 'tokens/colors' as *;
+@use 'tokens/vars' as *;
+
+// ─── Shell ───────────────────────────────────────────────────────────────────
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  background: $gray-bg;
+}
+
+// ─── Main column (right of sidebar) ──────────────────────────────────────────
+// The header (app-top-navbar) intentionally does NOT get squeezed by the
+// assistant panel — the panel docks below the header row (inset-block-start:
+// $dashboard-header-height in assistant-chat-panel.scss), so it never
+// actually occupies that row. Only .content-area needs to make room for it.
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  transition: margin-inline-start $transition;
+
+  &.has-sidebar {
+    margin-inline-start: $sidebar-width;
+  }
+
+  &.has-sidebar-collapsed {
+    margin-inline-start: $sidebar-collapsed-width;
+  }
+}
+
+// ─── Scrollable page body ─────────────────────────────────────────────────────
+.content-area {
+  flex: 1;
+  position: relative;
+  overflow-x: hidden;
+  /* padding: 28px 32px; */
+  display: grid;
+ grid-template-columns: 0 1fr;
+ grid-template-rows: 1fr;
+  transition: margin-inline-end $transition;
+  /* @media (max-width: 1024px) {
+    padding: 20px 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px 14px;
+  } */
+}
+
+// ─── Mobile: no sidebar offset ────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .main-content {
+    margin-inline-start: 0 !important;
+  }
+
+  .content-area {
+    margin-inline-end: 0 !important;
+  }
+}

@@ -1,0 +1,240 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.footer {
+  position: relative;
+  background: c.$primary-950;
+  color: rgba(c.$white, 0.65);
+  padding-block: 3.5rem 0;
+  overflow: hidden;
+
+  // Subtle decorative texture — behind the content, never competing with it.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/footer/footer-bg.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+}
+
+.footer__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.footer__top {
+  display: grid;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+
+  @include bp.min(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.min(md) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @include bp.min(lg) {
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+  }
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include bp.min(tablet) {
+    grid-column: 1 / -1;
+  }
+
+  @include bp.min(lg) {
+    grid-column: auto;
+  }
+}
+
+.footer__logo {
+  display: block;
+  line-height: 0;
+  margin-bottom: 1.25rem;
+
+  img {
+    height: 64px;
+    width: auto;
+  }
+}
+
+.footer__tagline {
+  color: c.$secondary;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
+.footer__desc {
+  font-size: 0.875rem;
+  line-height: 1.8;
+  margin: 0 0 1.5rem;
+  max-width: 320px;
+}
+
+.footer__col-title {
+  color: c.$white;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 1.25rem;
+}
+
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: c.$secondary;
+    }
+  }
+}
+
+// ── Real contact details — clean vertical list, its own column ──────────
+.footer__contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+
+  .footer__brand & {
+    margin-top: 1.5rem;
+  }
+}
+
+.footer__contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.footer__contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: c.$secondary;
+  }
+}
+
+.footer__contact-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: r.$radius-full;
+  background: rgba(c.$white, 0.08);
+  color: c.$secondary;
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+  }
+}
+
+.footer__contact-hours {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.footer__contact-hours-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  strong {
+    color: c.$white;
+    font-weight: 700;
+  }
+}
+
+.footer__qr {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  img {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: r.$radius-md;
+    background: c.$white;
+    padding: 0.25rem;
+  }
+
+  span {
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+}
+
+// ── Bottom bar — copyright + accepted payment methods, one compact row ───
+.footer__bottom {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 1.25rem;
+  border-block-start: 1px solid rgba(c.$white, 0.1);
+  padding-block: 1.5rem;
+  text-align: center;
+
+  @include bp.min(tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: start;
+  }
+}
+
+.footer__copyright {
+  font-size: 0.825rem;
+  margin: 0;
+}
+
+.footer__payments-img {
+  max-width: 100%;
+  height: 45px;
+  width: auto;
+  opacity: 0.9;
+}

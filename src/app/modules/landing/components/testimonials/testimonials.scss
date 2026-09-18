@@ -1,0 +1,204 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.testimonials {
+  position: relative;
+  background: c.$gray-bg;
+  padding-block: 3rem;
+  overflow: hidden;
+
+  @include bp.min(md) {
+    padding-block: 6rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/bg-dark.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.02;
+    pointer-events: none;
+  }
+}
+
+.testimonials__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.testimonials__intro {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 3rem;
+}
+
+.testimonials__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: r.$radius-full;
+  background: c.$secondary-50;
+  color: c.$secondary-700;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.testimonials__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.3;
+  color: c.$primary-950;
+  margin: 0;
+}
+
+.testimonials__title-highlight {
+  color: c.$secondary;
+}
+
+// ── Carousel ──────────────────────────────────────────────────────────────
+.testimonials__carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.testimonials__arrow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: r.$radius-full;
+  border: 1px solid rgba(c.$primary-500, 0.15);
+  background: c.$white;
+  color: c.$primary-700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.3rem;
+  }
+
+  &:hover {
+    background: c.$secondary;
+    border-color: c.$secondary;
+    color: c.$primary-950;
+  }
+}
+
+.testimonials__stack {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+}
+
+// Peeking card edges stacked behind the active card — purely decorative.
+.testimonials__layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: c.$white;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+
+  &--1 {
+    inset-block-start: 0.9rem;
+    inset-inline: 0.7rem;
+    opacity: 0.7;
+  }
+
+  &--2 {
+    inset-block-start: 1.7rem;
+    inset-inline: 1.4rem;
+    opacity: 0.4;
+  }
+}
+
+.testimonials__card {
+  position: relative;
+  background: c.$white;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+  box-shadow: var(--shadow-md);
+  padding: 2rem 1.75rem;
+  text-align: center;
+  animation: testimonialFadeIn 0.45s ease both;
+
+  @include bp.min(md) {
+    padding: 2.75rem;
+  }
+}
+
+.testimonials__quote-mark {
+  display: block;
+  font-size: 2.25rem;
+  color: c.$secondary-200;
+  margin-bottom: 0.5rem;
+}
+
+.testimonials__quote {
+  color: c.$primary-950;
+  font-size: 1rem;
+  line-height: 1.9;
+  margin: 0 0 1.5rem;
+  // Full, verbatim testimonials — some run several paragraphs, so preserve
+  // the blank-line breaks in the source text instead of collapsing them.
+  white-space: pre-line;
+  text-align: start;
+}
+
+.testimonials__toggle {
+  display: block;
+  margin: 0 0 1.5rem;
+  border: none;
+  background: none;
+  padding: 0;
+  color: c.$secondary-700;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.testimonials__author-name {
+  display: block;
+  color: c.$primary-950;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.testimonials__author-role {
+  display: block;
+  color: c.$neutral-400;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+@keyframes testimonialFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

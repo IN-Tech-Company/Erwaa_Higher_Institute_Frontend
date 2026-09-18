@@ -1,0 +1,26 @@
+@use 'tokens/colors' as *;
+@use 'tokens/spacing' as *;
+@use 'tokens/radius' as *;
+
+.dashboard-home {
+  padding: $spacing-8;
+}
+
+.dashboard-home__card {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-8;
+  box-shadow: 0 2px 12px rgba($neutral-900, 0.06);
+}
+
+.dashboard-home__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $primary-900;
+  margin: 0 0 $spacing-2;
+}
+
+.dashboard-home__subtitle {
+  color: $neutral-400;
+  margin: 0;
+}

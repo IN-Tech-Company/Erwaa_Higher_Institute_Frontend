@@ -1,0 +1,237 @@
+@use 'tokens/colors' as c;
+@use 'tokens/radius' as r;
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background: c.$white;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+}
+
+.course-card__image-wrap {
+  position: relative;
+  background: c.$gray-bg;
+  overflow: hidden;
+  line-height: 0;
+
+  // Set only when `imageRatio` is passed in (homepage's category cards, all
+  // sharing one ratio) — crops to fill so every card in a row lines up.
+  // Without it the image keeps its own natural size (individual-course
+  // photos, which vary in shape and shouldn't be cropped).
+  &--fixed {
+    line-height: normal;
+
+    .course-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.course-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.35s ease;
+
+  .course-card:hover & {
+    transform: scale(1.06);
+  }
+}
+
+.course-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 1.5rem;
+  text-align: start;
+}
+
+.course-card__title {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.5;
+  color: c.$primary-950;
+  margin: 0 0 0.4rem;
+}
+
+.course-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0 0 0.6rem;
+}
+
+.course-card__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.05rem;
+
+  .material-symbols-outlined {
+    font-size: 0.95rem;
+    color: c.$secondary;
+  }
+}
+
+.course-card__star--full {
+  font-variation-settings: 'FILL' 1;
+}
+
+.course-card__rating-value {
+  color: c.$neutral-400;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.course-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding-block-end: 0.9rem;
+  margin-block-end: 0.9rem;
+  border-block-end: 1px solid rgba(c.$primary-500, 0.08);
+}
+
+.course-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: c.$neutral-400;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  .material-symbols-outlined {
+    font-size: 0.95rem;
+    color: c.$neutral-300;
+  }
+}
+
+.course-card__price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.6rem;
+  row-gap: 0.3rem;
+  margin: 0 0 1.25rem;
+}
+
+.course-card__price-amount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  color: c.$secondary-700;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+
+  .icon-saudi_riyal {
+    font-size: 0.7em;
+  }
+}
+
+.course-card__price-original {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  order: 2;
+  color: c.$neutral-300;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: line-through;
+
+  .icon-saudi_riyal {
+    font-size: 0.85em;
+  }
+}
+
+.course-card__price-savings {
+  order: 3;
+  padding: 0.2rem 0.6rem;
+  border-radius: r.$radius-full;
+  background: rgba(c.$success, 0.12);
+  color: c.$success;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.course-card__price-free {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: c.$success;
+}
+
+.course-card__price-tbd {
+  color: c.$neutral-400;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.course-card__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: auto;
+}
+
+.course-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: r.$radius-full;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.05rem;
+    transition: transform 0.2s ease;
+  }
+
+  &--secondary {
+    border: 1px solid rgba(c.$primary-500, 0.16);
+    background: c.$white;
+    color: c.$primary-950;
+
+    &:hover {
+      border-color: c.$secondary-700;
+      background: c.$gray-bg;
+    }
+  }
+
+  &--primary {
+    background: c.$primary-950;
+    color: c.$white;
+
+    &:hover {
+      background: c.$secondary;
+      color: c.$primary-950;
+
+      .material-symbols-outlined {
+        transform: translateX(3px);
+
+        [dir='rtl'] & {
+          transform: translateX(-3px);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,417 @@
+@use 'main.scss' as *;
+
+// ── Outer box ──────────────────────────────────────────────────────────────
+
+.at {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: $white;
+  border: 1px solid $neutral-200;
+  border-radius: 16px;
+}
+
+// ── Toolbar ───────────────────────────────────────────────────────────────
+
+.at__toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  gap: 12px;
+  background-color: $neutral-50;
+  border-bottom: 1px solid $neutral-200;
+  flex-wrap: wrap;
+}
+
+.at__search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-inline: 12px;
+  gap: 8px;
+  background: $white;
+  border: 1px solid $neutral-200;
+  border-radius: 10px;
+  min-width: 200px;
+  height: 39px;
+  flex: 1;
+  max-width: 280px;
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: $primary;
+  }
+
+  >i {
+    font-size: 1.125rem;
+    color: $neutral-400;
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: $primary;
+
+    &::placeholder {
+      color: $neutral-500;
+    }
+  }
+}
+
+.at__filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  padding: 2px;
+  gap: 2px;
+  background-color: $neutral-100;
+}
+
+.at__filter-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  color: $neutral-500;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:not(.at__filter-btn--active):hover {
+    color: $primary-900;
+  }
+}
+
+.at__filter-btn--active {
+  background: $white;
+  color: $primary;
+  box-shadow: 0 1px 2px 0 rgba(1, 40, 92, 0.05);
+}
+
+.at__toolbar-actions {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+// ── Loading skeleton ───────────────────────────────────────────────────────
+
+.at__skeleton {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.at__skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid $neutral-200;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.at__skeleton-cell {
+  height: 14px;
+  flex: 1;
+  border-radius: 6px;
+  background: linear-gradient(90deg,
+      $neutral-100 25%,
+      $neutral-200 50%,
+      $neutral-100 75%);
+  background-size: 200% 100%;
+  animation: at-shimmer 1.4s infinite;
+}
+
+.at__skeleton-cell--num {
+  flex: 0 0 32px;
+}
+
+@keyframes at-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// ── Empty state ────────────────────────────────────────────────────────────
+
+.at__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.at__empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: $neutral-100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+
+  i {
+    font-size: 2.25rem;
+    color: $neutral-400;
+  }
+}
+
+.at__empty-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: $font-weight-semibold;
+  color: $neutral-700;
+}
+
+.at__empty-sub {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: $neutral-400;
+  max-width: 280px;
+}
+
+// ── Mobile cards (generic fallback) ───────────────────────────────────────
+
+.at__cards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.at__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 14px 16px;
+  border-bottom: 1px solid $neutral-200;
+  transition: background 0.15s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: $primary-50;
+  }
+
+  &--clickable {
+    cursor: pointer;
+  }
+}
+
+.at__card-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.at__card-label {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  color: $neutral-500;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.at__card-val {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: $neutral-700;
+}
+
+// ── Desktop table ──────────────────────────────────────────────────────────
+
+.at__table {
+  display: none;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.at__table thead tr {
+  background: $neutral-50;
+  border-bottom: 1px solid $neutral-200;
+}
+
+.at__table th {
+  padding: 12px 16px;
+  text-align: start;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  color: $neutral-500;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.at__th-num {
+  width: 48px;
+  text-align: center;
+}
+
+.at__table tbody tr {
+  transition: background 0.15s;
+
+  &:hover td {
+    background: $primary-50;
+  }
+
+  &.at__tr--clickable {
+    cursor: pointer;
+
+    &:hover td {
+      background: $primary-50;
+    }
+  }
+}
+
+.at__table td {
+  padding: 13px 16px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  color: $neutral-600;
+  border-bottom: 1px solid $neutral-200;
+  vertical-align: middle;
+  text-align: start;
+}
+
+.at__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.at__td-num {
+  color: $neutral-500;
+  text-align: center;
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────
+
+.at__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid $neutral-200;
+  background-color: $neutral-50;
+}
+
+.at__footer-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: $neutral-500;
+  text-align: start;
+}
+
+.at__pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.at__page-btn {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: $neutral-600;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  i {
+    font-size: 1rem;
+  }
+
+  &:hover:not(:disabled):not(.at__page-btn--active) {
+    background: $neutral-100;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.at__page-btn--active {
+  background: $primary-900;
+  color: $white;
+}
+
+.at__page-ellipsis {
+  color: $neutral-400;
+  font-size: 12px;
+  padding: 0 2px;
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+
+@media (min-width: 768px) {
+  .at__cards {
+    display: none;
+  }
+
+  .at__table {
+    display: table;
+  }
+}
+
+@media (max-width: 768px) {
+  .at__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    gap: 10px;
+
+    .at__search {
+      max-width: unset;
+    }
+
+    .at__filters {
+      width: 100%;
+
+      .at__filter-btn {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    .at__toolbar-actions {
+      margin-inline-start: 0;
+    }
+  }
+}

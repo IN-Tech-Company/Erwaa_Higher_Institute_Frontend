@@ -1,0 +1,40 @@
+<section class="featured-courses"
+         id="featured-courses">
+  <div class="featured-courses__container">
+
+    <div class="featured-courses__intro"
+         data-aos="fade-up">
+      <div class="featured-courses__intro-text">
+        <span class="featured-courses__eyebrow">{{ 'LANDING.FEATURED_COURSES.EYEBROW' | translate }}</span>
+        <h2 class="featured-courses__title">
+          <span>{{ 'LANDING.FEATURED_COURSES.TITLE_LINE_1' | translate }}</span>
+          <span class="featured-courses__title-highlight">{{ 'LANDING.FEATURED_COURSES.TITLE_HIGHLIGHT' | translate }}</span>
+        </h2>
+        <p class="featured-courses__desc">{{ 'LANDING.FEATURED_COURSES.DESC' | translate }}</p>
+      </div>
+
+      <a [routerLink]="ctaLink()"
+         class="featured-courses__cta">
+        {{ 'LANDING.FEATURED_COURSES.CTA' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="featured-courses__grid"
+         data-aos="fade-up"
+         data-aos-delay="100">
+      @for (course of courses; track course.key) {
+      <app-course-card [image]="course.image"
+                       [title]="('LANDING.ALL_COURSES.' + course.key) | translate"
+                       [badge]="('LANDING.ALL_COURSES.' + course.categoryKey + '_TITLE') | translate"
+                       [price]="course.price"
+                       [originalPrice]="course.originalPrice"
+                       [rating]="course.rating"
+                       [level]="course.level"
+                       [duration]="course.duration"
+                       [link]="detailLink(course.key)" />
+      }
+    </div>
+
+  </div>
+</section>

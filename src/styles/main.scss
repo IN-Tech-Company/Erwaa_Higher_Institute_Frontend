@@ -1,0 +1,32 @@
+/**
+ * @file main.scss 
+ * @description Entry point for all SCSS imports.
+ */
+
+@forward 'tokens/colors';
+@forward 'tokens/typography';
+@forward 'tokens/spacing';
+@forward 'tokens/radius';
+@forward 'tokens/shadows';
+@forward 'tokens/z-index';
+@forward 'tokens/breakpoints';
+@forward 'tokens/motion';
+
+@forward 'base/reset';
+@forward 'base/globals';
+
+@forward 'layout/container';
+@forward 'layout/stack';
+
+@forward 'utilities/spacing';
+@forward 'utilities/typography';
+@forward 'utilities/display';
+
+@mixin text-style($color, $min-size, $vw, $max-size, $weight, $font-family, $spacing, $line-height) {
+    color: $color;
+    font-size: clamp($min-size, $vw, $max-size);
+    font-weight: $weight;
+    font-family: $font-family;
+    letter-spacing: $spacing;
+    line-height: $line-height;
+}

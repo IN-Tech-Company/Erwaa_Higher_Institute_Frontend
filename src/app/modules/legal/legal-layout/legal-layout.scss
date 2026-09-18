@@ -1,0 +1,155 @@
+@use 'tokens/colors' as c;
+@use 'tokens/spacing' as s;
+@use 'tokens/radius' as r;
+@use 'tokens/breakpoints' as *;
+
+.legal-layout {
+  min-height: 100dvh;
+  background: c.$neutral-50;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.legal-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 72px;
+  background: c.$white;
+  border-bottom: 1px solid c.$neutral-100;
+  box-shadow: 0 2px 12px rgba(c.$primary-900, 0.04);
+  display: flex;
+  align-items: center;
+  gap: s.$spacing-4;
+  padding-inline: s.$spacing-4;
+
+  @include min(lg) {
+    padding-inline: s.$spacing-9;
+  }
+}
+
+.legal-topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.legal-topbar__logo {
+  height: 38px;
+  width: auto;
+}
+
+.legal-topbar__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-inline-start: auto;
+  color: c.$neutral-600;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s;
+
+  .material-symbols-outlined {
+    font-size: 1.15rem;
+  }
+
+  span:last-child {
+    display: none;
+
+    @include min(tablet) {
+      display: inline;
+    }
+  }
+
+  &:hover {
+    color: c.$primary;
+  }
+}
+
+.legal-topbar__lang {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.875rem;
+  border: 1px solid c.$neutral-200;
+  border-radius: r.$radius-md;
+  background: c.$white;
+  color: c.$primary;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+
+  .material-symbols-outlined {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    border-color: c.$secondary;
+    background: c.$secondary-50;
+  }
+}
+
+.legal-tabs {
+  display: flex;
+  align-items: center;
+  gap: s.$spacing-2;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: c.$white;
+  border-bottom: 1px solid c.$neutral-100;
+  padding: s.$spacing-3 s.$spacing-4;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include min(lg) {
+    padding-inline: s.$spacing-9;
+    justify-content: center;
+  }
+}
+
+.legal-tabs__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border-radius: r.$radius-full;
+  color: c.$neutral-500;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+
+  .material-symbols-outlined {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    background: c.$neutral-50;
+    color: c.$primary;
+  }
+
+  &--active {
+    background: c.$primary-50;
+    color: c.$primary;
+  }
+}
+
+
+.legal-main {
+  flex: 1;
+  padding: s.$spacing-7 s.$spacing-4 s.$spacing-11;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include min(lg) {
+    padding-block: s.$spacing-9 s.$spacing-13;
+  }
+}

@@ -1,0 +1,106 @@
+@use 'tokens/colors' as c;
+@use 'tokens/breakpoints' as bp;
+@use 'tokens/radius' as r;
+
+.featured-courses {
+  background: c.$white;
+  padding-block: 3rem;
+
+  @include bp.min(md) {
+    padding-block: 5rem;
+  }
+}
+
+.featured-courses__container {
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.featured-courses__intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0 0 2.5rem;
+
+  @include bp.max(tablet) {
+    flex-wrap: wrap;
+  }
+}
+
+.featured-courses__intro-text {
+  text-align: start;
+  max-width: 640px;
+}
+
+.featured-courses__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: r.$radius-full;
+  background: c.$secondary-50;
+  color: c.$secondary-700;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.featured-courses__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.3;
+  color: c.$primary-950;
+  margin: 0 0 0.75rem;
+}
+
+.featured-courses__title-highlight {
+  color: c.$secondary;
+}
+
+.featured-courses__desc {
+  color: c.$neutral-500;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.featured-courses__cta {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: r.$radius-full;
+  background: c.$secondary;
+  color: c.$primary-950;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.15rem;
+  }
+
+  &:hover {
+    background: c.$secondary-600;
+    transform: translateY(-2px);
+  }
+}
+
+.featured-courses__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+
+  @include bp.min(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.min(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

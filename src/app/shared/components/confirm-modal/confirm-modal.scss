@@ -1,0 +1,108 @@
+@use 'tokens/colors' as c;
+
+// ── Body ──────────────────────────────────────────────────────────────────────
+
+.cm-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 28px 36px;
+  gap: 20px;
+  text-align: center;
+}
+
+// ── Icon — double ring ────────────────────────────────────────────────────────
+
+.cm-icon-ring {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &--success { background: c.$primary-100; }
+  &--danger  { background: c.$error-100; }
+}
+
+.cm-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i { font-size: 2.25rem; color: c.$white; }
+
+  &--success { background: c.$primary; }
+  &--danger  { background: c.$error-600; }
+}
+
+// ── Message ───────────────────────────────────────────────────────────────────
+
+.cm-message {
+  font-size: 0.9375rem;
+  color: c.$neutral-500;
+  margin: 0;
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+// ── Textarea ──────────────────────────────────────────────────────────────────
+
+.cm-textarea {
+  width: 100%;
+  border: 1.5px solid c.$neutral-200;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: c.$neutral-800;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  text-align: start;
+
+  &::placeholder { color: c.$neutral-400; }
+  &:focus { border-color: c.$primary; }
+}
+
+// ── Actions — stacked ─────────────────────────────────────────────────────────
+
+.cm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.cm-btn {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: none;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  color: c.$white;
+
+  &:disabled { opacity: 0.45; cursor: not-allowed; }
+  &:not(:disabled):hover { opacity: 0.85; }
+
+  &--success { background: c.$primary; }
+  &--danger  { background: c.$error-600; }
+
+  &--cancel {
+    background: transparent;
+    border: 1.5px solid c.$neutral-200;
+    color: c.$neutral-600;
+
+    &:not(:disabled):hover { background: c.$neutral-50; opacity: 1; }
+  }
+}

@@ -1,0 +1,85 @@
+@use '../tokens/colors' as c;
+@use '../tokens/spacing' as s;
+@use '../tokens/radius' as r;
+@use '../tokens/breakpoints' as *;
+
+.legal-page {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+// ── Hero header — same eyebrow-badge + title convention used across the
+// public site (features/faq/testimonials), not a generic gradient banner. ──
+.legal-page__hero {
+  text-align: center;
+  margin-bottom: s.$spacing-7;
+}
+
+.legal-page__icon {
+  width: 56px;
+  height: 56px;
+  margin-inline: auto;
+  margin-bottom: s.$spacing-4;
+  border-radius: r.$radius-full;
+  background: c.$secondary-50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .material-symbols-outlined {
+    font-size: 1.6rem;
+    color: c.$secondary-700;
+  }
+}
+
+.legal-page__title {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  font-weight: 800;
+  color: c.$primary-950;
+  margin-bottom: 0.5rem;
+}
+
+.legal-page__updated {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: c.$neutral-400;
+}
+
+// ── Sections ──────────────────────────────────────────────────────────────
+
+.legal-page__body {
+  display: flex;
+  flex-direction: column;
+  gap: s.$spacing-4;
+}
+
+.legal-section {
+  background: c.$white;
+  border: 1px solid rgba(c.$primary-500, 0.08);
+  border-radius: r.$radius-xl;
+  padding: s.$spacing-6 s.$spacing-5;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  @include min(md) {
+    padding: s.$spacing-7;
+  }
+}
+
+.legal-section__title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: c.$primary-950;
+  margin-bottom: s.$spacing-3;
+}
+
+.legal-section__body {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: c.$neutral-500;
+}

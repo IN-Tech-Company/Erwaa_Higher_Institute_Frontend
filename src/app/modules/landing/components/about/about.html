@@ -1,0 +1,78 @@
+<section class="about"
+         id="about">
+  <div class="about__container">
+
+    <div class="about__media"
+         data-aos="fade-up">
+      <span class="about__dots about__dots--top"
+            aria-hidden="true"></span>
+      <span class="about__dots about__dots--bottom"
+            aria-hidden="true"></span>
+
+      <div class="about__photo-frame">
+        <img class="about__photo"
+             src="/assets/images/hero/hero-offline-sesstion.png"
+             [alt]="'LANDING.ABOUT.MAIN_PHOTO_ALT' | translate" />
+
+        <div class="about__stat">
+          <span class="material-symbols-outlined">workspace_premium</span>
+          <span class="about__stat-text">
+            <strong>{{ 'LANDING.ABOUT.STAT_NUMBER' | translate }}</strong>
+            <span>{{ 'LANDING.ABOUT.STAT_LABEL' | translate }}</span>
+          </span>
+        </div>
+
+        <img class="about__inset"
+             src="/assets/images/hero/hero-online-cource.png"
+             [alt]="'LANDING.ABOUT.INSET_PHOTO_ALT' | translate" />
+      </div>
+    </div>
+
+    <div class="about__content">
+      <span class="about__badge"
+            data-aos="fade-up">
+        <span class="material-symbols-outlined">auto_stories</span>
+        {{ 'LANDING.ABOUT.BADGE' | translate }}
+      </span>
+
+      <h2 class="about__title"
+          data-aos="fade-up"
+          data-aos-delay="100">
+        <span>{{ 'LANDING.ABOUT.TITLE_LINE_1' | translate }}</span>
+        <span class="about__title-highlight">{{ 'LANDING.ABOUT.TITLE_HIGHLIGHT' | translate }}</span>
+      </h2>
+
+      <p class="about__desc"
+         data-aos="fade-up"
+         data-aos-delay="150">
+        {{ 'LANDING.ABOUT.DESC' | translate }}
+      </p>
+
+      <div class="about__features"
+           data-aos="fade-up"
+           data-aos-delay="200">
+        <div class="about__feature">
+          <span class="about__feature-icon">
+            <span class="material-symbols-outlined">location_on</span>
+          </span>
+          <span>{{ 'LANDING.ABOUT.FEATURE1_LABEL' | translate }}</span>
+        </div>
+        <div class="about__feature">
+          <span class="about__feature-icon">
+            <span class="material-symbols-outlined">handshake</span>
+          </span>
+          <span>{{ 'LANDING.ABOUT.FEATURE2_LABEL' | translate }}</span>
+        </div>
+      </div>
+
+      <a href="#courses"
+         class="about__cta"
+         data-aos="fade-up"
+         data-aos-delay="250">
+        {{ 'LANDING.ABOUT.CTA' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </a>
+    </div>
+
+  </div>
+</section>

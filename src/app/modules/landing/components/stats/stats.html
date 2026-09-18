@@ -1,0 +1,12 @@
+<section class="stats" id="stats">
+  <div class="stats__container">
+    <div class="stats__bar" data-aos="fade-up">
+      @for (item of items; track item.numberKey; let i = $index) {
+      <div class="stats__item" [class.stats__item--divider]="i > 0">
+        <strong class="stats__number">{{ item.numberKey | translate }}</strong>
+        <span class="stats__label">{{ item.labelKey | translate }}</span>
+      </div>
+      }
+    </div>
+  </div>
+</section>

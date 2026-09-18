@@ -1,0 +1,78 @@
+@use '../main' as *;
+
+// ─── Shared ambulance section styles ────────────────────────────
+// These are global (no ViewEncapsulation) so all ambulance
+// components can use them without repeating the definitions.
+
+.ambu-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: rgba($secondary, 0.1);
+    color: $secondary-700;
+    font-family: var(--font-body), sans-serif;
+    font-size: 13px;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    &--light {
+        background: rgba($white, 0.15);
+        color: rgba($white, 0.9);
+    }
+}
+
+.ambu-section-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 64px;
+
+    &__start {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex-shrink: 0;
+
+        .ambu-tag {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            color: $primary;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+        }
+    }
+
+    &__title {
+        font-family: var(--font-body), sans-serif;
+        font-size: clamp(28px, 2.8vw, 42px);
+        font-weight: $font-weight-bold;
+        color: $primary-900;
+        line-height: 1.2;
+        white-space: pre-line;
+        text-align: start;
+    }
+
+    &__subtitle {
+        max-width: 400px;
+        font-family: var(--font-body), sans-serif;
+        font-size: clamp(14px, 1.1vw, 16px);
+        font-weight: $font-weight-regular;
+        color: $neutral-500;
+        line-height: 1.8;
+        text-align: start;
+    }
+}
+
+@media (max-width: 768px) {
+    .ambu-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

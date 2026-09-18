@@ -1,0 +1,57 @@
+<app-top-bar />
+<app-site-header />
+
+<main class="all-courses">
+
+  <div class="all-courses__hero">
+    <div class="all-courses__container">
+      <div class="all-courses__intro"
+           data-aos="fade-up">
+        <span class="all-courses__eyebrow">{{ 'LANDING.ALL_COURSES.EYEBROW' | translate }}</span>
+        <h1 class="all-courses__title">
+          <span>{{ 'LANDING.ALL_COURSES.TITLE_LINE_1' | translate }}</span>
+          <span class="all-courses__title-highlight">{{ 'LANDING.ALL_COURSES.TITLE_HIGHLIGHT' | translate }}</span>
+        </h1>
+        <p class="all-courses__desc">{{ 'LANDING.ALL_COURSES.DESC' | translate }}</p>
+      </div>
+
+      <div class="all-courses__tabs"
+           data-aos="fade-up"
+           data-aos-delay="100">
+        <button type="button"
+                class="all-courses__tab"
+                [class.all-courses__tab--active]="selectedCategory() === 'ALL'"
+                (click)="selectCategory('ALL')">
+          {{ 'LANDING.ALL_COURSES.FILTER_ALL' | translate }}
+        </button>
+        @for (category of categories; track category.key) {
+        <button type="button"
+                class="all-courses__tab"
+                [class.all-courses__tab--active]="selectedCategory() === category.key"
+                (click)="selectCategory(category.key)">
+          {{ ('LANDING.ALL_COURSES.' + category.key + '_TITLE') | translate }}
+        </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="all-courses__container">
+    <div class="all-courses__grid"
+         data-aos="fade-up">
+      @for (course of filteredCourses(); track course.key) {
+      <app-course-card [image]="course.image"
+                       [title]="('LANDING.ALL_COURSES.' + course.key) | translate"
+                       [badge]="('LANDING.ALL_COURSES.' + course.categoryKey + '_TITLE') | translate"
+                       [price]="course.price"
+                       [originalPrice]="course.originalPrice"
+                       [rating]="course.rating"
+                       [level]="course.level"
+                       [duration]="course.duration"
+                       [link]="detailLink(course.key)" />
+      }
+    </div>
+  </div>
+</main>
+
+<app-footer />

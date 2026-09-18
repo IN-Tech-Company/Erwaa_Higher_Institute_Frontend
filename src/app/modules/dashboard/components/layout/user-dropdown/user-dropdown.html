@@ -1,0 +1,59 @@
+<div class="user-dropdown-wrap">
+
+  <div class="dropdown-trigger"
+       (click)="toggle()">
+    <button class="avatar-btn"
+            [class.active]="isOpen()"
+            aria-label="User menu">
+      {{ currentUser().initials }}
+    </button>
+    <div class="ud-user-info">
+      <span class="ud-user-name">{{ currentUser().name }}</span>
+      <span class="ud-user-role">{{ roleLabel() }}</span>
+    </div>
+    <button class="chevron-btn"
+            [class.rotated]="isOpen()"
+            aria-label="Toggle menu">
+      <svg width="12"
+           height="8"
+           viewBox="0 0 12 8"
+           fill="none">
+        <path d="M1 1L6 6L11 1"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="dropdown-panel"
+       [class.open]="isOpen()"
+       [class.rtl]="isRtl()"
+       role="menu">
+
+    <div class="dropdown-body">
+      <ul class="dropdown-list">
+        @for(item of menuItems; track item.labelEn) {
+        <li class="dropdown-item"
+            [class.danger]="item.danger"
+            role="menuitem"
+            (click)="onItemClick(item)">
+          <span class="item-icon">
+            <i [class]="item.icon"></i>
+          </span>
+          <span class="item-label">{{ getLabel(item) }}</span>
+        </li>
+        }
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+@if(showHelp){
+<app-help-popup [isOpen]="showHelp"
+                (close)="showHelp = false"
+                (sent)="handleHelpMessage($event)">
+</app-help-popup>
+}

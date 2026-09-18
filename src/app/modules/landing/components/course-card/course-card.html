@@ -1,0 +1,80 @@
+<article class="course-card">
+  <div class="course-card__image-wrap"
+       [class.course-card__image-wrap--fixed]="imageRatio()"
+       [style.aspect-ratio]="imageRatio()">
+    <img class="course-card__image"
+         [src]="image()"
+         [alt]="title()" />
+  </div>
+
+  <div class="course-card__body">
+    <h3 class="course-card__title">{{ title() }}</h3>
+
+    @if (rating()) {
+    <div class="course-card__rating">
+      <span class="course-card__stars">
+        @for (star of stars(); track $index) {
+        <span class="material-symbols-outlined"
+              [class.course-card__star--full]="star !== 'star_border'">{{ star }}</span>
+        }
+      </span>
+      <span class="course-card__rating-value">({{ rating() }})</span>
+    </div>
+    }
+
+    @if (hasMeta()) {
+    <div class="course-card__meta">
+      @if (levelLabelKey()) {
+      <span class="course-card__meta-item">
+        <span class="material-symbols-outlined">signal_cellular_alt</span>
+        {{ levelLabelKey() | translate }}
+      </span>
+      }
+      @if (duration()) {
+      <span class="course-card__meta-item">
+        <span class="material-symbols-outlined">schedule</span>
+        {{ duration() }}
+      </span>
+      }
+    </div>
+    }
+
+    @if (hasPrice()) {
+    <div class="course-card__price">
+      @if (price() === 'free') {
+      <span class="course-card__price-free">{{ 'COMMON.FREE' | translate }}</span>
+      } @else if (price() === null) {
+      <span class="course-card__price-tbd">{{ 'LANDING.COURSE_CARD.PRICE_TBD' | translate }}</span>
+      } @else {
+      @if (formattedOriginalPrice()) {
+      <span class="course-card__price-original">
+        {{ formattedOriginalPrice() }}
+        <span class="icon-saudi_riyal">&#xea;</span>
+      </span>
+      }
+      <span class="course-card__price-amount">
+        {{ formattedPrice() }}
+        <span class="icon-saudi_riyal">&#xea;</span>
+      </span>
+      @if (savingsPercent()) {
+      <span class="course-card__price-savings">{{ 'LANDING.COURSE_CARD.SAVE' | translate: { percent: savingsPercent() } }}</span>
+      }
+      }
+    </div>
+    }
+
+    @if (link()) {
+    <div class="course-card__actions">
+      <a class="course-card__cta course-card__cta--secondary"
+         [routerLink]="link()">
+        {{ 'LANDING.COURSE_CARD.VIEW_DETAILS' | translate }}
+      </a>
+      <a class="course-card__cta course-card__cta--primary"
+         [routerLink]="link()">
+        {{ 'LANDING.FEATURED_COURSES.REGISTER' | translate }}
+        <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+      </a>
+    </div>
+    }
+  </div>
+</article>

@@ -1,0 +1,37 @@
+@use 'tokens/colors' as c;
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: c.$white;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    &:hover {
+      color: c.$secondary;
+      transform: translateY(-1px);
+    }
+  }
+
+  &--dark &__item {
+    color: c.$primary-700;
+
+    &:hover {
+      color: c.$secondary-700;
+    }
+  }
+}

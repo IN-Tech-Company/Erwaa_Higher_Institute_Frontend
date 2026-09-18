@@ -1,0 +1,170 @@
+<div class="at">
+
+  <!-- ── Toolbar (search + filter tabs) ── -->
+  @if (searchable() || tabFilters().length > 0) {
+  <div class="at__toolbar">
+
+    @if (searchable()) {
+    <div class="at__search">
+      <i class="bx bx-search"></i>
+      <input type="text"
+             [placeholder]="searchPlaceholder()"
+             (input)="onSearch($event)" />
+    </div>
+    }
+
+    @if (tabCounts().length > 0) {
+    <div class="at__filters">
+      @for (tab of tabCounts(); track tab.value) {
+      <button class="at__filter-btn"
+              [class.at__filter-btn--active]="activeFilter() === tab.value"
+              type="button"
+              (click)="onTabClick(tab.value)">
+        {{ tab.label }}@if (tab.count !== null) { ({{ tab.count }})}
+      </button>
+      }
+    </div>
+    }
+
+    <div class="at__toolbar-actions">
+      <ng-content select="[tableActions]"></ng-content>
+    </div>
+
+  </div>
+  }
+
+  <!-- ── Loading skeleton ── -->
+  @if (loading()) {
+  <div class="at__skeleton">
+    @for (r of skeletonArray(); track $index) {
+    <div class="at__skeleton-row">
+      <div class="at__skeleton-cell at__skeleton-cell--num"></div>
+      @for (col of columns(); track col.key) {
+      <div class="at__skeleton-cell"
+           [style.flex-basis]="col.width ?? 'auto'"></div>
+      }
+    </div>
+    }
+  </div>
+  }
+
+  <!-- ── Empty state ── -->
+  @if (!loading() && filteredRows().length === 0) {
+  <div class="at__empty">
+    <div class="at__empty-icon">
+      <i class="bx bx-folder-open"></i>
+    </div>
+    <p class="at__empty-title">{{ emptyText() }}</p>
+    <p class="at__empty-sub">لا توجد نتائج تطابق معايير البحث الحالية</p>
+  </div>
+  }
+
+  <!-- ── Content ── -->
+  @if (!loading() && filteredRows().length > 0) {
+
+  <!-- Mobile cards -->
+  <div class="at__cards">
+    @for (row of pagedRows(); track trackById($index, row)) {
+
+    @if (mobileRowTpl()) {
+    <ng-container [ngTemplateOutlet]="mobileRowTpl()!"
+                  [ngTemplateOutletContext]="{ $implicit: row }">
+    </ng-container>
+    } @else {
+    <div class="at__card"
+         [class.at__card--clickable]="rowClickable()"
+         (click)="onRowClick(row)">
+      @for (col of columns(); track col.key) {
+      <div class="at__card-field">
+        @if (col.header) {
+        <span class="at__card-label">{{ col.header }}</span>
+        }
+        <div class="at__card-val">
+          @if (col.cellTpl) {
+          <ng-container [ngTemplateOutlet]="col.cellTpl"
+                        [ngTemplateOutletContext]="{ $implicit: row }">
+          </ng-container>
+          } @else {
+          {{ getCell(col, row) }}
+          }
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    }
+  </div>
+
+  <!-- Desktop table -->
+  <table class="at__table">
+    <thead>
+      <tr>
+        <th class="at__th-num">#</th>
+        @for (col of columns(); track col.key) {
+        <th [style.width]="col.width">{{ col.header }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of pagedRows(); track trackById($index, row); let i = $index) {
+      <tr [class.at__tr--clickable]="rowClickable()"
+          (click)="onRowClick(row)">
+        <td class="at__td-num">{{ (currentPage() - 1) * pageSize() + i + 1 }}</td>
+        @for (col of columns(); track col.key) {
+        <td>
+          @if (col.cellTpl) {
+          <ng-container [ngTemplateOutlet]="col.cellTpl"
+                        [ngTemplateOutletContext]="{ $implicit: row }">
+          </ng-container>
+          } @else {
+          {{ getCell(col, row) }}
+          }
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  @if (showFooter() || pageCount() > 1) {
+  <div class="at__footer">
+    <span class="at__footer-label">
+      @if (showFooter()) { {{ footerLabel() }} } @else { {{ showingLabel() }} }
+    </span>
+
+    @if (pageCount() > 1) {
+    <div class="at__pagination">
+      <button class="at__page-btn"
+              type="button"
+              [disabled]="currentPage() === 1"
+              (click)="goToPage(currentPage() - 1)">
+        <i class="bx bx-chevron-right"></i>
+      </button>
+      @for (p of pageNumbers(); track $index) {
+      @if (p === null) {
+      <span class="at__page-ellipsis">…</span>
+      } @else {
+      <button class="at__page-btn"
+              type="button"
+              [class.at__page-btn--active]="p === currentPage()"
+              (click)="goToPage(p)">
+        {{ p }}
+      </button>
+      }
+      }
+      <button class="at__page-btn"
+              type="button"
+              [disabled]="currentPage() === pageCount()"
+              (click)="goToPage(currentPage() + 1)">
+        <i class="bx bx-chevron-left"></i>
+      </button>
+    </div>
+    }
+  </div>
+  }
+
+  }
+
+</div>
