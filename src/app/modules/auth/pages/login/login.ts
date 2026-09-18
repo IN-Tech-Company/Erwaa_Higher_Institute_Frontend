@@ -42,17 +42,17 @@ export class LoginComponent implements OnInit {
     // background), a leftover from the previous template.
     this.brand.set([
       {
-        image: '/assets/images/hero/hero-offline-sesstion.png',
+        image: '/assets/images/hero/hero-offline-sesstion.webp',
         title: 'AUTH.BRAND.SLIDE1_TITLE',
         desc: 'AUTH.BRAND.SLIDE1_DESC',
       },
       {
-        image: '/assets/images/hero/hero-online-cource.png',
+        image: '/assets/images/hero/hero-online-cource.webp',
         title: 'AUTH.BRAND.SLIDE2_TITLE',
         desc: 'AUTH.BRAND.SLIDE2_DESC',
       },
       {
-        image: '/assets/images/hero/hero-certificate.png',
+        image: '/assets/images/hero/hero-certificate.webp',
         title: 'AUTH.BRAND.SLIDE3_TITLE',
         desc: 'AUTH.BRAND.SLIDE3_DESC',
       },

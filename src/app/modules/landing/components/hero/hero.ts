@@ -15,12 +15,12 @@ interface HeroSlide {
 })
 export class HeroComponent implements OnInit, OnDestroy {
   readonly slides: HeroSlide[] = [
-    { image: '/assets/images/hero/hero-reception.png', key: 'SLIDE1' },
-    { image: '/assets/images/hero/hero-offline-sesstion.png', key: 'SLIDE2' },
-    { image: '/assets/images/hero/hero-offline-sesstion-2.png', key: 'SLIDE3' },
-    { image: '/assets/images/hero/hero-online-cource.png', key: 'SLIDE4' },
-    { image: '/assets/images/hero/hero-certificate.png', key: 'SLIDE5' },
-    { image: '/assets/images/hero/hero-logo.png', key: 'SLIDE6' },
+    { image: '/assets/images/hero/hero-reception.webp', key: 'SLIDE1' },
+    { image: '/assets/images/hero/hero-offline-sesstion.webp', key: 'SLIDE2' },
+    { image: '/assets/images/hero/hero-offline-sesstion-2.webp', key: 'SLIDE3' },
+    { image: '/assets/images/hero/hero-online-cource.webp', key: 'SLIDE4' },
+    { image: '/assets/images/hero/hero-certificate.webp', key: 'SLIDE5' },
+    { image: '/assets/images/hero/hero-logo.webp', key: 'SLIDE6' },
   ];
 
   readonly activeIndex = signal(0);
