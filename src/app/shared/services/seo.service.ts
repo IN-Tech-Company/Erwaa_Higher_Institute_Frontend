@@ -3,8 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
-// ─── Types ───────────────────────────────────────────────────────────────────
-
+ 
 export interface PageSeoData {
   title: string;
   description: string;
@@ -16,9 +15,7 @@ export interface LandingPageSeo {
   ar: PageSeoData;
   en: PageSeoData;
 }
-
-// ─── Service ─────────────────────────────────────────────────────────────────
-
+ 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
 

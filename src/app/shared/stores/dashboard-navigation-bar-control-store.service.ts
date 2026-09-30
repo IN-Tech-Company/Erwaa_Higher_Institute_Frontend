@@ -1,7 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { LanguageStoreService } from '../services/language-store.service';
-import { ISupportedLanguages } from '../services/supported-languages';
-import { NavService } from '../services/nav.service';
+import { LanguageStoreService } from '../services/language/language-store.service';
+import { ISupportedLanguages } from '../services/language/supported-languages';
 
 export interface MenuItem {
   icon: string;
@@ -14,7 +13,6 @@ export interface MenuItem {
 
 @Injectable({ providedIn: 'root' })
 export class DashbaordNavigationBarControlStore {
-  private readonly navService = inject(NavService);
 
   langStore = inject(LanguageStoreService);
   langService = inject(LanguageStoreService);
@@ -50,6 +48,5 @@ export class DashbaordNavigationBarControlStore {
   navigate(item: MenuItem, items: MenuItem[]): void {
     items.forEach((i) => (i.active = false));
     item.active = true;
-    this.navService.go(`${item.route}`);
   }
 }

@@ -16,7 +16,7 @@ import {
   Validator,
 } from '@angular/forms';
 import { SAUDI_PHONE } from '../../utills/phone.utils';
-import { LanguageStoreService } from '../../services/language-store.service';
+import { LanguageStoreService } from '../../services/language/language-store.service';
 
 @Component({
   selector: 'app-phone-input',

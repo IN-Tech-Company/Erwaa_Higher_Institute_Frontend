@@ -1,0 +1,60 @@
+@use 'tokens/colors' as c;
+@use 'tokens/typography' as t;
+@use 'tokens/radius' as r;
+
+.method-switch {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.method-switch__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-xs;
+  color: c.$neutral-300;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(c.$neutral-200, 0.45);
+  }
+}
+
+.method-switch__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(c.$neutral-200, 0.6);
+  border-radius: r.$radius-full;
+  background: c.$white;
+  color: c.$primary-900;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-semibold;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+    color: c.$secondary-700;
+  }
+
+  &:hover {
+    background: c.$gray-bg;
+    border-color: rgba(c.$neutral-200, 0.9);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(c.$secondary-500, 0.5);
+    outline-offset: 2px;
+  }
+}

@@ -82,10 +82,13 @@
   text-overflow: ellipsis;
 }
 
-.ud-user-role {
+.ud-user-email {
   font-size: 0.6875rem;
   color: $neutral-400;
   white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dropdown-panel {

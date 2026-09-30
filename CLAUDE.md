@@ -41,8 +41,8 @@ duplicate) when new project facts or cleanup decisions come up.
    (the font is already loaded in `src/index.html`) for every new icon. Do **not** add new
    `<i class="bx bx-...">` (Boxicons) usage — that library is legacy in this codebase (it came in
    with the old Nabd Plus / Al-Athar Al-Khaled template) and is being phased out, not standardized
-   on. As of 2026-09-17 it's still used in 5 files (notifications-dropdown, app-sidebar, app-table,
-   layout, side-panel) — `sidebar` and `top-navbar` were migrated on 2026-09-16 while being touched
+   on. As of 2026-09-29 it's still used in 4 files (notifications-dropdown, app-sidebar, app-table,
+   layout — side-panel was deleted 2026-09-29) — `sidebar` and `top-navbar` were migrated on 2026-09-16 while being touched
    for the dashboard role-model rebuild, and the 3 legal pages (privacy/terms/ownership) were
    migrated on 2026-09-17 while being redesigned (see `docs/project-brief.md` for both). Migrate a
    file to Material Symbols when you're already touching it for other reasons; a dedicated one-shot

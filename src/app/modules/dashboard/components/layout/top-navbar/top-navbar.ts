@@ -9,8 +9,7 @@ import {
 import { Popover } from 'primeng/popover';
 import { DashbaordNavigationBarControlStore } from '../../../../../shared/stores/dashboard-navigation-bar-control-store.service';
 import { UserDropdown } from '../user-dropdown/user-dropdown';
-import { LanguageService } from '../../../../../shared/services/language.service';
-import { NavService } from '../../../../../shared/services/nav.service';
+import { LanguageService } from '../../../../../shared/services/language/language.service';
 import { TokenService } from '../../../../../shared/services/token.service';
 import { UserRole } from '../../../../../shared/models/user-role.enum';
 import { NotificationStoreService } from '../../../../../shared/services/notifications/notification-store.service';
@@ -27,10 +26,7 @@ interface NavItem {
   badge?: number;
 }
 
-// Real institute nav items only (home/courses/people/support) — the old
-// per-role list here also carried a shopping cart, favorites, wallet, and
-// several emergency-dispatch services that don't apply to a training
-// institute. See docs/project-brief.md for the rebuild notes.
+
 @Component({
   selector: 'app-top-navbar',
   standalone: true,
@@ -41,7 +37,6 @@ interface NavItem {
 })
 export class TopNavbar {
   private readonly store = inject(DashbaordNavigationBarControlStore);
-  private readonly navService = inject(NavService);
   private readonly langService = inject(LanguageService);
   private readonly tokenService = inject(TokenService);
   readonly notifications = inject(NotificationStoreService);
@@ -105,7 +100,7 @@ export class TopNavbar {
   }
 
   navigateTo(path: string): void {
-    this.navService.go([path]);
+
   }
 
   readonly notifPopover = viewChild<Popover>('notifPopover');

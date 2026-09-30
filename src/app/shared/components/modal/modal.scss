@@ -1,0 +1,52 @@
+@use 'tokens/colors' as c;
+@use 'tokens/typography' as t;
+@use 'tokens/radius' as r;
+
+.modal {
+  width: min(480px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: 0;
+  border: 1px solid rgba(c.$neutral-200, 0.6);
+  border-radius: r.$radius-lg;
+  background: c.$white;
+  box-shadow: var(--shadow-md);
+
+  &::backdrop {
+    background: rgba(c.$primary-950, 0.45);
+  }
+}
+
+.modal__box {
+  padding: 1.5rem;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal__title {
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-semibold;
+  color: c.$primary-900;
+}
+
+.modal__close {
+  display: inline-flex;
+  padding: 0.3rem;
+  border: none;
+  border-radius: r.$radius-md;
+  background: none;
+  color: c.$neutral-400;
+  cursor: pointer;
+
+  &:hover {
+    background: c.$neutral-100;
+    color: c.$neutral-700;
+  }
+}

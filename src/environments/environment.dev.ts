@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  siteUrl: 'https://www.nabdplus.sa/ar',
-  //apiUrl: 'http://localhost:8080/api',
-  apiUrl: 'https://api.mostaqbalyadbeyd.cloud/api',
+  siteUrl: 'https://erwaainstitute.com/ar',
+  apiUrl: 'http://localhost:8080/api',
+  // apiUrl: 'https://api-staging.erwaainstitute.com/api/v1',
   apiVersion: 'v1',
   firebase: {
     apiKey: 'AIzaSyAEv7C8G9oR630qeRx6iVLsk3VsIFw4XSY',

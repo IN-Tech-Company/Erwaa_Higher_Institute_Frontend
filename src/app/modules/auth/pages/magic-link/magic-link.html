@@ -1,0 +1,31 @@
+<div class="magic-link">
+  <h1 class="magic-link__title"
+      data-aos="fade-up">{{ 'AUTH.MAGIC_LINK.TITLE' | translate }}</h1>
+
+  @if (!token) {
+  <p class="auth-form__api-error"
+     role="alert">
+    <span class="material-symbols-outlined">link_off</span>
+    {{ 'AUTH.MAGIC_LINK.INVALID_LINK' | translate }}
+  </p>
+  } @else if (authStore.error(); as error) {
+  <p class="auth-form__api-error"
+     role="alert">
+    <span class="material-symbols-outlined">error</span>
+    {{ error | translate }}
+  </p>
+  } @else {
+  <p class="magic-link__status"
+     role="status">
+    <span class="auth-form__spinner"
+          aria-hidden="true"></span>
+    {{ 'AUTH.MAGIC_LINK.VERIFYING' | translate }}
+  </p>
+  }
+
+  <a class="magic-link__back-link"
+     [routerLink]="['/', lang(), 'auth', 'login']">
+    <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+    {{ 'AUTH.FORGOT_PASSWORD.BACK_TO_LOGIN' | translate }}
+  </a>
+</div>

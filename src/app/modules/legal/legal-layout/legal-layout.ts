@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LanguageStoreService } from '../../../shared/services/language-store.service';
-import { ISupportedLanguages } from '../../../shared/services/supported-languages';
+import { LanguageStoreService } from '../../../shared/services/language/language-store.service';
+import { ISupportedLanguages } from '../../../shared/services/language/supported-languages';
 
 @Component({
   selector: 'app-legal-layout',

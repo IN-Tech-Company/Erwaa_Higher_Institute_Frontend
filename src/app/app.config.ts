@@ -11,11 +11,10 @@ import { routes } from './app.routes';
 import { authInterceptor } from './shared/interceptors/auth.interceptor';
 import { provideAppLocale } from './shared/providers/locale.provider';
 import { provideTranslation } from './shared/providers/translation-provider';
-import { LanguageStoreService } from './shared/services/language-store.service';
-import { LanguageService } from './shared/services/language.service';
+import { LanguageStoreService } from './shared/services/language/language-store.service';
+import { LanguageService } from './shared/services/language/language.service';
 import { SeoService } from './shared/services/seo.service';
-import { LanguageHandlerService } from './shared/services/language-handler.service';
-import { providePrimeNGConfig } from './shared/providers/primeng-config.provider';
+import { LanguageHandlerService } from './shared/services/language/language-handler.service';
 import localeAr from '@angular/common/locales/ar';
 import localeEn from '@angular/common/locales/en';
 import { registerLocaleData } from '@angular/common';
@@ -34,7 +33,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([authInterceptor])),
     provideTranslation(),
     provideAppLocale(),
-    providePrimeNGConfig(),
     LanguageService,
     LanguageStoreService,
     SeoService,

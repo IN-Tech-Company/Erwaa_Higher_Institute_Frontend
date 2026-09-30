@@ -1,0 +1,215 @@
+@if (authStore.registeredEmail(); as email) {
+<div class="auth-form__success"
+     role="status">
+  <span class="material-symbols-outlined">mark_email_read</span>
+  <div>
+    <strong>{{ 'AUTH.REGISTER.SUCCESS_TITLE' | translate }}</strong>
+    <p>{{ 'AUTH.REGISTER.SUCCESS_DESC' | translate: { email } }}</p>
+  </div>
+</div>
+} @else {
+<form class="auth-form"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+
+  <div class="auth-form__field">
+    <label class="auth-form__label"
+           for="fullName">
+      {{ 'AUTH.FIELDS.FULL_NAME' | translate }}
+      <span class="auth-form__required">*</span>
+    </label>
+    <div class="auth-form__control">
+      <span class="auth-form__icon">
+        <span class="material-symbols-outlined">person</span>
+      </span>
+      <input class="auth-form__input"
+             [class.auth-form__input--invalid]="isInvalid('fullName')"
+             id="fullName"
+             type="text"
+             formControlName="fullName"
+             autocomplete="name"
+             [placeholder]="'AUTH.FIELDS.FULL_NAME_PLACEHOLDER' | translate" />
+    </div>
+    @if (hasError('fullName', 'required')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.FULL_NAME_REQUIRED' | translate }}</span>
+    }
+  </div>
+
+  <div class="auth-form__field">
+    <label class="auth-form__label"
+           for="email">
+      {{ 'AUTH.FIELDS.EMAIL' | translate }}
+      <span class="auth-form__required">*</span>
+    </label>
+    <div class="auth-form__control">
+      <span class="auth-form__icon">
+        <span class="material-symbols-outlined">mail</span>
+      </span>
+      <input class="auth-form__input"
+             [class.auth-form__input--invalid]="isInvalid('email')"
+             id="email"
+             type="email"
+             dir="ltr"
+             formControlName="email"
+             autocomplete="email"
+             [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate" />
+    </div>
+    @if (hasError('email', 'required')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+    } @else if (hasError('email', 'email')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.EMAIL_INVALID' | translate }}</span>
+    }
+  </div>
+
+  <div class="auth-form__field">
+    <label class="auth-form__label"
+           for="phone">
+      {{ 'AUTH.FIELDS.PHONE' | translate }}
+      <span class="auth-form__required">*</span>
+    </label>
+    <div class="register-form__phone"
+         [class.register-form__phone--invalid]="isInvalid('phone')">
+      <span class="register-form__phone-code"
+            dir="ltr">+966</span>
+      <input class="register-form__phone-input"
+             id="phone"
+             type="tel"
+             dir="ltr"
+             maxlength="9"
+             formControlName="phone"
+             autocomplete="tel-national"
+             placeholder="5xxxxxxxx" />
+    </div>
+    @if (hasError('phone', 'required')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.PHONE_REQUIRED' | translate }}</span>
+    } @else if (hasError('phone', 'pattern')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.PHONE_INVALID' | translate }}</span>
+    }
+  </div>
+
+  <div class="auth-form__field">
+    <label class="auth-form__label"
+           for="nationalId">
+      {{ 'AUTH.FIELDS.NATIONAL_ID' | translate }}
+      <span class="auth-form__required">*</span>
+    </label>
+    <div class="auth-form__control">
+      <span class="auth-form__icon">
+        <span class="material-symbols-outlined">badge</span>
+      </span>
+      <input class="auth-form__input"
+             [class.auth-form__input--invalid]="isInvalid('nationalId')"
+             id="nationalId"
+             type="text"
+             dir="ltr"
+             inputmode="numeric"
+             maxlength="10"
+             formControlName="nationalId"
+             [placeholder]="'AUTH.FIELDS.NATIONAL_ID_PLACEHOLDER' | translate" />
+    </div>
+    @if (hasError('nationalId', 'required')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.NATIONAL_ID_REQUIRED' | translate }}</span>
+    } @else if (hasError('nationalId', 'pattern')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.NATIONAL_ID_INVALID' | translate }}</span>
+    }
+  </div>
+
+  <div class="register-form__row">
+    <div class="auth-form__field">
+      <label class="auth-form__label"
+             for="password">
+        {{ 'AUTH.FIELDS.PASSWORD' | translate }}
+        <span class="auth-form__required">*</span>
+      </label>
+      <div class="auth-form__control">
+        <span class="auth-form__icon">
+          <span class="material-symbols-outlined">lock</span>
+        </span>
+        <input class="auth-form__input auth-form__input--with-action"
+               [class.auth-form__input--invalid]="isInvalid('password')"
+               id="password"
+               [type]="showPassword() ? 'text' : 'password'"
+               formControlName="password"
+               autocomplete="new-password"
+               [placeholder]="'AUTH.FIELDS.PASSWORD_PLACEHOLDER' | translate" />
+        <button class="auth-form__action"
+                type="button"
+                (click)="showPassword.set(!showPassword())"
+                [attr.aria-label]="(showPassword() ? 'AUTH.LOGIN.HIDE_PASSWORD' : 'AUTH.LOGIN.SHOW_PASSWORD') | translate">
+          <span class="material-symbols-outlined">{{ showPassword() ? 'visibility_off' : 'visibility' }}</span>
+        </button>
+      </div>
+      @if (hasError('password', 'required')) {
+      <span class="auth-form__error">{{ 'AUTH.VALIDATION.PASSWORD_REQUIRED' | translate }}</span>
+      } @else if (hasError('password', 'minlength')) {
+      <span class="auth-form__error">{{ 'AUTH.VALIDATION.PASSWORD_MIN' | translate }}</span>
+      }
+    </div>
+
+    <div class="auth-form__field">
+      <label class="auth-form__label"
+             for="confirmPassword">
+        {{ 'AUTH.FIELDS.CONFIRM_PASSWORD' | translate }}
+        <span class="auth-form__required">*</span>
+      </label>
+      <div class="auth-form__control">
+        <span class="auth-form__icon">
+          <span class="material-symbols-outlined">lock</span>
+        </span>
+        <input class="auth-form__input auth-form__input--with-action"
+               [class.auth-form__input--invalid]="isInvalid('confirmPassword') || passwordMismatch()"
+               id="confirmPassword"
+               [type]="showConfirmPassword() ? 'text' : 'password'"
+               formControlName="confirmPassword"
+               autocomplete="new-password"
+               [placeholder]="'AUTH.FIELDS.CONFIRM_PASSWORD_PLACEHOLDER' | translate" />
+        <button class="auth-form__action"
+                type="button"
+                (click)="showConfirmPassword.set(!showConfirmPassword())"
+                [attr.aria-label]="(showConfirmPassword() ? 'AUTH.LOGIN.HIDE_PASSWORD' : 'AUTH.LOGIN.SHOW_PASSWORD') | translate">
+          <span class="material-symbols-outlined">{{ showConfirmPassword() ? 'visibility_off' : 'visibility' }}</span>
+        </button>
+      </div>
+      @if (hasError('confirmPassword', 'required')) {
+      <span class="auth-form__error">{{ 'AUTH.VALIDATION.CONFIRM_PASSWORD_REQUIRED' | translate }}</span>
+      } @else if (passwordMismatch()) {
+      <span class="auth-form__error">{{ 'AUTH.VALIDATION.PASSWORD_MISMATCH' | translate }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="auth-form__field">
+    <label class="register-form__terms">
+      <input type="checkbox"
+             formControlName="agreeTerms" />
+      <span>
+        {{ 'AUTH.REGISTER.TERMS_AGREE' | translate }}
+        <a [routerLink]="['/', lang(), 'legal', 'terms']">{{ 'AUTH.REGISTER.TERMS_LINK' | translate }}</a>
+        {{ 'AUTH.REGISTER.TERMS_AND' | translate }}
+        <a [routerLink]="['/', lang(), 'legal', 'privacy']">{{ 'AUTH.REGISTER.PRIVACY_LINK' | translate }}</a>
+      </span>
+    </label>
+    @if (hasError('agreeTerms', 'required')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.TERMS_REQUIRED' | translate }}</span>
+    }
+  </div>
+
+  @if (authStore.error(); as error) {
+  <p class="auth-form__api-error"
+     role="alert">
+    <span class="material-symbols-outlined">error</span>
+    {{ error | translate }}
+  </p>
+  }
+
+  <button class="auth-form__submit"
+          type="submit"
+          [disabled]="authStore.loading()">
+    @if (authStore.loading()) {
+    <span class="auth-form__spinner"
+          aria-hidden="true"></span>
+    }
+    {{ 'AUTH.REGISTER.SUBMIT' | translate }}
+  </button>
+</form>
+}

@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostListener, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs';
-import { AuthService } from '../../../../../shared/services/auth.service';
-import { HelpPopupComponent } from '../../../../../shared/components/help-popup/help-popup';
-import { LanguageService } from '../../../../../shared/services/language.service';
-import { NavService } from '../../../../../shared/services/nav.service';
+import { AuthStore } from '../../../../../shared/services/auth.store';
+import { LanguageService } from '../../../../../shared/services/language/language.service';
+
 import { TokenService } from '../../../../../shared/services/token.service';
 import { FcmService } from '../../../../../shared/services/notifications/fcm.service';
 export interface DropdownItem {
@@ -18,7 +16,7 @@ export interface DropdownItem {
 @Component({
   selector: 'app-user-dropdown',
   standalone: true,
-  imports: [HelpPopupComponent],
+  imports: [],
   templateUrl: './user-dropdown.html',
   styleUrl: './user-dropdown.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,35 +24,21 @@ export interface DropdownItem {
 export class UserDropdown {
   showHelp: boolean = false;
   showChangePassword: boolean = false;
-  private navService = inject(NavService);
   languageService = inject(LanguageService);
   isOpen = signal(false);
 
   private tokenService = inject(TokenService);
-  private authService = inject(AuthService);
+  private authStore = inject(AuthStore);
   private fcmService = inject(FcmService);
+  private router = inject(Router);
 
   private readonly _defaultName = 'مستخدم';
   private readonly _defaultInitials = '؟';
 
-  readonly currentUser = signal({
-    userId: this.tokenService.getReferenceId() ?? 0,
-    name: this.tokenService.getName() || this._defaultName,
-    greeting: 'Hello👋',
-    avatar: '',
-    initials: this._initials(this.tokenService.getName() || '') || this._defaultInitials,
-  });
-
-  readonly roleLabel = computed(() => {
-    const isAr = this.languageService.currentLanguage() === 'ar';
-    const map: Record<string, { ar: string; en: string }> = {
-      ADMIN: { ar: 'مدير النظام', en: 'Admin' },
-      TEACHER: { ar: 'معلم', en: 'Teacher' },
-      TRAINEE: { ar: 'متدرب', en: 'Trainee' },
-    };
-    const entry = map[this.tokenService.userRole()];
-    if (!entry) return '';
-    return isAr ? entry.ar : entry.en;
+  readonly currentUser = computed(() => {
+    const user = this.tokenService.user();
+    const name = user?.name || this._defaultName;
+    return { name, email: user?.email ?? '', initials: this._initials(name) || this._defaultInitials };
   });
 
   private _initials(name: string): string {
@@ -117,12 +101,8 @@ export class UserDropdown {
 
   private logout(): void {
     this.fcmService.deregisterCurrent().finally(() => {
-      this.authService.logout().pipe(
-        finalize(() => {
-          this.tokenService.logout();
-          this.navService.go('auth/login');
-        })
-      ).subscribe();
+      this.authStore.logout();
+      this.router.navigate(['/', this.languageService.currentLanguage(), 'auth', 'login']);
     });
   }
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 
 interface Testimonial {
   quoteKey: string;

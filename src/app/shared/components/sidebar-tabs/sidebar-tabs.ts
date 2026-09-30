@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { LanguageStoreService } from '../../services/language-store.service';
+import { LanguageStoreService } from '../../services/language/language-store.service';
 
 export interface SidebarTab {
   id: string;
@@ -26,10 +26,10 @@ export interface SidebarTab {
 export class SidebarTabsComponent {
   private readonly langService = inject(LanguageStoreService);
 
-  readonly tabs        = input.required<SidebarTab[]>();
+  readonly tabs = input.required<SidebarTab[]>();
   readonly activeTabId = input.required<string>();
-  readonly title       = input<string>('');
-  readonly tabChange   = output<string>();
+  readonly title = input<string>('');
+  readonly tabChange = output<string>();
 
   getLabel(tab: SidebarTab): string {
     return this.langService.currentLanguage() === 'ar' ? tab.labelAr : tab.labelEn;

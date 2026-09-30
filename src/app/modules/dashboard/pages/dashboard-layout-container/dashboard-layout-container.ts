@@ -9,16 +9,15 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { TopNavbar } from '../../components/layout/top-navbar/top-navbar';
 import { Sidebar } from '../../components/layout/sidebar/sidebar';
-import { SidePanelComponent } from '../../../../shared/components/side-panel/side-panel';
 import { DashbaordNavigationBarControlStore } from '../../../../shared/stores/dashboard-navigation-bar-control-store.service';
-import { ISupportedLanguages } from '../../../../shared/services/supported-languages';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { ISupportedLanguages } from '../../../../shared/services/language/supported-languages';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 import { FcmService } from '../../../../shared/services/notifications/fcm.service';
 
 @Component({
   selector: 'app-dashboard-layout-container',
   standalone: true,
-  imports: [RouterOutlet, TopNavbar, Sidebar, SidePanelComponent],
+  imports: [RouterOutlet, TopNavbar, Sidebar],
   templateUrl: './dashboard-layout-container.html',
   styleUrl: './dashboard-layout-container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

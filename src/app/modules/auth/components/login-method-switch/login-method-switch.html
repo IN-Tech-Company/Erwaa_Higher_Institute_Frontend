@@ -1,0 +1,12 @@
+<div class="method-switch">
+  <div class="method-switch__divider">
+    <span>{{ 'AUTH.LOGIN.OR' | translate }}</span>
+  </div>
+
+  <button class="method-switch__btn"
+          type="button"
+          (click)="method.set(target().value)">
+    <span class="material-symbols-outlined">{{ target().icon }}</span>
+    {{ target().label | translate }}
+  </button>
+</div>

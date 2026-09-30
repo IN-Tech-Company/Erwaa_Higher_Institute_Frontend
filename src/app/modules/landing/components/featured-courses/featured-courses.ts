@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 import { CourseCardComponent } from '../course-card/course-card';
 import { ALL_COURSES, FlatCourse } from '../../data/courses-catalog';
 

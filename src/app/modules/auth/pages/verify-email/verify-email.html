@@ -1,0 +1,84 @@
+<div class="verify-email">
+  <h1 class="verify-email__title"
+      data-aos="fade-up">{{ 'AUTH.VERIFY_EMAIL.TITLE' | translate }}</h1>
+
+  @if (authStore.accountStatus() === 'PENDING_APPROVAL') {
+  <div class="auth-form__success"
+       role="status">
+    <span class="material-symbols-outlined">verified</span>
+    <div>
+      <strong>{{ 'AUTH.VERIFY_EMAIL.PENDING_TITLE' | translate }}</strong>
+      <p>{{ 'AUTH.VERIFY_EMAIL.PENDING_DESC' | translate }}</p>
+    </div>
+  </div>
+  } @else if (authStore.verifyEmailResentTo(); as email) {
+  <div class="auth-form__success"
+       role="status">
+    <span class="material-symbols-outlined">forward_to_inbox</span>
+    <div>
+      <strong>{{ 'AUTH.VERIFY_EMAIL.RESENT_TITLE' | translate }}</strong>
+      <p>{{ 'AUTH.VERIFY_EMAIL.RESENT_DESC' | translate: { email } }}</p>
+    </div>
+  </div>
+  } @else if (!token || authStore.verifyEmailFailed()) {
+  <p class="auth-form__api-error"
+     role="alert">
+    <span class="material-symbols-outlined">link_off</span>
+    {{ (authStore.error() ?? 'AUTH.VERIFY_EMAIL.INVALID_LINK') | translate }}
+  </p>
+
+  <form class="auth-form"
+        [formGroup]="resendForm"
+        (ngSubmit)="resend()">
+    <p class="verify-email__hint">{{ 'AUTH.VERIFY_EMAIL.RESEND_HINT' | translate }}</p>
+
+    <div class="auth-form__field">
+      <label class="auth-form__label"
+             for="verify-email">
+        {{ 'AUTH.FIELDS.EMAIL' | translate }}
+        <span class="auth-form__required">*</span>
+      </label>
+      <div class="auth-form__control">
+        <span class="auth-form__icon">
+          <span class="material-symbols-outlined">mail</span>
+        </span>
+        <input class="auth-form__input"
+               id="verify-email"
+               type="email"
+               dir="ltr"
+               formControlName="email"
+               autocomplete="email"
+               [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate" />
+      </div>
+      @if (hasError('required')) {
+      <span class="auth-form__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+      } @else if (hasError('email')) {
+      <span class="auth-form__error">{{ 'AUTH.VALIDATION.EMAIL_INVALID' | translate }}</span>
+      }
+    </div>
+
+    <button class="auth-form__submit"
+            type="submit"
+            [disabled]="authStore.loading()">
+      @if (authStore.loading()) {
+      <span class="auth-form__spinner"
+            aria-hidden="true"></span>
+      }
+      {{ 'AUTH.VERIFY_EMAIL.RESEND_SUBMIT' | translate }}
+    </button>
+  </form>
+  } @else {
+  <p class="verify-email__status"
+     role="status">
+    <span class="auth-form__spinner"
+          aria-hidden="true"></span>
+    {{ 'AUTH.VERIFY_EMAIL.VERIFYING' | translate }}
+  </p>
+  }
+
+  <a class="verify-email__back-link"
+     [routerLink]="['/', lang(), 'auth', 'login']">
+    <span class="material-symbols-outlined icon-flip-rtl">arrow_forward</span>
+    {{ 'AUTH.FORGOT_PASSWORD.BACK_TO_LOGIN' | translate }}
+  </a>
+</div>

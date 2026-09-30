@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 import { TokenService } from '../../../../shared/services/token.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class HomeComponent {
   readonly lang = this.langStore.currentLanguage;
 
   readonly greeting = computed(() => {
-    const name = this.tokenService.getName();
+    const name = this.tokenService.user()?.name;
     if (this.lang() === 'ar') {
       return name ? `أهلاً بك، ${name}` : 'أهلاً بك';
     }

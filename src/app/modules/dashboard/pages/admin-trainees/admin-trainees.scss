@@ -1,0 +1,198 @@
+@use 'components/dialog-actions';
+@use 'tokens/colors' as c;
+@use 'tokens/typography' as t;
+@use 'tokens/radius' as r;
+
+.trainees-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+  font-family: var(--font-body), sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+// ── Header ───────────────────────────────────────────────────────────────────
+.trainees-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.trainees-page__title {
+  margin: 0 0 0.25rem;
+  font-size: t.$font-size-2xl;
+  font-weight: t.$font-weight-bold;
+  color: c.$primary-900;
+}
+
+.trainees-page__subtitle {
+  margin: 0;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-400;
+}
+
+.trainees-page__notice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: r.$radius-md;
+  background: rgba(c.$success, 0.08);
+  color: c.$success;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+
+  span:nth-child(2) {
+    flex: 1;
+  }
+}
+
+.trainees-page__notice-close {
+  display: inline-flex;
+  padding: 0.2rem;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+// ── Card + toolbar ───────────────────────────────────────────────────────────
+.trainees-page__card {
+  overflow: hidden;
+  border: 1px solid rgba(c.$neutral-200, 0.6);
+  border-radius: r.$radius-lg;
+  background: c.$white;
+  box-shadow: var(--shadow-sm);
+}
+
+.trainees-page__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(c.$neutral-200, 0.6);
+}
+
+.trainees-page__search {
+  display: flex;
+  flex: 1 1 260px;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(c.$neutral-200, 0.8);
+  border-radius: r.$radius-md;
+  color: c.$neutral-400;
+
+  &:focus-within {
+    border-color: rgba(c.$secondary-600, 0.6);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.65rem 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    font-size: t.$font-size-sm;
+    color: c.$neutral-900;
+  }
+}
+
+.trainees-page__filter {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(c.$neutral-200, 0.8);
+  border-radius: r.$radius-md;
+  background: c.$white;
+  font: inherit;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-700;
+}
+
+.trainees-page__total {
+  margin-inline-start: auto;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-400;
+}
+
+// ── Table + states ───────────────────────────────────────────────────────────
+.trainees-page__table {
+  overflow-x: auto;
+  transition: opacity 0.2s;
+
+  &--loading {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+
+.trainees-page__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1rem;
+  color: c.$neutral-400;
+  text-align: center;
+
+  .material-symbols-outlined {
+    font-size: 2.25rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: t.$font-size-sm;
+  }
+
+  &--error {
+    color: c.$error;
+  }
+}
+
+.trainees-page__spinner {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 3px solid rgba(c.$primary-900, 0.15);
+  border-top-color: c.$primary-900;
+  border-radius: 50%;
+  animation: trainees-spin 0.7s linear infinite;
+}
+
+@keyframes trainees-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.trainees-page__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid rgba(c.$neutral-200, 0.6);
+  font-size: t.$font-size-sm;
+  color: c.$neutral-500;
+}
+
+// ── Delete confirmation ──────────────────────────────────────────────────────
+.trainees-page__confirm {
+  margin: 0;
+  font-size: t.$font-size-sm;
+  line-height: 1.8;
+  color: c.$neutral-600;
+}
+
+.trainees-page__dialog-error {
+  margin: 1rem 0 0;
+  font-size: t.$font-size-sm;
+  color: c.$error;
+}

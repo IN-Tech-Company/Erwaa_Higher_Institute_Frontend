@@ -5,7 +5,7 @@ import { SiteHeaderComponent } from '../../components/site-header/site-header';
 import { FooterComponent } from '../../components/footer/footer';
 import { CourseCardComponent } from '../../components/course-card/course-card';
 import { COURSE_CATEGORIES, ALL_COURSES } from '../../data/courses-catalog';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 
 /**
  * Full official program catalog (7 classifications, 26 programs/courses —

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, effect, inject, viewChild } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 import { NotificationStoreService } from '../../../../shared/services/notifications/notification-store.service';
 import { NotificationDto, NotificationType } from '../../../../shared/services/notifications/notification.types';
 

@@ -10,8 +10,8 @@ import {
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthBrandService } from '../../../../shared/services/auth-brand.service';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
-import { ISupportedLanguages } from '../../../../shared/services/supported-languages';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
+import { ISupportedLanguages } from '../../../../shared/services/language/supported-languages';
 
 @Component({
   selector: 'app-auth-layout',

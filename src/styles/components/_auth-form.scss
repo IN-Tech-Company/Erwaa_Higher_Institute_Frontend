@@ -1,0 +1,244 @@
+@use '../tokens/colors' as c;
+@use '../tokens/typography' as t;
+@use '../tokens/radius' as r;
+
+// Shared field/button styles for the small auth form components (login by
+// password, login by OTP, ...) — each component `@use`s this instead of
+// re-declaring the same input styles.
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.auth-form__label {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  color: c.$neutral-700;
+}
+
+.auth-form__required {
+  color: c.$error;
+}
+
+// Input wrapper — leading icon sits absolute over the input and picks up
+// the focus color from the wrapper.
+.auth-form__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:focus-within .auth-form__icon {
+    color: c.$secondary-600;
+  }
+}
+
+.auth-form__icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 1rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: c.$neutral-300;
+  pointer-events: none;
+  transition: color 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.2rem;
+  }
+}
+
+.auth-form__input {
+  width: 100%;
+  border: 1px solid rgba(c.$neutral-200, 0.6);
+  border-radius: r.$radius-md;
+  padding: 0.85rem 1rem;
+  padding-inline-start: 2.75rem;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  color: c.$neutral-900;
+  background: c.$white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &::placeholder {
+    color: c.$neutral-300;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba(c.$secondary-600, 0.6);
+    box-shadow: 0 0 0 3px rgba(c.$secondary-500, 0.14);
+  }
+
+  &--invalid {
+    border-color: rgba(c.$error, 0.45);
+  }
+
+  &--with-action {
+    padding-inline-end: 2.75rem;
+  }
+}
+
+// Trailing icon button inside the input (show/hide password).
+.auth-form__action {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0.6rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: c.$neutral-300;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: c.$secondary-700;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+}
+
+.auth-form__error {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-xs;
+  color: c.$error;
+}
+
+.auth-form__api-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: r.$radius-md;
+  background: rgba(c.$error, 0.07);
+  color: c.$error;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+
+  .material-symbols-outlined {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+}
+
+// Green confirmation box (account created, link sent, password updated).
+.auth-form__success {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: r.$radius-md;
+  background: rgba(c.$success, 0.08);
+  color: c.$success;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  line-height: 1.7;
+
+  .material-symbols-outlined {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+  }
+
+  strong {
+    font-weight: t.$font-weight-semibold;
+  }
+
+  p {
+    margin: 0.25rem 0 0.5rem;
+    color: c.$neutral-600;
+  }
+}
+
+.auth-form__row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-form__link {
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-semibold;
+  color: c.$primary;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    color: c.$neutral-300;
+    cursor: default;
+    text-decoration: none;
+  }
+}
+
+.auth-form__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 3.25rem;
+  border: none;
+  border-radius: r.$radius-full;
+  padding: 0.9rem 1rem;
+  background: c.$secondary;
+  color: c.$primary-950;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-md;
+  font-weight: t.$font-weight-semibold;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover:not(:disabled) {
+    background: c.$secondary-600;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+}
+
+.auth-form__spinner {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid rgba(c.$primary-950, 0.25);
+  border-top-color: c.$primary-950;
+  border-radius: 50%;
+  animation: auth-form-spin 0.7s linear infinite;
+}
+
+@keyframes auth-form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

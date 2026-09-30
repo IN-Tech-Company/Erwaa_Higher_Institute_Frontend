@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { TopBarComponent } from '../../components/top-bar/top-bar';
 import { SiteHeaderComponent } from '../../components/site-header/site-header';
 import { FooterComponent } from '../../components/footer/footer';
-import { LanguageStoreService } from '../../../../shared/services/language-store.service';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
 import { findCourseByKey } from '../../data/courses-catalog';
 
 interface SummaryFact {

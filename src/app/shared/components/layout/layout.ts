@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output, signal, ViewChild, ElementRef, afterNextRender, input } from '@angular/core';
-import { LanguageStoreService } from '../../services/language-store.service';
+import { LanguageStoreService } from '../../services/language/language-store.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 export interface PersonalData {

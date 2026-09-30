@@ -1,0 +1,17 @@
+<dialog #dialog
+        class="modal"
+        (close)="closed.emit()"
+        (click)="onBackdropClick($event)">
+  <div class="modal__box">
+    <header class="modal__header">
+      <h2 class="modal__title">{{ title() | translate }}</h2>
+      <button class="modal__close"
+              type="button"
+              [attr.aria-label]="'COMMON.CLOSE' | translate"
+              (click)="closed.emit()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </header>
+    <ng-content />
+  </div>
+</dialog>

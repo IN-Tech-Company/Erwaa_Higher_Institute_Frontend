@@ -3,13 +3,9 @@ import { inject } from '@angular/core';
 import { BehaviorSubject, catchError, filter, of, switchMap, take, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
-import { ApiResponse } from '../models/auth.models';
+import { ApiResponse } from '../models/api-response.model';
+import { AuthSession } from '../models/auth.models';
 import { environment } from '../../../environments/environment';
-
-interface TokenRefreshResponse {
-  accessToken: string;
-  refreshToken: string;
-}
 
 let isRefreshing = false;
 const refreshSubject = new BehaviorSubject<string | null>(null);
@@ -22,13 +18,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const currentLang = localStorage.getItem('app_language') || 'ar';
 
   const publicEndpoints = [
+    // docs/04-authentication.md — PUT /auth/password is the only protected one.
     '/auth/login',
-    '/auth/register/client/',
-    '/auth/register/provider/company/manager',
-    '/auth/register/seller',
-    '/auth/otp/',
-    '/auth/reset-password/',
+    '/register/',
+    '/auth/magic-link',
     '/auth/refresh',
+    '/auth/email/verify',
+    '/auth/password/',
     '/lookups',
     '/consultation',
     '/public/',
@@ -38,7 +34,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   // Endpoints open to guests, but that should carry the Bearer token when the
   // caller happens to be logged in (e.g. emergency flow reached from inside the app).
-  const optionalAuthEndpoints = ['/emergency/', '/reviews', '/bookings/slots'];
+  const optionalAuthEndpoints = ['/auth/logout', '/emergency/', '/reviews', '/bookings/slots'];
 
   // Skip interceptor entirely for external (non-backend) absolute URLs
   const isAbsoluteExternal =
@@ -118,14 +114,14 @@ function handleTokenRefresh(
   }
 
   return http
-    .post<ApiResponse<TokenRefreshResponse>>(
-      `${environment.apiUrl}/auth/refresh`,
+    .post<ApiResponse<AuthSession>>(
+      `${environment.apiUrl}/v1/auth/refresh`,
       { refreshToken },
     )
     .pipe(
       switchMap(response => {
         isRefreshing = false;
-        const { accessToken, refreshToken: newRefresh } = response.data;
+        const { accessToken, refreshToken: newRefresh } = response.body;
         tokenService.setTokens(accessToken, newRefresh);
         refreshSubject.next(accessToken);
         return next(req.clone({

@@ -1,0 +1,20 @@
+<div class="otp-input"
+     dir="ltr"
+     role="group"
+     [attr.aria-label]="ariaLabel()"
+     (paste)="onPaste($event)">
+  @for (digit of digits(); track $index; let i = $index) {
+  <input #box
+         class="otp-input__box"
+         [class.otp-input__box--filled]="digit"
+         [class.otp-input__box--invalid]="invalid()"
+         type="text"
+         inputmode="numeric"
+         maxlength="1"
+         [attr.autocomplete]="i === 0 ? 'one-time-code' : 'off'"
+         [attr.aria-label]="ariaLabel() + ' ' + (i + 1)"
+         [value]="digit"
+         (input)="onInput(i, $event)"
+         (keydown)="onKeydown(i, $event)" />
+  }
+</div>

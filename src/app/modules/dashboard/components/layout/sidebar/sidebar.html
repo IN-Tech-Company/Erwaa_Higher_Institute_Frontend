@@ -1,69 +1,57 @@
 <aside class="sidebar"
        [class.open]="store.isOpen()"
-       [class.collapsed]="isCollapsed()"
+       [class.collapsed]="store.isCollapsed()"
        [class.rtl]="store.isRtl()">
 
-  <div class="sidebar-header">
-    <button class="menu-toggle"
-            (click)="store.toggleSidebar()"
-            [attr.aria-label]="'Toggle Menu'">
+  <div class="sidebar__header">
+    <button class="sidebar__toggle"
+            type="button"
+            [attr.aria-label]="'SIDEBAR.TOGGLE' | translate"
+            (click)="store.toggleSidebar()">
       <span class="material-symbols-outlined">menu</span>
     </button>
-    <a class="logo"
+    <a class="sidebar__logo"
        [routerLink]="['/', lang()]">
       <img src="/assets/images/logo/white-yellow-logo.png"
-           alt="معهد إرواء العالي للتدريب" />
+           [alt]="'SIDEBAR.LOGO_ALT' | translate" />
     </a>
   </div>
 
-  <nav class="sidebar-nav">
-    @for(group of menuGroups(); track $index) {
-
-    @if(getGroupLabel(group)) {
-    <p class="menu-section-label">{{ getGroupLabel(group) }}</p>
+  <nav class="sidebar__nav"
+       [attr.aria-label]="'SIDEBAR.NAV' | translate">
+    @for (group of menu(); track $index) {
+    @if (group.label) {
+    <p class="sidebar__group-label">{{ group.label | translate }}</p>
     }
-
-    <ul class="menu-list">
-      @for(item of group.items; track item.route) {
-      <li class="menu-item">
-
-        <a class="menu-link"
-           routerLinkActive="active"
-           [routerLink]="buildLink(item)"
-           [attr.data-label]="getLabel(item)">
-
-          <span class="icon"
-                [class]="item.accent ? 'icon icon--' + item.accent : 'icon'">
-            <span class="material-symbols-outlined">{{ item.icon }}</span>
-          </span>
-
-          <span class="label">{{ getLabel(item) }}</span>
-
-          @if(item.badge) {
-          <span class="badge">{{ item.badge }}</span>
-          }
-
+    <ul class="sidebar__list">
+      @for (item of group.items; track item.path) {
+      <li>
+        <a class="sidebar__link"
+           routerLinkActive="sidebar__link--active"
+           [routerLinkActiveOptions]="{ exact: item.path === 'app' }"
+           [routerLink]="link(item)"
+           [attr.title]="store.isCollapsed() ? (item.label | translate) : null">
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
+          <span class="sidebar__text">{{ item.label | translate }}</span>
         </a>
       </li>
-
       }
     </ul>
-
     }
   </nav>
 
-  <div class="sidebar-footer">
-    <button class="collapse-btn"
-            (click)="store.toggleCollapse()"
-            [attr.aria-label]="lang() === 'ar' ? 'طي القائمة' : 'Collapse Sidebar'">
-      <span class="material-symbols-outlined">chevron_left</span>
-      <span class="label">{{ lang() === 'ar' ? 'طي القائمة' : 'Collapse' }}</span>
+  <div class="sidebar__footer">
+    <button class="sidebar__collapse"
+            type="button"
+            [attr.aria-label]="(store.isCollapsed() ? 'SIDEBAR.EXPAND' : 'SIDEBAR.COLLAPSE') | translate"
+            (click)="store.toggleCollapse()">
+      <span class="material-symbols-outlined sidebar__collapse-icon">chevron_left</span>
+      <span class="sidebar__text">{{ 'SIDEBAR.COLLAPSE' | translate }}</span>
     </button>
   </div>
-
 </aside>
 
-@if(store.isOpen() && !isCollapsed()) {
+@if (store.isOpen() && !store.isCollapsed()) {
 <div class="sidebar-overlay"
      (click)="store.closeNavbar()"></div>
 }

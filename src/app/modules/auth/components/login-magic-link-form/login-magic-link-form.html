@@ -1,0 +1,60 @@
+@if (authStore.magicLinkSentTo(); as email) {
+<div class="auth-form__success"
+     role="status">
+  <span class="material-symbols-outlined">forward_to_inbox</span>
+  <div>
+    <strong>{{ 'AUTH.LOGIN.MAGIC_LINK_SENT_TITLE' | translate }}</strong>
+    <p>{{ 'AUTH.LOGIN.MAGIC_LINK_SENT_DESC' | translate: { email } }}</p>
+    <button class="auth-form__link"
+            type="button"
+            (click)="authStore.reset()">{{ 'AUTH.LOGIN.MAGIC_LINK_CHANGE_EMAIL' | translate }}</button>
+  </div>
+</div>
+} @else {
+<form class="auth-form"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="auth-form__field">
+    <label class="auth-form__label"
+           for="magic-link-email">
+      {{ 'AUTH.FIELDS.EMAIL' | translate }}
+      <span class="auth-form__required">*</span>
+    </label>
+    <div class="auth-form__control">
+      <span class="auth-form__icon">
+        <span class="material-symbols-outlined">mail</span>
+      </span>
+      <input class="auth-form__input"
+             id="magic-link-email"
+             type="email"
+             dir="ltr"
+             formControlName="email"
+             autocomplete="email"
+             [placeholder]="'AUTH.FIELDS.EMAIL_PLACEHOLDER' | translate" />
+    </div>
+    @if (hasError('required')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.EMAIL_REQUIRED' | translate }}</span>
+    } @else if (hasError('email')) {
+    <span class="auth-form__error">{{ 'AUTH.VALIDATION.EMAIL_INVALID' | translate }}</span>
+    }
+  </div>
+
+  @if (authStore.error(); as error) {
+  <p class="auth-form__api-error"
+     role="alert">
+    <span class="material-symbols-outlined">error</span>
+    {{ error | translate }}
+  </p>
+  }
+
+  <button class="auth-form__submit"
+          type="submit"
+          [disabled]="authStore.loading()">
+    @if (authStore.loading()) {
+    <span class="auth-form__spinner"
+          aria-hidden="true"></span>
+    }
+    {{ 'AUTH.LOGIN.MAGIC_LINK_SEND' | translate }}
+  </button>
+</form>
+}
