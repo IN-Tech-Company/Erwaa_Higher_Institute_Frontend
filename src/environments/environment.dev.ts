@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   siteUrl: 'https://erwaainstitute.com/ar',
-  apiUrl: 'http://localhost:8080/api',
+  apiUrl: 'http://localhost:8080/api/v1',
   // apiUrl: 'https://api-staging.erwaainstitute.com/api/v1',
   apiVersion: 'v1',
   firebase: {

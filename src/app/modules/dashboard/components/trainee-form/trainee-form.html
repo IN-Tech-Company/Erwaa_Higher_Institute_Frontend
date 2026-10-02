@@ -3,7 +3,7 @@
       (ngSubmit)="submit()">
   <p class="trainee-form__hint">
     <span class="material-symbols-outlined">info</span>
-    {{ (trainee ? 'ADMIN_TRAINEES.EDIT_HINT' : 'ADMIN_TRAINEES.ADD_HINT') | translate }}
+    {{ (trainee() ? 'ADMIN_TRAINEES.EDIT_HINT' : 'ADMIN_TRAINEES.ADD_HINT') | translate }}
   </p>
 
   <div class="auth-form__field">
@@ -81,7 +81,7 @@
     }
   </div>
 
-  @if (!trainee) {
+  @if (!trainee()) {
   <div class="auth-form__field">
     <label class="auth-form__label"
            for="trainee-password">
@@ -116,7 +116,7 @@
   </div>
   }
 
-  @if (store.dialogError(); as error) {
+  @if (store.formError(); as error) {
   <p class="auth-form__api-error"
      role="alert">
     <span class="material-symbols-outlined">error</span>
@@ -124,18 +124,17 @@
   </p>
   }
 
-  <div class="dialog-actions">
-    <button class="dialog-btn dialog-btn--ghost"
-            type="button"
-            (click)="store.closeDialog()">{{ 'COMMON.CANCEL' | translate }}</button>
-    <button class="dialog-btn dialog-btn--primary"
+  <div class="dash-actions">
+    <a class="dash-btn dash-btn--ghost"
+       [routerLink]="cancelLink()">{{ 'COMMON.CANCEL' | translate }}</a>
+    <button class="dash-btn dash-btn--primary"
             type="submit"
             [disabled]="store.saving()">
       @if (store.saving()) {
       <span class="auth-form__spinner"
             aria-hidden="true"></span>
       }
-      {{ (trainee ? 'COMMON.SAVE' : 'ADMIN_TRAINEES.CREATE') | translate }}
+      {{ (trainee() ? 'COMMON.SAVE' : 'ADMIN_TRAINEES.CREATE') | translate }}
     </button>
   </div>
 </form>

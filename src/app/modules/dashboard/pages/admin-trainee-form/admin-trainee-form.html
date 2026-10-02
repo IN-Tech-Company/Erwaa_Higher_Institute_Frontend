@@ -1,0 +1,32 @@
+<section class="dash-page">
+  <a class="dash-page__back"
+     [routerLink]="backLink()">
+    <span class="material-symbols-outlined icon-flip-rtl">arrow_back</span>
+    {{ (id ? 'ADMIN_TRAINEES.BACK_TO_TRAINEE' : 'ADMIN_TRAINEES.BACK_TO_LIST') | translate }}
+  </a>
+
+  <h1 class="dash-page__title"
+      data-aos="fade-up">{{ (id ? 'ADMIN_TRAINEES.EDIT_TITLE' : 'ADMIN_TRAINEES.ADD_TITLE') | translate }}</h1>
+
+  <div class="dash-card dash-card--padded dash-card--narrow"
+       data-aos="fade-up"
+       data-aos-delay="80">
+    @if (!id) {
+    <app-trainee-form />
+    } @else if (store.trainee(); as trainee) {
+    <app-trainee-form [trainee]="trainee" />
+    } @else if (store.traineeError(); as error) {
+    <div class="dash-state dash-state--error"
+         role="alert">
+      <span class="material-symbols-outlined">person_off</span>
+      <p>{{ error | translate }}</p>
+    </div>
+    } @else {
+    <div class="dash-state">
+      <span class="dash-spinner"
+            aria-hidden="true"></span>
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+    }
+  </div>
+</section>

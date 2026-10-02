@@ -22,6 +22,10 @@ export class AdminTraineesService {
     return this.api.get(this.baseUrl, params);
   }
 
+  get(id: number): Observable<Trainee> {
+    return this.api.get(`${this.baseUrl}/${id}`);
+  }
+
   create(body: CreateTraineeRequest): Observable<Trainee> {
     return this.api.post(this.baseUrl, body);
   }

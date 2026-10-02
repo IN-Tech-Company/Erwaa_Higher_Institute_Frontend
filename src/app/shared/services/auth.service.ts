@@ -13,7 +13,7 @@ import { ApiService } from './api.service';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly api = inject(ApiService);
-  private readonly baseUrl = '/v1/auth';
+  private readonly baseUrl = '/auth';
 
   login(body: LoginRequest): Observable<AuthSession> {
     return this.api.post(`${this.baseUrl}/login`, body);

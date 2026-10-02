@@ -73,7 +73,6 @@
     "ADD_HINT": "The trainee can sign in right away with this email and password. No email is sent — share the details with them yourself.",
     "EDIT_HINT": "Changing the email signs the trainee out on every device; they sign in again with the new email.",
     "PASSWORD_HINT": "{{name}} will get an email saying their password changed, but the password itself isn't sent — share it with them yourself.",
-    "DELETE_CONFIRM": "Delete {{name}}'s account? They won't be able to sign in again, but their payments, reservations and certificates are kept.",
     "NAME_MIN": "The name must be at least 2 characters",
     "CREATE": "Create account",
     "SAVE_PASSWORD": "Save password",
@@ -81,7 +80,19 @@
     "NOTICE_CREATED": "Trainee account created",
     "NOTICE_UPDATED": "Changes saved",
     "NOTICE_PASSWORD": "New password set",
-    "NOTICE_DELETED": "Trainee account deleted"
+    "NOTICE_DELETED": "Trainee account deleted",
+    "COL_NATIONAL_ID": "National ID",
+    "ACTION_VIEW": "View details",
+    "BACK_TO_LIST": "All trainees",
+    "BACK_TO_TRAINEE": "Trainee page",
+    "INFO_TITLE": "Trainee details",
+    "INFO_STUDY_LEVEL": "Study level",
+    "INFO_EMAIL_VERIFIED": "Email confirmed?",
+    "DELETE_DESC": "Once deleted, {{name}} can't sign in again or sign up with the same email, but their payments, reservations and certificates are kept.",
+    "DELETE_SURE": "Are you sure? This can't be undone.",
+    "DELETE_YES": "Yes, delete the account",
+    "NOTICE_ENABLED": "Account enabled — the trainee can sign in now",
+    "NOTICE_DISABLED": "Account disabled — the trainee was signed out on every device"
   },
   "USER_MENU": {
     "SWITCH_TO_EN": "Switch to English",

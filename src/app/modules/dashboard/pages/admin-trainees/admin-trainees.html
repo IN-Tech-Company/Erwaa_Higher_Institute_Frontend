@@ -1,25 +1,23 @@
-<section class="trainees-page">
-  <header class="trainees-page__header"
+<section class="dash-page">
+  <header class="dash-page__header"
           data-aos="fade-up">
     <div>
-      <h1 class="trainees-page__title">{{ 'ADMIN_TRAINEES.TITLE' | translate }}</h1>
-      <p class="trainees-page__subtitle">{{ 'ADMIN_TRAINEES.SUBTITLE' | translate }}</p>
+      <h1 class="dash-page__title">{{ 'ADMIN_TRAINEES.TITLE' | translate }}</h1>
+      <p class="dash-page__subtitle">{{ 'ADMIN_TRAINEES.SUBTITLE' | translate }}</p>
     </div>
-    <button class="dialog-btn dialog-btn--primary"
-            type="button"
-            (click)="store.openDialog('create')">
+    <a class="dash-btn dash-btn--primary"
+       [routerLink]="['/', lang(), 'app', 'admin', 'trainees', 'new']">
       <span class="material-symbols-outlined">person_add</span>
       {{ 'ADMIN_TRAINEES.ADD' | translate }}
-    </button>
+    </a>
   </header>
 
   @if (store.notice(); as notice) {
-  <div class="trainees-page__notice"
+  <div class="dash-notice"
        role="status">
     <span class="material-symbols-outlined">check_circle</span>
-    <span>{{ notice | translate }}</span>
-    <button class="trainees-page__notice-close"
-            type="button"
+    <span class="dash-notice__text">{{ notice | translate }}</span>
+    <button type="button"
             [attr.aria-label]="'COMMON.CLOSE' | translate"
             (click)="store.notice.set(null)">
       <span class="material-symbols-outlined">close</span>
@@ -27,11 +25,11 @@
   </div>
   }
 
-  <div class="trainees-page__card"
+  <div class="dash-card"
        data-aos="fade-up"
        data-aos-delay="80">
-    <div class="trainees-page__toolbar">
-      <label class="trainees-page__search">
+    <div class="toolbar">
+      <label class="toolbar__search">
         <span class="material-symbols-outlined">search</span>
         <input type="search"
                [formControl]="search"
@@ -39,46 +37,43 @@
                [placeholder]="'ADMIN_TRAINEES.SEARCH_PLACEHOLDER' | translate" />
       </label>
 
-      <select class="trainees-page__filter"
+      <select class="toolbar__filter"
               [attr.aria-label]="'ADMIN_TRAINEES.COL_STATUS' | translate"
               (change)="onStatusChange($any($event.target).value)">
-        <option value="">{{ 'ADMIN_TRAINEES.FILTER_ALL' | translate }}</option>
-        <option value="true">{{ 'ADMIN_TRAINEES.FILTER_ENABLED' | translate }}</option>
-        <option value="false">{{ 'ADMIN_TRAINEES.FILTER_DISABLED' | translate }}</option>
+        <option value=""
+                [selected]="store.enabled() === null">{{ 'ADMIN_TRAINEES.FILTER_ALL' | translate }}</option>
+        <option value="true"
+                [selected]="store.enabled() === true">{{ 'ADMIN_TRAINEES.FILTER_ENABLED' | translate }}</option>
+        <option value="false"
+                [selected]="store.enabled() === false">{{ 'ADMIN_TRAINEES.FILTER_DISABLED' | translate }}</option>
       </select>
 
-      <span class="trainees-page__total">{{ 'ADMIN_TRAINEES.TOTAL' | translate: { count: store.total() } }}</span>
+      <span class="toolbar__total">{{ 'ADMIN_TRAINEES.TOTAL' | translate: { count: store.total() } }}</span>
     </div>
 
     @if (store.error(); as error) {
-    <div class="trainees-page__state trainees-page__state--error"
+    <div class="dash-state dash-state--error"
          role="alert">
       <span class="material-symbols-outlined">error</span>
       <p>{{ error | translate }}</p>
-      <button class="dialog-btn dialog-btn--ghost"
+      <button class="dash-btn dash-btn--ghost"
               type="button"
               (click)="store.load()">{{ 'COMMON.RETRY' | translate }}</button>
     </div>
-    } @else if (store.loading() && !store.trainees().length) {
-    <div class="trainees-page__state">
-      <span class="trainees-page__spinner"
-            aria-hidden="true"></span>
-      <p>{{ 'COMMON.LOADING' | translate }}</p>
-    </div>
-    } @else if (!store.trainees().length) {
-    <div class="trainees-page__state">
+    } @else if (!store.loading() && !store.trainees().length) {
+    <div class="dash-state">
       <span class="material-symbols-outlined">group_off</span>
       <p>{{ 'ADMIN_TRAINEES.EMPTY' | translate }}</p>
     </div>
     } @else {
-    <div class="trainees-page__table"
-         [class.trainees-page__table--loading]="store.loading()">
+    <div class="table-wrap"
+         [class.table-wrap--loading]="store.loading() && store.trainees().length">
       <app-trainees-table />
     </div>
 
     @if (store.totalPages() > 1) {
-    <nav class="trainees-page__pagination">
-      <button class="dialog-btn dialog-btn--ghost"
+    <nav class="pagination">
+      <button class="dash-btn dash-btn--ghost"
               type="button"
               [disabled]="store.page() === 0 || store.loading()"
               (click)="store.goToPage(store.page() - 1)">
@@ -86,7 +81,7 @@
         {{ 'ADMIN_TRAINEES.PREVIOUS' | translate }}
       </button>
       <span>{{ 'ADMIN_TRAINEES.PAGE_OF' | translate: { page: store.page() + 1, total: store.totalPages() } }}</span>
-      <button class="dialog-btn dialog-btn--ghost"
+      <button class="dash-btn dash-btn--ghost"
               type="button"
               [disabled]="store.page() >= store.totalPages() - 1 || store.loading()"
               (click)="store.goToPage(store.page() + 1)">
@@ -97,43 +92,4 @@
     }
     }
   </div>
-
-  <app-modal [open]="store.dialog() !== null"
-             [title]="dialogTitle()"
-             (closed)="store.closeDialog()">
-    @switch (store.dialog()) {
-    @case ('create') {
-    <app-trainee-form />
-    }
-    @case ('edit') {
-    <app-trainee-form />
-    }
-    @case ('password') {
-    <app-trainee-password-form />
-    }
-    @case ('delete') {
-    @if (store.selected(); as trainee) {
-    <p class="trainees-page__confirm">{{ 'ADMIN_TRAINEES.DELETE_CONFIRM' | translate: { name: trainee.name } }}</p>
-
-    @if (store.dialogError(); as error) {
-    <p class="trainees-page__dialog-error"
-       role="alert">{{ error | translate }}</p>
-    }
-
-    <div class="dialog-actions">
-      <button class="dialog-btn dialog-btn--ghost"
-              type="button"
-              (click)="store.closeDialog()">{{ 'COMMON.CANCEL' | translate }}</button>
-      <button class="dialog-btn dialog-btn--danger"
-              type="button"
-              [disabled]="store.saving()"
-              (click)="store.remove(trainee.id)">
-        <span class="material-symbols-outlined">delete</span>
-        {{ 'ADMIN_TRAINEES.DELETE' | translate }}
-      </button>
-    </div>
-    }
-    }
-    }
-  </app-modal>
 </section>

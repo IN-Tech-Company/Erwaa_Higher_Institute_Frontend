@@ -1,0 +1,90 @@
+<table class="trainees-table">
+  <thead>
+    <tr>
+      <th>{{ 'ADMIN_TRAINEES.COL_TRAINEE' | translate }}</th>
+      <th>{{ 'ADMIN_TRAINEES.COL_PHONE' | translate }}</th>
+      <th>{{ 'ADMIN_TRAINEES.COL_NATIONAL_ID' | translate }}</th>
+      <th>{{ 'ADMIN_TRAINEES.COL_STATUS' | translate }}</th>
+      <th>{{ 'ADMIN_TRAINEES.COL_JOINED' | translate }}</th>
+      <th><span class="visually-hidden">{{ 'ADMIN_TRAINEES.COL_ACTIONS' | translate }}</span></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @if (store.loading() && !store.trainees().length) {
+    @for (row of skeletonRows; track row) {
+    <tr class="trainees-table__skeleton"
+        aria-hidden="true">
+      <td>
+        <div class="trainee">
+          <span class="skeleton skeleton--circle"></span>
+          <span class="skeleton skeleton--wide"></span>
+        </div>
+      </td>
+      <td><span class="skeleton"></span></td>
+      <td><span class="skeleton"></span></td>
+      <td><span class="skeleton skeleton--pill"></span></td>
+      <td><span class="skeleton"></span></td>
+      <td></td>
+    </tr>
+    }
+    } @else {
+    @for (trainee of store.trainees(); track trainee.id) {
+    <tr>
+      <td>
+        <a class="trainee"
+           [routerLink]="link(trainee)">
+          <span class="trainee__avatar"
+                aria-hidden="true">{{ trainee.name.charAt(0) }}</span>
+          <span class="trainee__info">
+            <span class="trainee__name">{{ trainee.name }}</span>
+            <span class="trainee__email"
+                  dir="ltr">{{ trainee.email }}</span>
+          </span>
+        </a>
+      </td>
+      <td [attr.data-label]="'ADMIN_TRAINEES.COL_PHONE' | translate">
+        <span class="trainees-table__mono"
+              dir="ltr">+966 {{ trainee.phone }}</span>
+      </td>
+      <td [attr.data-label]="'ADMIN_TRAINEES.COL_NATIONAL_ID' | translate">
+        <span class="trainees-table__mono"
+              dir="ltr">{{ trainee.nationalId || '—' }}</span>
+      </td>
+      <td [attr.data-label]="'ADMIN_TRAINEES.COL_STATUS' | translate">
+        @switch (status(trainee)) {
+        @case ('active') {
+        <span class="dash-status dash-status--active">{{ 'ADMIN_TRAINEES.STATUS_ACTIVE' | translate }}</span>
+        }
+        @case ('unverified') {
+        <span class="dash-status dash-status--unverified">{{ 'ADMIN_TRAINEES.STATUS_UNVERIFIED' | translate }}</span>
+        }
+        @case ('disabled') {
+        <span class="dash-status dash-status--disabled">{{ 'ADMIN_TRAINEES.STATUS_DISABLED' | translate }}</span>
+        }
+        }
+      </td>
+      <td [attr.data-label]="'ADMIN_TRAINEES.COL_JOINED' | translate">
+        {{ trainee.createdAt | date: 'd MMM y' : undefined : lang() }}
+      </td>
+      <td>
+        <div class="trainees-table__actions">
+          <a class="icon-btn"
+             [routerLink]="link(trainee)"
+             [title]="'ADMIN_TRAINEES.ACTION_VIEW' | translate"
+             [attr.aria-label]="'ADMIN_TRAINEES.ACTION_VIEW' | translate">
+            <span class="material-symbols-outlined">visibility</span>
+          </a>
+          <a class="icon-btn"
+             [routerLink]="link(trainee, 'edit')"
+             [title]="'ADMIN_TRAINEES.ACTION_EDIT' | translate"
+             [attr.aria-label]="'ADMIN_TRAINEES.ACTION_EDIT' | translate">
+            <span class="material-symbols-outlined">edit</span>
+          </a>
+        </div>
+      </td>
+    </tr>
+    }
+    }
+  </tbody>
+</table>

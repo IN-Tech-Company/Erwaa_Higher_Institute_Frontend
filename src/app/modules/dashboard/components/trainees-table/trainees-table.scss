@@ -1,0 +1,194 @@
+@use 'components/dashboard-page';
+@use 'tokens/colors' as c;
+@use 'tokens/typography' as t;
+@use 'tokens/radius' as r;
+
+.trainees-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body), sans-serif;
+  font-size: t.$font-size-sm;
+  color: c.$neutral-700;
+
+  th {
+    padding: 0.8rem 1.25rem;
+    border-bottom: 1px solid rgba(c.$neutral-200, 0.6);
+    background: c.$neutral-50;
+    font-size: t.$font-size-xs;
+    font-weight: t.$font-weight-semibold;
+    color: c.$neutral-500;
+    text-align: start;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid rgba(c.$neutral-200, 0.45);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    transition: background 0.15s;
+
+    &:last-child td {
+      border-bottom: none;
+    }
+
+    &:hover:not(.trainees-table__skeleton) {
+      background: rgba(c.$secondary, 0.04);
+    }
+  }
+}
+
+.trainees-table__mono {
+  font-variant-numeric: tabular-nums;
+  color: c.$neutral-600;
+}
+
+// ── Trainee cell (links to the details page) ─────────────────────────────────
+.trainee {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .trainee__name {
+    color: c.$secondary-700;
+  }
+}
+
+.trainee__avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(c.$secondary, 0.16);
+  color: c.$primary-900;
+  font-weight: t.$font-weight-bold;
+}
+
+.trainee__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.trainee__name {
+  font-weight: t.$font-weight-semibold;
+  color: c.$neutral-900;
+  transition: color 0.15s;
+}
+
+.trainee__email {
+  font-size: t.$font-size-xs;
+  color: c.$neutral-400;
+  text-align: start;
+}
+
+// ── Row actions ──────────────────────────────────────────────────────────────
+.trainees-table__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+.icon-btn {
+  display: inline-flex;
+  padding: 0.45rem;
+  border-radius: r.$radius-md;
+  color: c.$neutral-400;
+  transition: background 0.15s, color 0.15s;
+
+  .material-symbols-outlined {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background: c.$neutral-100;
+    color: c.$primary-900;
+  }
+}
+
+// ── Loading skeleton ─────────────────────────────────────────────────────────
+.skeleton {
+  display: inline-block;
+  width: 6rem;
+  height: 0.75rem;
+  border-radius: r.$radius-full;
+  background: linear-gradient(90deg, c.$neutral-100 25%, c.$neutral-50 50%, c.$neutral-100 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+
+  &--circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+  }
+
+  &--wide {
+    width: 10rem;
+  }
+
+  &--pill {
+    width: 4.5rem;
+    height: 1.4rem;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// ── Phones: each row becomes a card ──────────────────────────────────────────
+@media (max-width: 768px) {
+  .trainees-table {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: grid;
+      gap: 0.6rem;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(c.$neutral-200, 0.6);
+    }
+
+    td {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0;
+      border: none;
+      white-space: normal;
+
+      &[data-label]::before {
+        content: attr(data-label);
+        font-size: t.$font-size-xs;
+        color: c.$neutral-400;
+      }
+    }
+  }
+
+  .trainees-table__actions {
+    width: 100%;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(c.$neutral-200, 0.45);
+  }
+}

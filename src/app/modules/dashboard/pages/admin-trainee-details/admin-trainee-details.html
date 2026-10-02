@@ -1,0 +1,149 @@
+<section class="dash-page">
+  <a class="dash-page__back"
+     [routerLink]="link()">
+    <span class="material-symbols-outlined icon-flip-rtl">arrow_back</span>
+    {{ 'ADMIN_TRAINEES.BACK_TO_LIST' | translate }}
+  </a>
+
+  @if (store.notice(); as notice) {
+  <div class="dash-notice"
+       role="status">
+    <span class="material-symbols-outlined">check_circle</span>
+    <span class="dash-notice__text">{{ notice | translate }}</span>
+    <button type="button"
+            [attr.aria-label]="'COMMON.CLOSE' | translate"
+            (click)="store.notice.set(null)">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  }
+
+  @if (store.trainee(); as trainee) {
+  <!-- Profile + actions -->
+  <div class="dash-card dash-card--padded profile"
+       data-aos="fade-up">
+    <span class="profile__avatar"
+          aria-hidden="true">{{ trainee.name.charAt(0) }}</span>
+    <div class="profile__info">
+      <h1 class="profile__name">{{ trainee.name }}</h1>
+      <span class="profile__email"
+            dir="ltr">{{ trainee.email }}</span>
+      @if (!trainee.enabled) {
+      <span class="dash-status dash-status--disabled">{{ 'ADMIN_TRAINEES.STATUS_DISABLED' | translate }}</span>
+      } @else if (!trainee.emailVerified) {
+      <span class="dash-status dash-status--unverified">{{ 'ADMIN_TRAINEES.STATUS_UNVERIFIED' | translate }}</span>
+      } @else {
+      <span class="dash-status dash-status--active">{{ 'ADMIN_TRAINEES.STATUS_ACTIVE' | translate }}</span>
+      }
+    </div>
+    <div class="profile__actions">
+      <a class="dash-btn dash-btn--ghost"
+         [routerLink]="link('edit')">
+        <span class="material-symbols-outlined">edit</span>
+        {{ 'ADMIN_TRAINEES.ACTION_EDIT' | translate }}
+      </a>
+      <a class="dash-btn dash-btn--ghost"
+         [routerLink]="link('password')">
+        <span class="material-symbols-outlined">key</span>
+        {{ 'ADMIN_TRAINEES.ACTION_PASSWORD' | translate }}
+      </a>
+      <button class="dash-btn dash-btn--ghost"
+              type="button"
+              [disabled]="store.saving()"
+              (click)="store.toggleEnabled(trainee)">
+        <span class="material-symbols-outlined">{{ trainee.enabled ? 'block' : 'check_circle' }}</span>
+        {{ (trainee.enabled ? 'ADMIN_TRAINEES.ACTION_DISABLE' : 'ADMIN_TRAINEES.ACTION_ENABLE') | translate }}
+      </button>
+    </div>
+  </div>
+
+  @if (store.formError(); as error) {
+  <p class="details__error"
+     role="alert">
+    <span class="material-symbols-outlined">error</span>
+    {{ error | translate }}
+  </p>
+  }
+
+  <!-- Details -->
+  <div class="dash-card dash-card--padded"
+       data-aos="fade-up"
+       data-aos-delay="60">
+    <h2 class="dash-card__title">{{ 'ADMIN_TRAINEES.INFO_TITLE' | translate }}</h2>
+    <dl class="info-grid">
+      <div class="info-grid__item">
+        <dt>{{ 'ADMIN_TRAINEES.COL_PHONE' | translate }}</dt>
+        <dd dir="ltr">+966 {{ trainee.phone }}</dd>
+      </div>
+      <div class="info-grid__item">
+        <dt>{{ 'ADMIN_TRAINEES.COL_NATIONAL_ID' | translate }}</dt>
+        <dd dir="ltr">{{ trainee.nationalId || '—' }}</dd>
+      </div>
+      <div class="info-grid__item">
+        <dt>{{ 'ADMIN_TRAINEES.INFO_STUDY_LEVEL' | translate }}</dt>
+        <dd>{{ trainee.studyLevel || '—' }}</dd>
+      </div>
+      <div class="info-grid__item">
+        <dt>{{ 'ADMIN_TRAINEES.INFO_EMAIL_VERIFIED' | translate }}</dt>
+        <dd>{{ (trainee.emailVerified ? 'COMMON.YES' : 'COMMON.NO') | translate }}</dd>
+      </div>
+      <div class="info-grid__item">
+        <dt>{{ 'ADMIN_TRAINEES.COL_JOINED' | translate }}</dt>
+        <dd>{{ trainee.createdAt | date: 'd MMMM y' : undefined : lang() }}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- Delete: confirmed right here, no popup -->
+  <div class="dash-card dash-card--padded danger"
+       data-aos="fade-up"
+       data-aos-delay="120">
+    <h2 class="dash-card__title">{{ 'ADMIN_TRAINEES.DELETE_TITLE' | translate }}</h2>
+    <p class="danger__text">{{ 'ADMIN_TRAINEES.DELETE_DESC' | translate: { name: trainee.name } }}</p>
+
+    @if (!confirmingDelete()) {
+    <button class="dash-btn dash-btn--danger"
+            type="button"
+            (click)="confirmingDelete.set(true)">
+      <span class="material-symbols-outlined">delete</span>
+      {{ 'ADMIN_TRAINEES.DELETE' | translate }}
+    </button>
+    } @else {
+    <div class="danger__confirm"
+         role="alert">
+      <strong>{{ 'ADMIN_TRAINEES.DELETE_SURE' | translate }}</strong>
+      <div class="danger__buttons">
+        <button class="dash-btn dash-btn--ghost"
+                type="button"
+                (click)="confirmingDelete.set(false)">{{ 'COMMON.CANCEL' | translate }}</button>
+        <button class="dash-btn dash-btn--danger"
+                type="button"
+                [disabled]="store.saving()"
+                (click)="store.remove(trainee.id)">
+          <span class="material-symbols-outlined">delete</span>
+          {{ 'ADMIN_TRAINEES.DELETE_YES' | translate }}
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+  } @else if (store.traineeError(); as error) {
+  <div class="dash-card">
+    <div class="dash-state dash-state--error"
+         role="alert">
+      <span class="material-symbols-outlined">person_off</span>
+      <p>{{ error | translate }}</p>
+      <a class="dash-btn dash-btn--ghost"
+         [routerLink]="link()">{{ 'ADMIN_TRAINEES.BACK_TO_LIST' | translate }}</a>
+    </div>
+  </div>
+  } @else {
+  <div class="dash-card">
+    <div class="dash-state">
+      <span class="dash-spinner"
+            aria-hidden="true"></span>
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+  </div>
+  }
+</section>
