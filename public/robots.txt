@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Dashboard (behind login) and auth flows — not useful in search results
+Disallow: /ar/app/
+Disallow: /en/app/
+Disallow: /ar/auth/
+Disallow: /en/auth/
+
+Sitemap: https://erwaainstitute.com/sitemap.xml

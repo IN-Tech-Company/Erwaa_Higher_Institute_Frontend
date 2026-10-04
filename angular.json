@@ -65,6 +65,16 @@
                 "glob": "firebase-messaging-sw.js",
                 "input": "public",
                 "output": "/"
+              },
+              {
+                "glob": "robots.txt",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [

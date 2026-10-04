@@ -1,38 +1,22 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { TopBarComponent } from '../../components/top-bar/top-bar';
 import { SiteHeaderComponent } from '../../components/site-header/site-header';
 import { FooterComponent } from '../../components/footer/footer';
 import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
+import { SeoService } from '../../../../shared/services/seo.service';
+import { buildCheckoutSeo } from '../../data/landing-seo';
 import { findCourseByKey } from '../../data/courses-catalog';
 
 interface SummaryFact {
   icon: string;
-  /** Plain resolved text (e.g. the duration) — takes priority over valueKey. */
   value: string | null;
-  /** i18n key for enum-like fields (level, delivery type). */
   valueKey: string | null;
 }
 
-/**
- * Course enrollment "checkout" — reached from `CourseDetailPage`'s register
- * CTA (feedback 2026-09-17: "زي بتاعت الـ checkout بتاعت المتجر
- * الإلكتروني" — an e-commerce-style checkout, not the full account
- * registration form). Collects just what's needed to hold a seat (email,
- * phone, national ID/iqama — same fields/labels as `RegisterComponent`,
- * reused from `AUTH.FIELDS`/`AUTH.VALIDATION` so they stay in sync) next to
- * an order-summary card for the course being booked.
- *
- * There's no real payment gateway wired yet (see docs/project-brief.md,
- * "خطة بوابة الدفع الإلكتروني المستقبلية" — no technical details decided
- * yet), so submitting doesn't charge anything: it shows a confirmation step
- * that's honest about what happens next (the institute's team follows up to
- * complete payment) instead of a fake card-entry form that would imply
- * working payment processing that doesn't exist.
- */
 @Component({
   selector: 'app-course-checkout-page',
   imports: [TranslatePipe, RouterLink, TopBarComponent, SiteHeaderComponent, FooterComponent],
@@ -54,12 +38,20 @@ export class CourseCheckoutPage {
   readonly titleKey = computed(() => `LANDING.ALL_COURSES.${this.course()?.key}`);
   readonly categoryTitleKey = computed(() => `LANDING.ALL_COURSES.${this.course()?.categoryKey}_TITLE`);
 
-  /** A short 2-3 item highlight row for the order-summary card — the full
-   * fact grid belongs on `CourseDetailPage`, this is just enough context to
-   * confirm "yes, this is the right course" while checking out. `value` is
-   * plain resolved text (e.g. the duration), `valueKey` an i18n key for the
-   * enum-like fields (level, delivery type) — same split as
-   * `CourseDetailPage`'s `FactItem`. */
+  private readonly seoService = inject(SeoService);
+  private readonly translate = inject(TranslateService);
+
+  constructor() {
+    // Checkout is a transactional step, never meant for search results —
+    // always noindex (see buildCheckoutSeo). Still localized/reactive so
+    // the tab title reads correctly in both languages.
+    effect(() => {
+      const course = this.course();
+      const courseName = course ? this.translate.instant(this.titleKey()) : '';
+      this.seoService.setupPage(buildCheckoutSeo(courseName), this.lang(), `courses/${this.courseKey()}/checkout`);
+    });
+  }
+
   readonly summaryFacts = computed<SummaryFact[]>(() => {
     const c = this.course();
     if (!c) return [];
@@ -82,7 +74,6 @@ export class CourseCheckoutPage {
   readonly dateOfBirth = signal('');
   readonly submitted = signal(false);
 
-  /** 1 = the checkout form, 2 = the post-submit confirmation screen. */
   readonly step = signal<1 | 2>(1);
 
   private formatAmount(amount: number): string {

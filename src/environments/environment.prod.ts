@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  siteUrl: 'https://erwaainstitute.com/ar',
+  siteUrl: 'https://erwaainstitute.com',
   apiVersion: 'v1',
   firebase: {
     apiKey: 'AIzaSyAEv7C8G9oR630qeRx6iVLsk3VsIFw4XSY',

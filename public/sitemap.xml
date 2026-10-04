@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://erwaainstitute.com/ar</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT1_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT1_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT1_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT1_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT1_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT1_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT1_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT1_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT2_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT2_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT2_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT2_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT2_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT2_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT2_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT2_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT3_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT3_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT3_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT3_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT3_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT3_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT3_ITEM4</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM4" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT3_ITEM4</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM4" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT3_ITEM5</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM5" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT3_ITEM5</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT3_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT3_ITEM5" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT4_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT4_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT4_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT4_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT4_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT4_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT4_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT4_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT4_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM4</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM4" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM4</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM4" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM5</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM5" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM5</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM5" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM6</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM6" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM6" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM6" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM6</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM6" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM6" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM6" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM7</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM7" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM7" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM7</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM7" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM7" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM8</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM8" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM8" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM8" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM8</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM8" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM8" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM8" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT5_ITEM9</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM9" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM9" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM9" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT5_ITEM9</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM9" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT5_ITEM9" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT5_ITEM9" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT6_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT6_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT6_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT6_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT6_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT6_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT6_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT6_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT6_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT6_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT6_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT6_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT6_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT7_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT7_ITEM1</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM1" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT7_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT7_ITEM2</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM2" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT7_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT7_ITEM3</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM3" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT7_ITEM4</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM4" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT7_ITEM4</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM4" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/courses/CAT7_ITEM5</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM5" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/courses/CAT7_ITEM5</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/courses/CAT7_ITEM5" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/courses/CAT7_ITEM5" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/legal/privacy</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/legal/privacy" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/legal/privacy</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/legal/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/legal/privacy" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/legal/terms</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/legal/terms" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/legal/terms</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/legal/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/legal/terms" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/ar/legal/ownership</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/legal/ownership" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/legal/ownership" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/legal/ownership" />
+  </url>
+  <url>
+    <loc>https://erwaainstitute.com/en/legal/ownership</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://erwaainstitute.com/ar/legal/ownership" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://erwaainstitute.com/en/legal/ownership" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://erwaainstitute.com/ar/legal/ownership" />
+  </url>
+</urlset>

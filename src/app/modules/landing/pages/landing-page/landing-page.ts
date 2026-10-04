@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { TopBarComponent } from '../../components/top-bar/top-bar';
 import { SiteHeaderComponent } from '../../components/site-header/site-header';
 import { HeroComponent } from '../../components/hero/hero';
@@ -14,6 +15,13 @@ import { TestimonialsSectionComponent } from '../../components/testimonials/test
 import { FaqSectionComponent } from '../../components/faq/faq';
 import { ContactSectionComponent } from '../../components/contact/contact';
 import { FooterComponent } from '../../components/footer/footer';
+import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
+import { SeoService } from '../../../../shared/services/seo.service';
+import { StructuredDataService } from '../../../../shared/services/structured-data.service';
+import { buildFaqSchema } from '../../data/structured-data-builders';
+import { HOME_SEO } from '../../data/landing-seo';
+
+const FAQ_ITEM_KEYS = ['ITEM1', 'ITEM2', 'ITEM3', 'ITEM4', 'ITEM5'];
 
 @Component({
   selector: 'app-landing-page',
@@ -22,4 +30,26 @@ import { FooterComponent } from '../../components/footer/footer';
   styleUrl: './landing-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPage { }
+export class LandingPage {
+  private readonly seoService = inject(SeoService);
+  private readonly structuredData = inject(StructuredDataService);
+  private readonly translate = inject(TranslateService);
+  private readonly langStore = inject(LanguageStoreService);
+
+  constructor() {
+    effect(() => {
+      const lang = this.langStore.currentLanguage();
+      this.seoService.setupPage(HOME_SEO, lang, '');
+
+      const faqSchema = buildFaqSchema(
+        FAQ_ITEM_KEYS.map((key) => ({
+          question: this.translate.instant(`LANDING.FAQ.${key}_Q`),
+          answer: this.translate.instant(`LANDING.FAQ.${key}_A`),
+        })),
+      );
+      this.structuredData.set('faq', faqSchema);
+    });
+
+    inject(DestroyRef).onDestroy(() => this.structuredData.clear(['faq']));
+  }
+}

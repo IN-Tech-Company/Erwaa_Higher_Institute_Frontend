@@ -1,30 +1,25 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { TopBarComponent } from '../../components/top-bar/top-bar';
 import { SiteHeaderComponent } from '../../components/site-header/site-header';
 import { FooterComponent } from '../../components/footer/footer';
 import { LanguageStoreService } from '../../../../shared/services/language/language-store.service';
+import { SeoService } from '../../../../shared/services/seo.service';
+import { StructuredDataService } from '../../../../shared/services/structured-data.service';
+import { buildBreadcrumbSchema, buildCourseSchema } from '../../data/structured-data-builders';
+import { buildCourseDetailSeo, COURSE_NOT_FOUND_SEO } from '../../data/landing-seo';
 import { findCourseByKey } from '../../data/courses-catalog';
 
 interface FactItem {
   icon: string;
   labelKey: string;
-  /** Plain resolved text (e.g. an instructor name), takes priority over valueKey. */
   value: string | null;
-  /** i18n key for enum-like fields (level, delivery type...); null when not confirmed yet. */
   valueKey?: string | null;
 }
 
-/**
- * Single-course detail page — reached from `AllCoursesPage`'s cards. Shows
- * the full field set from docs/project-brief.md §13.1. Per-course specifics
- * (price, schedule, instructor...) are `null` in `courses-catalog.ts` until
- * the institute provides real data per course — this page shows an honest
- * "to be announced" state for those rather than a guessed value.
- */
 @Component({
   selector: 'app-course-detail-page',
   imports: [TranslatePipe, RouterLink, TopBarComponent, SiteHeaderComponent, FooterComponent],
@@ -47,15 +42,62 @@ export class CourseDetailPage {
   readonly titleKey = computed(() => `LANDING.ALL_COURSES.${this.course()?.key}`);
   readonly categoryTitleKey = computed(() => `LANDING.ALL_COURSES.${this.course()?.categoryKey}_TITLE`);
 
+  private readonly seoService = inject(SeoService);
+  private readonly structuredData = inject(StructuredDataService);
+  private readonly translate = inject(TranslateService);
+
+  constructor() {
+    effect(() => {
+      const lang = this.lang();
+      const course = this.course();
+
+      if (!course) {
+        this.seoService.setupPage(COURSE_NOT_FOUND_SEO, lang, 'courses');
+        this.structuredData.clear(['breadcrumb', 'course']);
+        return;
+      }
+
+      const courseName = this.translate.instant(this.titleKey());
+      const categoryName = this.translate.instant(this.categoryTitleKey());
+      const siteName = this.translate.instant('LANDING.HEADER.LOGO_ALT');
+      const route = `courses/${course.key}`;
+      const pageUrl = this.seoService.buildUrl(lang, route);
+      const seo = buildCourseDetailSeo(course, courseName, categoryName);
+
+      this.seoService.setupPage(seo, lang, route);
+
+      this.structuredData.set(
+        'breadcrumb',
+        buildBreadcrumbSchema([
+          { name: this.translate.instant('LANDING.NAV.HOME'), url: this.seoService.buildUrl(lang, '') },
+          { name: this.translate.instant('LANDING.NAV.COURSES'), url: this.seoService.buildUrl(lang, 'courses') },
+          { name: courseName, url: pageUrl },
+        ]),
+      );
+
+      this.structuredData.set(
+        'course',
+        buildCourseSchema({
+          course,
+          name: courseName,
+          description: seo[lang].description,
+          url: pageUrl,
+          imageUrl: `${this.seoService.baseUrl}${course.image}`,
+          siteUrl: this.seoService.baseUrl,
+          siteName,
+          lang,
+        }),
+      );
+    });
+
+    inject(DestroyRef).onDestroy(() => this.structuredData.clear(['breadcrumb', 'course']));
+  }
+
   private formatAmount(amount: number): string {
     const locale = this.langStore.currentLanguage() === 'ar' ? 'ar-SA' : 'en-US';
     return new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount);
   }
 
-  // Plain Intl formatting for the number — the currency *symbol* itself is
-  // rendered separately in the template via the icon-font glyph
-  // (.icon-saudi_riyal), which is far more reliably supported across
-  // browsers/fonts than embedding the raw U+20C1 character in text.
   readonly formattedPrice = computed(() => {
     const price = this.course()?.price;
     if (typeof price !== 'number') return '';

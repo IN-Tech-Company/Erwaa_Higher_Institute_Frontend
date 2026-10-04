@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  siteUrl: 'https://erwaainstitute.com/ar',
+  siteUrl: 'https://erwaainstitute.com',
   apiUrl: 'http://localhost:8080/api/v1',
   // apiUrl: 'https://api-staging.erwaainstitute.com/api/v1',
   apiVersion: 'v1',

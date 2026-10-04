@@ -3,12 +3,13 @@ import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
- 
 export interface PageSeoData {
   title: string;
   description: string;
   keywords?: string;
   image?: string;
+  /** Set true for pages that must never appear in search results (e.g. checkout). */
+  noindex?: boolean;
 }
 
 export interface LandingPageSeo {
@@ -20,9 +21,9 @@ export interface LandingPageSeo {
 export class SeoService {
 
   private readonly siteUrl = environment.siteUrl;
-  private readonly siteName = { ar: 'نبض بلس', en: 'Nabd Plus' };
-  private readonly defaultImage = `${environment.siteUrl}/assets/images/og/nabdplus-og-default.png`;
-  private readonly twitterHandle = '@nabdplus';
+  private readonly siteName = { ar: 'معهد إرواء العالي للتدريب', en: 'Erwaa Higher Institute for Training' };
+  private readonly defaultImage = `${environment.siteUrl}/assets/images/logo/logo-original.png`;
+  private readonly twitterHandle = '@institute_Erwaa';
 
   constructor(
     private readonly meta: Meta,
@@ -52,12 +53,17 @@ export class SeoService {
     const imageRaw = data.image ?? this.defaultImage;
     const image = imageRaw.startsWith('http') ? imageRaw : `${this.siteUrl}/${imageRaw}`;
 
+    // Pages pass just their own title segment (e.g. a course name) and get
+    // " | <site name>" appended automatically — except the home page, which
+    // passes its full tagline-including title already, so it's left as-is.
+    const fullTitle = data.title.includes(siteName) ? data.title : `${data.title} | ${siteName}`;
+
     // ── Title ────────────────────────────────────────────────────────────────
-    this.titleService.setTitle(`${data.title} | ${siteName}`);
+    this.titleService.setTitle(fullTitle);
 
     // ── Basic meta ───────────────────────────────────────────────────────────
     this.meta.updateTag({ name: 'description', content: data.description });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
+    this.meta.updateTag({ name: 'robots', content: data.noindex ? 'noindex, nofollow' : 'index, follow' });
     if (data.keywords) {
       this.meta.updateTag({ name: 'keywords', content: data.keywords });
     }
@@ -65,7 +71,7 @@ export class SeoService {
     // ── Open Graph ───────────────────────────────────────────────────────────
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:site_name', content: siteName });
-    this.meta.updateTag({ property: 'og:title', content: `${data.title} | ${siteName}` });
+    this.meta.updateTag({ property: 'og:title', content: fullTitle });
     this.meta.updateTag({ property: 'og:description', content: data.description });
     this.meta.updateTag({ property: 'og:url', content: pageUrl });
     this.meta.updateTag({ property: 'og:locale', content: locale });
@@ -73,14 +79,14 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:image', content: image });
     this.meta.updateTag({ property: 'og:image:secure_url', content: image });
     this.meta.updateTag({ property: 'og:image:width', content: '1200' });
-    this.meta.updateTag({ property: 'og:image:height', content: '630' });
+    this.meta.updateTag({ property: 'og:image:height', content: '1200' });
     this.meta.updateTag({ property: 'og:image:type', content: 'image/png' });
 
     // ── Twitter Card ─────────────────────────────────────────────────────────
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:site', content: this.twitterHandle });
     this.meta.updateTag({ name: 'twitter:creator', content: this.twitterHandle });
-    this.meta.updateTag({ name: 'twitter:title', content: `${data.title} | ${siteName}` });
+    this.meta.updateTag({ name: 'twitter:title', content: fullTitle });
     this.meta.updateTag({ name: 'twitter:description', content: data.description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
     this.meta.updateTag({ name: 'twitter:url', content: pageUrl });
@@ -92,27 +98,19 @@ export class SeoService {
     this.setHreflang(pageUrl, altUrl, lang);
   }
 
-  // ─── JSON-LD structured data ───────────────────────────────────────────────
-
-  injectStructuredData(schema: Record<string, unknown>): void {
-    this.removeStructuredData();
-    const script = this.doc.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = '__nabdplus_ld';
-    script.text = JSON.stringify(schema);
-    this.doc.head.appendChild(script);
+  /** Absolute site URL, e.g. for building image src attributes in structured data. */
+  get baseUrl(): string {
+    return this.siteUrl;
   }
 
-  removeStructuredData(): void {
-    this.doc.getElementById('__nabdplus_ld')?.remove();
-  }
-
-  // ─── Helpers ──────────────────────────────────────────────────────────────
-
-  private buildUrl(lang: 'ar' | 'en', route: string): string {
+  /** Public so structured-data builders (Course/Breadcrumb/ItemList schemas) can
+   *  reuse the exact same URL shape as the meta tags instead of re-deriving it. */
+  buildUrl(lang: 'ar' | 'en', route: string): string {
     const segment = route ? `/${route}` : '';
     return `${this.siteUrl}/${lang}${segment}`;
   }
+
+  // ─── Helpers ──────────────────────────────────────────────────────────────
 
   private setLink(rel: string, href: string): void {
     let el = this.doc.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
@@ -141,6 +139,6 @@ export class SeoService {
 
     add('ar', ara);
     add('en', eng);
-    add('x-default', ara); // Arabic is the default locale for nabd911
+    add('x-default', ara); // Arabic is the default locale for erwaainstitute.com
   }
 }
